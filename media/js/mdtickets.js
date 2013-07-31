@@ -1,5 +1,19 @@
 jQuery(document).ready(function(){
- jQuery("#assigned").focusout(function(){
-     jQuery("#iton").removeClass('hidden');
- });
+    var assigned = jQuery('#assigned option:selected').val();
+
+    if (assigned == 'ITON') {
+        jQuery("#iton").show();
+    } else {
+        jQuery("#iton").hide();
+    }
+
+    jQuery("#assigned").focusout(function(){
+        var assigned = jQuery('#assigned option:selected').val();
+
+        if (assigned == 'ITON') {
+            jQuery("#iton").show();
+        } else {
+            jQuery("#iton").hide();
+        }
+    });
 });

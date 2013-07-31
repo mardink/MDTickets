@@ -9,10 +9,12 @@
 // Load the CSS file
 FOFTemplateUtils::addCSS('media://com_mdtickets/css/mdtickets.css');
 
-// Load the Javascript framework for Joomla!
-JHTML::_('behavior.framework');
+// eerst JQuery toevoegen
+JHtml::_('bootstrap.framework');
 // Load custom js file
-FOFTemplateUtils::addJS('media://com_mdtickets/js/mdtickets.js');
+$document = JFactory::getDocument();
+$document->addScript('media/com_mdtickets/js/mdtickets.js');
+
 // Load the editor
 $editor = JFactory::getEditor();
 ?>
@@ -34,11 +36,15 @@ $editor = JFactory::getEditor();
                     <h3>Ticket <?php echo $ticketNum; ?></h3>
                 <?php } ?>
             <div class="row">
-                <div class="span3">
+                <div class="span4">
+                    <label for="short" class="control-label">Korte omschrijving(max 30 characters) </label>
+                    <input type="text" name="short" id="short" maxlength="30" value="<?php echo $this->item->short?>" required=""/>
+                </div>
+                <div class="span2">
                     <label for="prio" class="control-label">Prioriteit</label>
                     <select name="prio" id="prio"/>
                         <?php
-                        $priorities = array('Hoog', 'Normaal', 'Laag', 'Periodiek', 'tzt');
+                        $priorities = array('Normal', 'High', 'Laag', 'Periodiek', 'tzt');
                         $current_prio = $this->item->prio;
 
                         foreach($priorities as $prio) {
@@ -53,7 +59,7 @@ $editor = JFactory::getEditor();
 
 
                 </div>
-                <div class="span3">
+                <div class="span2">
                     <label for="category" class="control-label">Categorie</label>
                     <select name="category" id="category"/>
                     <?php
@@ -70,24 +76,18 @@ $editor = JFactory::getEditor();
                     ?>
                     </select>
                 </div>
-                <div class="span3">
+                <div class="span1">
                     <label for="requester" class="control-label">Requested by</label>
                     <input type="text" name="requester" id="requester" value="<?php echo $this->item->requester?>"/>
                 </div>
-                <div class="span3">
+                <div class="span1">
                     <label for="deadline" class="control-label">Deadline</label>
                     <input type="date" name="deadline" id="deadline" value="<?php echo $this->item->deadline?>"/>
                 </div>
+
             </div>
             <div class="row">
-                <label for="short" class="control-label">Korte omschrijving </label>
-                <input type="text" name="short" id="short" size="100" maxlength="100" value="<?php echo $this->item->short?>"/>
-            </div>
-            <div class="row">
-                <?php echo $editor->display('detail', $this->item->detail, '100%', '200', '60', '20', false); ?>
-            </div>
-            <div class="row">
-                <div class="span3">
+                <div class="span2">
                     <label for="assigned" class="control-label">Assigned</label>
                     <select name="assigned" id="assigned"/>
                     <?php
@@ -104,7 +104,7 @@ $editor = JFactory::getEditor();
                     ?>
                     </select>
                 </div>
-                 <div class="span3">
+                 <div class="span2">
                     <label for="status" class="control-label">Status</label>
                     <select name="status" id="status"/>
                      <?php
@@ -121,20 +121,26 @@ $editor = JFactory::getEditor();
                      ?>
                     </select>
                 </div>
-                <div class="span3">
+                <div class="span2">
                     <label for="completed_by" class="control-label">Completed by</label>
                     <input type="text" name="completed_by" id="completed_by" value="<?php echo $this->item->requester?>"/>
                 </div>
-                <div class="span3">
+                <div class="span2">
                     <label for="completion_date" class="control-label">Completion date</label>
                     <input type="date" name="completion_date" id="completion_date" value="<?php echo $this->item->completion_date?>"/>
                 </div>
-            </div>
-            <div id="iton" class="row">
-                <label for="itoncall" class="control-label">ITON Call</label>
-                <input type="text" name="itoncall" id="itoncall" value="<?php echo $this->item->itoncall?>"/>
+                <div id="iton" class="span2">
+                    <label for="itoncall" class="control-label">ITON Call</label>
+                    <input type="text" name="itoncall" id="itoncall" value="<?php echo $this->item->itoncall?>"/>
+
+                </div>
             </div>
             <div class="row">
+                <label for="detail" class="control-label">Detail description</label>
+                <?php echo $editor->display('detail', $this->item->detail, '100%', '300', '60', '20', false); ?>
+            </div>
+            <div class="row">
+                <label for="remark" class="control-label">Remark</label>
                 <?php echo $editor->display('remark', $this->item->remark, '100%', '200', '60', '20', false); ?>
             </div>
         </div>
