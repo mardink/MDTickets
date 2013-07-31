@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	@package	contactus
+	@copyright	Copyright (c)2013 Nicholas K. Dionysopoulos / AkeebaBackup.com
+	@license	GNU General Public License version 2 or later
+	
+	Items view form file
+-->
+<form validate="true">
+	<fieldset name="basic_information"
+		label="Gegevens"
+	>
+		<field name="mdtickets_category_id" type="list"
+			label="Categorie"
+			required="true"
+		>
+        <option value="Budget">Budget generator</option>
+        <option value="Telefonie">Telefonie</option>
+        <option value="netwerk">Netwerk</option>
+        </field>
+		
+		<field name="fromname" type="text"
+			label="Requested by"
+			class="input-xlarge"
+			required="true"
+		/>
+		
+		<field name="fromemail" type="list"
+			label="prioriteit"
+			class="input-xlarge"
+			required="true"
+		>
+            <option value="hoog">Hoog</option>
+            <option value="normal">Normal</option>
+            <option value="laag">Laag</option>
+        </field>
+
+		<field name="enabled" type="list" label="JSTATUS"
+			labelclass="todo-label"
+			description="JFIELD_PUBLISHED_DESC" class="inputbox"
+			filter="intval" size="1" default="1"
+		>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+	</fieldset>
+	
+	<fieldset name="basic_information"
+		label="Informatie"
+	>
+		<field name="subject" type="edito"
+			label="Remarks"
+			 />
+
+		<field name="body" type="editor"
+			label="Detailed description"
+			filter="JComponentHelper::filterText" buttons="true"
+			required="true" />
+	</fieldset>
+
+</form>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="component" method="upgrade">
+	<name>MDTickets</name>
+	<creationDate>29-07-2013</creationDate>
+	<author>M. Hiddink</author>
+	<authorEmail>support@maridnkwebdesign.com</authorEmail>
+	<authorUrl>http://www.mardinkwebdesign.com</authorUrl>
+	<copyright>Copyright (c)2013 M. Hiddink / Mardinkwebdesign.com</copyright>
+	<license>GNU GPL v3 or later</license>
+	<version>1.0.0</version>
+	<description>A simple component for helpdesk tickets</description>
+
+	<!-- Public front end files -->
+	<files folder="frontend">
+		<filename>mdtickets.php</filename>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+
+	<!-- Front end translation files -->
+	<languages folder="language/frontend">
+		<language tag="en-GB">en-GB/en-GB.com_mdtickets.ini</language>
+	</languages>
+
+	<!-- SQL query files to execute on installation -->
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install/mysql/install.sql</file>
+			<file driver="mysql">sql/install/mysql/install.sql</file>
+			<file driver="mysqli" charset="utf8">sql/install/mysql/install.sql</file>
+			<file driver="mysqli">sql/install/mysql/install.sql</file>
+		</sql>
+	</install>
+
+	<!-- SQL query files to execute on uninstallation -->
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install/mysql/uninstall.sql</file>
+			<file driver="mysql">sql/install/mysql/uninstall.sql</file>
+			<file driver="mysqli" charset="utf8">sql/install/mysql/uninstall.sql</file>
+			<file driver="mysqli">sql/install/mysql/uninstall.sql</file>
+		</sql>
+	</uninstall>
+	
+	<!-- SQL files to run on update -->
+	<!--
+	<update>
+		<schemas>
+			<schemapath type="mysql">sql/updates/mysql</schemapath>
+		</schemas>
+	</update>
+	-->
+	
+	<!-- Media files -->
+	<media destination="com_mdtickets" folder="media">
+		<folder>images</folder>
+        <folder>css</folder>
+        <folder>js</folder>
+	</media>
+
+	<!-- Administrator back-end section -->
+	<administration>
+		<!-- Administration menu -->
+		<menu view="items"
+			img="../media/com_mdtickets/images/contactus-16.png">COM_MDTICKETS</menu>
+
+		<!-- Back-end files -->
+		<files folder="backend">
+			<folder>sql</folder>
+			<folder>views</folder>
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>mdtickets.php</filename>
+			<filename>fof.xml</filename>
+		</files>
+
+		<!-- Back-end translation files -->
+		<languages folder="language/backend">
+			<language tag="en-GB">en-GB/en-GB.com_mdtickets.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_mdtickets.sys.ini</language>
+		</languages>
+
+	</administration>
+
+	<!-- Installation / uninstallation script file -->
+	<!--<scriptfile>script.contactus.php</scriptfile>-->
+
+	<!-- Update servers -->
+	<!--
+	<updateservers>
+		<server type="extension" priority="1" name="Contact Us"><![CDATA[http://www.example.com/contactus.xml]]></server>
+	</updateservers>
+	-->
+</extension>
