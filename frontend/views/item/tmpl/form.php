@@ -88,23 +88,6 @@ $editor = JFactory::getEditor();
             </div>
             <div class="row">
                 <div class="span2">
-                    <label for="assigned" class="control-label">Assigned</label>
-                    <select name="assigned" id="assigned"/>
-                    <?php
-                    $assign = array('MHI', 'HvT', 'MHI-HvT', 'ITON');
-                    $current_assigned = $this->item->assigned;
-
-                    foreach($assign as $assigned) {
-                        if($assigned == $current_assigned) {
-                            echo '<option selected="selected">'.$assigned.'</option>';
-                        } else {
-                            echo '<option>'.$assigned.'</option>';
-                        }
-                    }
-                    ?>
-                    </select>
-                </div>
-                 <div class="span2">
                     <label for="status" class="control-label">Status</label>
                     <select name="status" id="status"/>
                      <?php
@@ -129,20 +112,52 @@ $editor = JFactory::getEditor();
                     <label for="completion_date" class="control-label">Completion date</label>
                     <input type="date" name="completion_date" id="completion_date" value="<?php echo $this->item->completion_date?>"/>
                 </div>
+                <div class="span2">
+                    <label for="assigned" class="control-label">Assigned</label>
+                    <select name="assigned" id="assigned"/>
+                    <?php
+                    $assign = array('MHI', 'HvT', 'MHI-HvT', 'ITON');
+                    $current_assigned = $this->item->assigned;
+
+                    foreach($assign as $assigned) {
+                        if($assigned == $current_assigned) {
+                            echo '<option selected="selected">'.$assigned.'</option>';
+                        } else {
+                            echo '<option>'.$assigned.'</option>';
+                        }
+                    }
+                    ?>
+                    </select>
+                </div>
+
                 <div id="iton" class="span2">
                     <label for="itoncall" class="control-label">ITON Call</label>
                     <input type="text" name="itoncall" id="itoncall" value="<?php echo $this->item->itoncall?>"/>
 
                 </div>
             </div>
-            <div class="row">
-                <label for="detail" class="control-label">Detail description</label>
+
+            <?php
+            // check if document is new or edit
+            $doc_id = $this->item->mdtickets_item_id;
+            if (!$doc_id) {?>
+                <p class="control-label">Detail description</p>
+                <div class="row" id="detail">
+
                 <?php echo $editor->display('detail', $this->item->detail, '100%', '300', '60', '20', false); ?>
+            </div> <?php
+            } else {
+            ?>
+                <button id="edit-button" class="btn btn-small btn-primary">Edit</button><button id="toevoegen" class="btn btn-small btn-success" type="button">Toevoegen</button>
+            <div class="row" id="show-detail">
+                <label for="showdetail" class="control-label">Detail description</label>
+                <div class="well"><?php echo $this->item->detail?></div>
             </div>
-            <div class="row">
+            <?php } ?>
+            <!-- <div class="row">
                 <label for="remark" class="control-label">Remark</label>
                 <?php echo $editor->display('remark', $this->item->remark, '100%', '200', '60', '20', false); ?>
-            </div>
+            </div> -->
         </div>
     </div>
 </form>

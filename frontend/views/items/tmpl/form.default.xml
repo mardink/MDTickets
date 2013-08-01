@@ -14,14 +14,13 @@
 	norows_placeholder="COM_MDTICKETS_COMMON_NORECORDS"
 >
 	<headerset>
-		<header name="mdtickets_item_id" type="selectrow" tdwidth="20" />
-        <header name="short" type="fieldsearchable" buttons="no" buttonclass="btn"/>
-        <header name="prio" sortable="true" type="fieldselectable" buttons="yes" buttonclass="btn"/>
-		<header name="category" type="field" sortable="true" tdwidth="8%" />
-		<header name="short" type="fieldsearchable" buttons="no" buttonclass="btn"/>
-		<header name="status" type="field" sortable="true" tdwidth="8%" />
-        <header name="Assigned" type="fieldsearchable" buttons="no" buttonclass="btn"/>
-        <header name="deadline" type="field" buttons="no" buttonclass="btn"/>
+		<header name="mdtickets_item_id" type="rowselect" tdwidth="20" />
+        <header name="COM_MDTICKETS_LABEL_SHORT" type="fieldsearchable" buttons="no" buttonclass="btn"/>
+        <header name="COM_MDTICKETS_LABEL_PRIO" sortable="true" type="fieldselectable" buttons="yes" buttonclass="btn"/>
+		<header name="COM_MDTICKETS_LABEL_CATEGORY" type="field" sortable="true" tdwidth="8%" />
+		<header name="COM_MDTICKETS_LABEL_STATUS" type="field" sortable="true" tdwidth="8%" />
+        <header name="COM_MDTICKETS_LABEL_ASSIGNED" type="fieldsearchable" buttons="no" buttonclass="btn"/>
+        <header name="COM_MDTICKETS_LABEL_DEADLINE" type="field" buttons="no" buttonclass="btn"/>
 	</headerset>
 
 	<fieldset name="items">
