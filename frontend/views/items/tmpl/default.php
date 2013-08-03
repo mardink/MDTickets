@@ -13,7 +13,7 @@ FOFTemplateUtils::addCSS('media://com_mdtickets/css/mdtickets.css');
 JHtml::_('bootstrap.framework');
 // Load custom js file
 $document = JFactory::getDocument();
-$document->addScript('media/com_mdtickets/js/mdtickets.js');
+$document->addScript('media/com_mdtickets/js/mdtickets-items.js');
 
 
 $viewTemplate = $this->getRenderedForm();

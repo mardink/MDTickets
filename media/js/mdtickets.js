@@ -1,6 +1,6 @@
 jQuery(document).ready(function(){
+    // ITONCall veld Bepaal wie de assigned is. Als ITON dan een itoncall vel plaatsen
     var assigned = jQuery('#assigned option:selected').val();
-
     if (assigned == 'ITON') {
         jQuery("#iton").show();
     } else {
@@ -16,29 +16,5 @@ jQuery(document).ready(function(){
             jQuery("#iton").hide();
         }
     });
-    $( ".status" ).each(function() {
-    var status = jQuery("this").text();
-    if (status == 'Started') {
-        jQuery(this).addClass('status-started');
-    } else {
-        alert(status);
-    }
-    });
-    $(".assigned").each(function()
-    {
-        var sval = $(this).text();
-        //alert(sval);
-        if (sval == "MHI")
-        {
-            alert(sval);
-            $(this).css('backgroundColor', 'red');
-        }
-
-    });
-    jQuery("#toevoegen").Click(function(){
-       alert('Button is clciekd');
-    });
-    jQuery('#edit-button').click(function() {
-        jQuery('#show-detail').hide();
-            });
-});
+});     // Einde ITONCALL
+//Begin click functie

@@ -22,7 +22,7 @@ $editor = JFactory::getEditor();
     <input type="hidden" name="option" value="com_mdtickets" />
     <input type="hidden" name="view" value="item" />
     <input type="hidden" name="task" value="" />
-    <input type="hidden" name="mdtickets_item_id" value="<?php echo $this->item->mdtickets_item_id ?>" />
+    <input type="hidden" id="mdtickets_item_id" name="mdtickets_item_id" value="<?php echo $this->item->mdtickets_item_id ?>" />
     <input type="hidden" name="<?php echo JFactory::getSession()->getFormToken();?>" value="1" />
 
     <div class="row-fluid">
@@ -136,13 +136,13 @@ $editor = JFactory::getEditor();
 
                 </div>
             </div>
-
+<!-- Uitgeschakeld werkt nog niet
             <?php
             // check if document is new or edit
             $doc_id = $this->item->mdtickets_item_id;
             if (!$doc_id) {?>
                 <p class="control-label">Detail description</p>
-                <div class="row" id="detail">
+                <div class="row" id="detail-editor">
 
                 <?php echo $editor->display('detail', $this->item->detail, '100%', '300', '60', '20', false); ?>
             </div> <?php
@@ -153,11 +153,13 @@ $editor = JFactory::getEditor();
                 <label for="showdetail" class="control-label">Detail description</label>
                 <div class="well"><?php echo $this->item->detail?></div>
             </div>
-            <?php } ?>
-            <!-- <div class="row">
-                <label for="remark" class="control-label">Remark</label>
-                <?php echo $editor->display('remark', $this->item->remark, '100%', '200', '60', '20', false); ?>
-            </div> -->
+            <?php } ?> -->
+            <p class="control-label">Detail description</p>
+            <div class="row" id="detail-editor">
+
+                <?php echo $editor->display('detail', $this->item->detail, '100%', '300', '60', '20', false); ?>
+            </div>
+
         </div>
     </div>
 </form>
