@@ -30,21 +30,32 @@ $editor = JFactory::getEditor();
             <?php
             $num = $this->item->mdtickets_item_id;
             $ticketNum = sprintf("%04d", $num);
+            $user_id = $this->item->created_by;
+            $user = JFactory::getUser($user_id);
+            $username =  $user->get('username');
+
             if(!$num){?>
                     <h3>Nieuw Ticket</h3>
                 <?php } else { ?>
-                    <h3>Ticket <?php echo $ticketNum; ?></h3>
+                <div class="row">
+                <h3 class="span2">Ticket <?php echo $ticketNum;?></h3> <h4><?php echo JText::_( 'COM_MDTICKETS_CREATED_DATE' );
+                        $originalDate = $this->item->created_on;
+                        $newDate = date("d-m-Y", strtotime($originalDate));
+                        echo  $newDate;
+                    echo JText::_( 'COM_MDTICKETS_CREATED_BY' );
+                    echo $username?></h4>
                 <?php } ?>
+                </div>
             <div class="row">
                 <div class="span4">
-                    <label for="short" class="control-label">Korte omschrijving(max 30 characters) </label>
-                    <input type="text" name="short" id="short" maxlength="30" value="<?php echo $this->item->short?>" required=""/>
+                    <label for="short" class="control-label">Korte omschrijving(max 54 characters) </label>
+                    <input type="text" name="short" id="short" maxlength="54" value="<?php echo $this->item->short?>" required=""/>
                 </div>
                 <div class="span2">
                     <label for="prio" class="control-label">Prioriteit</label>
                     <select name="prio" id="prio"/>
                         <?php
-                        $priorities = array('Normal', 'High', 'Laag', 'Periodiek', 'tzt');
+                        $priorities = array('Normaal', 'Hoog', 'Laag', 'Periodiek', 'tzt');
                         $current_prio = $this->item->prio;
 
                         foreach($priorities as $prio) {
@@ -82,7 +93,10 @@ $editor = JFactory::getEditor();
                 </div>
                 <div class="span1">
                     <label for="deadline" class="control-label">Deadline</label>
-                    <input type="date" name="deadline" id="deadline" value="<?php echo $this->item->deadline?>"/>
+                    <input type="date" name="deadline" id="deadline" value="
+                    <?php $DateDeadline = $this->item->deadline;
+                    $newDateDeadline = date("d-m-Y", strtotime($DateDeadline));
+                    echo $newDateDeadline;?>"/>
                 </div>
 
             </div>
@@ -91,7 +105,7 @@ $editor = JFactory::getEditor();
                     <label for="status" class="control-label">Status</label>
                     <select name="status" id="status"/>
                      <?php
-                     $statussen = array('Not Started', 'Started', 'Pauzed', 'Waiting for ITON', 'Waiting for supplier', 'Waiting for info', 'Closed');
+                     $statussen = array('Not Started', 'Started', 'Pauzed', 'Waiting for ITON', 'Waiting for supplier', 'Waiting for other', 'Closed', 'Cancelled');
                      $current_status = $this->item->status;
 
                      foreach($statussen as $status) {

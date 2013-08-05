@@ -379,7 +379,7 @@ class MdticketsToolbar extends FOFToolbar
 			$msg = JText::_($this->input->getCmd('option', 'com_foobar') . '_CONFIRM_DELETE');
 			JToolBarHelper::deleteList($msg);
 		}
-	}
+        	}
 
 	/**
 	 * Renders the toolbar for the component's Read pages
