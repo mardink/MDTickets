@@ -19,7 +19,7 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
 <table class="adminlist table table-striped" id="itemsList">
     <div class="row">
         <input type="text" name="title" id="title"
-           value="<?php echo $this->escape($this->getModel()->getState('short',''));?>"
+           value="<?php echo $this->escape($this->getModel()->getState('title',''));?>"
            class="text_area" onchange="document.adminForm.submit();" />
         <button class="btn btn-small" onclick="this.form.submit();">
         <?php echo JText::_('JSEARCH_FILTER') ?>

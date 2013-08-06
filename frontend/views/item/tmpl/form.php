@@ -14,6 +14,7 @@ JHtml::_('bootstrap.framework');
 // Load custom js file
 $document = JFactory::getDocument();
 $document->addScript('media/com_mdtickets/js/mdtickets.js');
+//$document->addScript('media/com_mdtickets/js/mdtickets_click.js');
 
 // Load the editor
 $editor = JFactory::getEditor();
@@ -150,29 +151,24 @@ $editor = JFactory::getEditor();
 
                 </div>
             </div>
-<!-- Uitgeschakeld werkt nog niet
+
             <?php
             // check if document is new or edit
             $doc_id = $this->item->mdtickets_item_id;
             if (!$doc_id) {?>
                 <p class="control-label">Detail description</p>
                 <div class="row" id="detail-editor">
-
-                <?php echo $editor->display('detail', $this->item->detail, '100%', '300', '60', '20', false); ?>
+                    <textarea id="detail" name="detail" cols="60" rows="20" style="width:100%;height:300px;" ><?php echo $this->item->detail?></textarea>
             </div> <?php
             } else {
             ?>
-                <button id="edit-button" class="btn btn-small btn-primary">Edit</button><button id="toevoegen" class="btn btn-small btn-success" type="button">Toevoegen</button>
+                <button id="edit-button" class="btn btn-small btn-primary" type="button">Edit</button><button id="toevoegen" class="btn btn-small btn-success" type="button">Toevoegen</button>
             <div class="row" id="show-detail">
                 <label for="showdetail" class="control-label">Detail description</label>
-                <div class="well"><?php echo $this->item->detail?></div>
+                <div id="tekst" class="well"><?php echo $this->item->detail?></div>
             </div>
-            <?php } ?> -->
-            <p class="control-label">Detail description</p>
-            <div class="row" id="detail-editor">
-
-                <?php echo $editor->display('detail', $this->item->detail, '100%', '300', '60', '20', false); ?>
-            </div>
+                <div id="show-edit"><?php echo $editor->display('detail', $this->item->detail, '100%', '300', '60', '20', false); ?></div>
+            <?php } ?>
 
         </div>
     </div>
