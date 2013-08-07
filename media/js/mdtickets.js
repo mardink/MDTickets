@@ -1,5 +1,6 @@
 jQuery(document).ready(function(){
-    jQuery("#show-edit").hide()
+    jQuery("#show-edit").hide();
+    jQuery("#show-update").hide();
     // ITONCall veld Bepaal wie de assigned is. Als ITON dan een itoncall vel plaatsen
     var assigned = jQuery('#assigned option:selected').val();
     if (assigned == 'ITON') {
@@ -19,15 +20,10 @@ jQuery(document).ready(function(){
         }
     });
     jQuery( "#toevoegen" ).click(function() {
-        var tekst = jQuery("#tekst").text();
-        var date = new Date();
-        jQuery("#detail").text(date + '<br /><hr>' + tekst);
-        jQuery("#show-edit").show();
-        var detail_tekst = jQuery("#detail").text();
-        alert (detail_tekst);
+        jQuery("#form_edit").hide();
+        jQuery("#show-update").show();
     });
     jQuery( "#edit-button" ).click(function() {
-        var tekst = jQuery("#tekst").text();
         jQuery("#tekst").hide();
         jQuery("#show-edit").show()
 

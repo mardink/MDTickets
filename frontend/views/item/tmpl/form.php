@@ -47,6 +47,7 @@ $editor = JFactory::getEditor();
                     echo $username?></h4>
                 <?php } ?>
                 </div>
+            <div id="form_edit">
             <div class="row">
                 <div class="span4">
                     <label for="short" class="control-label">Korte omschrijving(max 54 characters) </label>
@@ -171,5 +172,9 @@ $editor = JFactory::getEditor();
             <?php } ?>
 
         </div>
+        </div>
+        <div id="show-update">
+            <h3>Update</h3>
+            <?php echo $editor->display('remark', $this->item->remark, '100%', '300', '60', '20', false); ?></div>
     </div>
 </form>

@@ -159,7 +159,11 @@ $m = 1 - $m;
         elseif ($item->assigned=='MHI'){?>label-success<?php }
         elseif ($item->assigned=='HvT'){?>label-warning<?php }
         elseif ($item->assigned=='MHI-HvT'){?>label-important<?php }?>"><?php echo $item->assigned;?></span></td>
-    <td><span class="itoncall"><a href="http://helpdesk.iton.nl/" target="_blank"><?php echo $item->itoncall;?></a></span></td>
+    <td><span class="itoncall">
+            <?php if ($item->assigned=='ITON') {?>
+            <a href="http://helpdesk.iton.nl/" target="_blank"><?php echo $item->itoncall;?></a></span>
+        <?php } ?>
+    </td>
     <td><span class="deadline"><?php
             $DateDeadline = $item->deadline;
             $newDateDeadline = date("d-m-Y", strtotime($DateDeadline));
