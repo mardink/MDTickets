@@ -2,6 +2,7 @@
 defined('_JEXEC') or die();
 
 JHTML::_('behavior.framework');
+$this->loadHelper('select');
 $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
 ?>
 <div class="row-fluid">
@@ -79,6 +80,21 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
         <?php echo JHTML::_('grid.sort', 'JPUBLISHED', 'enabled', $this->lists->order_Dir, $this->lists->order); ?>
     </th>-->
 </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <select id="category" name="category" onchange = "this.form.submit();"class = "input-medium">
+                    <option value="0">- Select a category -</option>
+                    <option value="Budget Generator">Budget Generator</option>
+                    <option value="Telefonie">Telefonie</option>
+                    <option value="Netwerk">Netwerk</option>
+                </select>
+            </td>
+        </tr>
     </thead>
     <tfoot>
     <tr>
