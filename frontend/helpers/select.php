@@ -77,4 +77,13 @@ class MdticketsHelperSelect
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
+    public static function published($selected = null, $id = 'enabled', $attribs = array())
+    {
+        $options = array();
+        $options[] = JHTML::_('select.option','','- '.JText::_('COM_ARS_COMMON_STATE_SELECT_LABEL').' -');
+        $options[] = JHTML::_('select.option',0,JText::_('JUNPUBLISHED'));
+        $options[] = JHTML::_('select.option',1,JText::_('JPUBLISHED'));
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
 }

@@ -89,7 +89,7 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
     <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_REQUESTER', 'requester', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span1">
+    <th class="span2">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_CATEGORY', 'category', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
@@ -113,7 +113,7 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
         <?php echo JHTML::_('grid.order', $this->items); ?>
     </th>
     <th width="8%">
-        <?php echo JHTML::_('grid.sort', 'JPUBLISHED', 'enabled', $this->lists->order_Dir, $this->lists->order); ?>
+        <?php echo JHTML::_('grid.sort', 'JPUBLISHED', 'published', $this->lists->order_Dir, $this->lists->order); ?>
     </th>-->
 </tr>
         <tr>
@@ -125,6 +125,12 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
             <td><?php echo MdticketsHelperSelect::category($this->getModel()->getState('category'), 'category', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
             <td><?php echo MdticketsHelperSelect::status($this->getModel()->getState('status'), 'status', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
             <td><?php echo MdticketsHelperSelect::assigned($this->getModel()->getState('assigned'), 'assigned', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <!-- Werkt nog niet goed
+            <td><?php echo MdticketsHelperSelect::published($this->getModel()->getState('published'), 'published', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
+        -->
         </tr>
     </thead>
     <tfoot>
@@ -218,8 +224,12 @@ $m = 1 - $m;
     <td><span class="modified_on"><?php
             $DateModifiedOn = $item->modified_on;
             $newDateModifiedOn = date("d-m-Y", strtotime($DateModifiedOn));
-
             echo $newDateModifiedOn;?></span></td>
+    <!-- Nog niet
+    <td><span class="published">
+            <?php if ($item->assigned=='ITON') {?>
+            <a href="http://helpdesk.iton.nl/" target="_blank"><?php echo $item->published;?></a></span>
+        <?php } ?></td>-->
 </tr>
     <?php
     $i++;
@@ -227,7 +237,7 @@ endforeach;
     ?>
 <?php else : ?>
     <tr>
-        <td colspan="10" align="center"><?php echo JText::_('COM_ARS_COMMON_NOITEMS_LABEL') ?></td>
+        <td colspan="10" align="center"><?php echo JText::_('COM_MDTICKETS_COMMON_NOITEMS_LABEL') ?></td>
     </tr>
 <?php endif ?>
 
