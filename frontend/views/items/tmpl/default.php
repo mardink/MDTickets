@@ -19,15 +19,51 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
 
 <table class="adminlist table table-striped" id="itemsList">
     <div class="row">
-        <input type="text" name="title" id="title"
-           value="<?php echo $this->escape($this->getModel()->getState('title',''));?>"
-           class="text_area" onchange="document.adminForm.submit();" />
-        <button class="btn btn-small" onclick="this.form.submit();">
+    <!-- Search in ticket number -->
+    <input type="text" name="mdtickets_item_id" id="mdtickets_item_id"
+           value="<?php echo $this->escape($this->getModel()->getState('mdtickets_item_id',''));?>"
+           class="text_area" onchange="document.adminForm.submit();"
+           placeholder="<?php echo JText::_('COM_MDTICKETS_SEARCH_TICKET') ?>"/>
+    <button class="btn btn-small btn-success" onclick="this.form.submit();">
         <?php echo JText::_('JSEARCH_FILTER') ?>
     </button>
-    <button class="btn btn-small" onclick="document.adminForm.title.value='';this.form.submit();">
+    <button class="btn btn-small btn-danger" onclick="document.adminForm.mdtickets_item_id.value='';this.form.submit();">
         <?php echo JText::_('JSEARCH_RESET') ?>
     </button>
+    <!-- Search Short -->
+        <input type="text" name="short" id="short"
+           value="<?php echo $this->escape($this->getModel()->getState('short',''));?>"
+           class="text_area" onchange="document.adminForm.submit();"
+           placeholder="<?php echo JText::_('COM_MDTICKETS_SEARCH_SHORT') ?>"/>
+        <button class="btn btn-small btn-success" onclick="this.form.submit();">
+        <?php echo JText::_('JSEARCH_FILTER') ?>
+    </button>
+    <button class="btn btn-small btn-danger" onclick="document.adminForm.short.value='';this.form.submit();">
+        <?php echo JText::_('JSEARCH_RESET') ?>
+    </button>
+    <!-- Search in all - Niet handig als er nummers in omschrijving staat Uitgezet
+            <input type="text" name="search" id="search"
+           value="<?php echo $this->escape($this->getModel()->getState('search',''));?>"
+           class="text_area" onchange="document.adminForm.submit();"
+           placeholder="<?php echo JText::_('COM_MDTICKETS_SEARCH') ?>"/>
+    <button class="btn btn-small" onclick="this.form.submit();">
+        <?php echo JText::_('JSEARCH_FILTER') ?>
+    </button>
+    <button class="btn btn-small" onclick="document.adminForm.search.value='';this.form.submit();">
+        <?php echo JText::_('JSEARCH_RESET') ?>
+    </button>
+     Einde-->
+        <!-- Search ITONCall -->
+        <input type="text" name="itoncall" id="itoncall"
+               value="<?php echo $this->escape($this->getModel()->getState('itoncall',''));?>"
+               class="text_area" onchange="document.adminForm.submit();"
+                placeholder="<?php echo JText::_('COM_MDTICKETS_SEARCH_ITONCALL') ?>"/>
+        <button class="btn btn-small btn-success" onclick="this.form.submit();">
+            <?php echo JText::_('JSEARCH_FILTER') ?>
+        </button>
+        <button class="btn btn-small btn-danger" onclick="document.adminForm.itoncall.value='';this.form.submit();">
+            <?php echo JText::_('JSEARCH_RESET') ?>
+        </button>
         <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&format=csv" ><?php echo JText::_('COM_MDTICKETS_DOWNLOAD_CSV') ?></a>
         <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&tmpl=component" ><?php echo JText::_('COM_MDTICKETS_PRINT') ?></a>
 
@@ -47,28 +83,28 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
     <th width="290px">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_SHORT', 'short', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th width="15px">
+    <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_PRIO', 'prio', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th width="15px">
+    <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_REQUESTER', 'requester', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th width="40px">
+    <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_CATEGORY', 'category', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th width="20px">
+    <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_STATUS', 'status', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th width="100px">
+    <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_ASSIGNED', 'assigned', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th width="30px">
+    <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_ITONCALL', 'itoncall', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th width="25px">
+    <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_DEADLINE', 'deadline', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th width="25px">
+    <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_MODIFIED', 'modified_on', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <!-- Onderstaand niet nodig?
@@ -84,16 +120,11 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
             <td></td>
             <td></td>
             <td></td>
+            <td><?php echo MdticketsHelperSelect::prio($this->getModel()->getState('prio'), 'prio', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
             <td></td>
-            <td></td>
-            <td>
-                <select id="category" name="category" onchange = "this.form.submit();"class = "input-medium">
-                    <option value="0">- Select a category -</option>
-                    <option value="Budget Generator">Budget Generator</option>
-                    <option value="Telefonie">Telefonie</option>
-                    <option value="Netwerk">Netwerk</option>
-                </select>
-            </td>
+            <td><?php echo MdticketsHelperSelect::category($this->getModel()->getState('category'), 'category', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
+            <td><?php echo MdticketsHelperSelect::status($this->getModel()->getState('status'), 'status', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
+            <td><?php echo MdticketsHelperSelect::assigned($this->getModel()->getState('assigned'), 'assigned', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
         </tr>
     </thead>
     <tfoot>

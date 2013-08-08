@@ -17,31 +17,54 @@ class MdticketsModelItems extends FOFModel
             ->select('*')
             ->from($db->quoteName('#__mdtickets_items'));
 
-        $fltTitle		= $this->getState('title', null, 'string');
-        if($fltTitle) {
-            $fltTitle = "%$fltTitle%";
-            $query->where($db->qn('title').' LIKE '.$db->q($fltTitle));
+        $fltCategory		= $this->getState('category', null, 'string');
+        if($fltCategory) {
+            $fltCategory = "$fltCategory";
+            $query->where($db->qn('category').' LIKE '.$db->q($fltCategory));
         }
 
-        $fltAlias		= $this->getState('alias', null, 'string');
-        if($fltAlias) {
-            $query->where($db->qn('alias').' = '.$db->q($fltAlias));
+        $fltPrio		= $this->getState('prio', null, 'string');
+        if($fltPrio) {
+            //$fltPrio = "%$fltPrio%";
+            $query->where($db->qn('prio').' = '.$db->q($fltPrio));
         }
 
-        $fltDescription	= $this->getState('description', null, 'string');
-        if($fltDescription) {
-            $fltDescription = "%$fltDescription%";
-            $query->where($db->qn('description').' LIKE '.$db->q($fltDescription));
+        $fltShort	= $this->getState('short', null, 'string');
+        if($fltShort) {
+            $fltShort = "%$fltShort%";
+            $query->where('('.
+            '('.$db->qn('short').' LIKE '.$db->quote($fltShort).') OR'.
+            '('.$db->qn('detail').' LIKE '.$db->quote($fltShort).')'.
+            ')'
+            );
         }
 
-        $fltVgroup		= $this->getState('vgroup', null, 'int');
-        if($fltVgroup) {
-            $query->where($db->qn('vgroup_id').' = '.$db->q($fltAlias));
+        $fltDetail	= $this->getState('detail', null, 'string');
+        if($fltDetail) {
+            $fltDetail = "%$fltDetail%";
+            $query->where($db->qn('detail').' LIKE '.$db->q($fltDetail));
         }
 
-        $fltType		= $this->getState('type', null, 'cmd');
-        if($fltType) {
-            $query->where($db->qn('type').' = '.$db->q($fltType));
+        $fltItoncall	= $this->getState('itoncall', null, 'string');
+        if($fltItoncall) {
+            $fltItoncall = "%$fltItoncall%";
+            $query->where($db->qn('itoncall').' LIKE '.$db->q($fltItoncall));
+        }
+
+        $fltMdticket	= $this->getState('mdtickets_item_id', null, 'string');
+        if($fltMdticket) {
+            $fltMdticket = "%$fltMdticket";
+            $query->where($db->qn('mdtickets_item_id').' LIKE '.$db->q($fltMdticket));
+        }
+
+        $fltStatus		= $this->getState('status', null, 'string');
+        if($fltStatus) {
+            $query->where($db->qn('status').' LIKE '.$db->q($fltStatus));
+        }
+
+        $fltAssigned		= $this->getState('assigned', null, 'string');
+        if($fltAssigned) {
+            $query->where($db->qn('assigned').' LIKE '.$db->q($fltAssigned));
         }
 
         $fltAccess		= $this->getState('access', null, 'cmd');
@@ -73,8 +96,10 @@ class MdticketsModelItems extends FOFModel
             $search = '%'.$search.'%';
             $query->where(
                 '('.
-                '('.$db->qn('title').' LIKE '.$db->quote($search).') OR'.
-                '('.$db->qn('description').' LIKE '.$db->quote($search).')'.
+                '('.$db->qn('short').' LIKE '.$db->quote($search).') OR'.
+                '('.$db->qn('detail').' LIKE '.$db->quote($search).') OR'.
+                '('.$db->qn('itoncall').' LIKE '.$db->quote($search).') OR'.
+                '('.$db->qn('mdtickets_item_id').' LIKE '.$db->quote($search).')'.
                 ')'
             );
         }
