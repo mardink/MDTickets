@@ -43,12 +43,19 @@ class MdticketsHelperSelect
     {
         $options = array();
         $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDTICKETS_CATEGORY_TYPE_SELECT').' -');
-        $options[] = JHTML::_('select.option','Budget Generator',JText::_('COM_MDTICKETS_CATEGORY_TYPE_BUDGET'));
         $options[] = JHTML::_('select.option','Telefonie',JText::_('COM_MDTICKETS_CATEGORY_TYPE_PHONE'));
+        $options[] = JHTML::_('select.option','Mob-telefonie',JText::_('COM_MDTICKETS_CATEGORY_TYPE_MOBPHONE'));
         $options[] = JHTML::_('select.option','Netwerk',JText::_('COM_MDTICKETS_CATEGORY_TYPE_NETWORK'));
+        $options[] = JHTML::_('select.option','Applicaties',JText::_('COM_MDTICKETS_CATEGORY_TYPE_APPLICATIES'));
+        $options[] = JHTML::_('select.option','Hardware',JText::_('COM_MDTICKETS_CATEGORY_TYPE_HARDWARE'));
+        $options[] = JHTML::_('select.option','Software',JText::_('COM_MDTICKETS_CATEGORY_TYPE_SOFTWARE'));
+        $options[] = JHTML::_('select.option','Beheer',JText::_('COM_MDTICKETS_CATEGORY_TYPE_BEHEER'));
+        $options[] = JHTML::_('select.option','Security',JText::_('COM_MDTICKETS_CATEGORY_TYPE_SECURITY'));
+        $options[] = JHTML::_('select.option','Internet',JText::_('COM_MDTICKETS_CATEGORY_TYPE_INTERNET'));
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
+
     // Get the status fields
     public static function status($selected = null, $id = 'type', $attribs = array() )
     {
@@ -74,6 +81,7 @@ class MdticketsHelperSelect
         $options[] = JHTML::_('select.option','HvT', 'HvT');
         $options[] = JHTML::_('select.option','MHI-HvT', 'MHI-HvT');
         $options[] = JHTML::_('select.option','ITON', 'ITON');
+        $options[] = JHTML::_('select.option','Other', 'Other');
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
@@ -86,4 +94,5 @@ class MdticketsHelperSelect
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
+
 }

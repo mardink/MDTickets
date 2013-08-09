@@ -13,9 +13,11 @@
 	<!-- Public front end files -->
 	<files folder="frontend">
 		<filename>mdtickets.php</filename>
+        <filename>toolbar.php</filename>
 		<folder>controllers</folder>
+        <folder>helpers</folder>
 		<folder>models</folder>
-		<folder>views</folder>
+        <folder>views</folder>
 	</files>
 
 	<!-- Front end translation files -->
@@ -79,6 +81,8 @@
 		<languages folder="language/backend">
 			<language tag="en-GB">en-GB/en-GB.com_mdtickets.ini</language>
 			<language tag="en-GB">en-GB/en-GB.com_mdtickets.sys.ini</language>
+            <language tag="nl-NL">nl-NL/nl-NL.com_mdtickets.ini</language>
+            <language tag="nl-NL">nl-NL/nl-NL.com_mdtickets.sys.ini</language>
 		</languages>
 
 	</administration>

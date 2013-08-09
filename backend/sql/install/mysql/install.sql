@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `#__mdtickets_items` (
   `modified_by` bigint(20) NOT NULL DEFAULT '0',
   `locked_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `locked_by` bigint(20) NOT NULL DEFAULT '0',
-  `completion_date` date NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `completion_date` date DEFAULT NULL,
   `completed_by` varchar(255),
   `remark` mediumtext NOT NULL,
   PRIMARY KEY (`mdtickets_item_id`)

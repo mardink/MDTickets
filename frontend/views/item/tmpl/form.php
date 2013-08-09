@@ -14,12 +14,13 @@ JHtml::_('bootstrap.framework');
 // Load custom js file
 $document = JFactory::getDocument();
 $document->addScript('media/com_mdtickets/js/mdtickets.js');
-//$document->addScript('media/com_mdtickets/js/mdtickets_click.js');
+
+
 
 // Load the editor
 $editor = JFactory::getEditor();
 ?>
-<form action="index.php" method="post" id="adminForm" xmlns="http://www.w3.org/1999/html">
+<form action="index.php" method="post" id="adminForm" class="form-validate" xmlns="http://www.w3.org/1999/html">
     <input type="hidden" name="option" value="com_mdtickets" />
     <input type="hidden" name="view" value="item" />
     <input type="hidden" name="task" value="" />
@@ -51,7 +52,7 @@ $editor = JFactory::getEditor();
             <div class="row">
                 <div class="span4">
                     <label for="short" class="control-label">Korte omschrijving(max 54 characters) </label>
-                    <input type="text" name="short" id="short" maxlength="54" value="<?php echo $this->item->short?>" required=""/>
+                    <input type="text" name="short" id="short" maxlength="54" value="<?php echo $this->item->short?>" required="true"/>
                 </div>
                 <div class="span2">
                     <label for="prio" class="control-label">Prioriteit</label>
@@ -76,7 +77,7 @@ $editor = JFactory::getEditor();
                     <label for="category" class="control-label">Categorie</label>
                     <select name="category" id="category"/>
                     <?php
-                    $categories = array('Budget Generator', 'Telefonie', 'Netwerk');
+                    $categories = array('Telefonie', 'Mob-telefonie', 'Netwerk', 'Applicaties', 'Software', 'Hardware', 'Beheer', 'Security', 'Internet');
                     $current_category = $this->item->category;
 
                     foreach($categories as $category) {
@@ -120,11 +121,11 @@ $editor = JFactory::getEditor();
                      ?>
                     </select>
                 </div>
-                <div class="span2">
+                <div id="completeby" class="span2">
                     <label for="completed_by" class="control-label">Completed by</label>
                     <input type="text" name="completed_by" id="completed_by" value="<?php echo $this->item->requester?>"/>
                 </div>
-                <div class="span2">
+                <div id="completedate"class="span2">
                     <label for="completion_date" class="control-label">Completion date</label>
                     <input type="date" name="completion_date" id="completion_date" value="<?php echo $this->item->completion_date?>"/>
                 </div>
@@ -132,7 +133,7 @@ $editor = JFactory::getEditor();
                     <label for="assigned" class="control-label">Assigned</label>
                     <select name="assigned" id="assigned"/>
                     <?php
-                    $assign = array('MHI', 'HvT', 'MHI-HvT', 'ITON');
+                    $assign = array('MHI', 'HvT', 'MHI-HvT', 'ITON', 'Other');
                     $current_assigned = $this->item->assigned;
 
                     foreach($assign as $assigned) {
@@ -159,7 +160,7 @@ $editor = JFactory::getEditor();
             if (!$doc_id) {?>
                 <p class="control-label">Detail description</p>
                 <div class="row" id="detail-editor">
-                    <textarea id="detail" name="detail" cols="60" rows="20" style="width:100%;height:300px;" ><?php echo $this->item->detail?></textarea>
+                    <?php echo $editor->display('detail', $this->item->detail, '100%', '300', '60', '20', false); ?>
             </div> <?php
             } else {
             ?>

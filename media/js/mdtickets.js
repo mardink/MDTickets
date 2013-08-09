@@ -18,7 +18,30 @@ jQuery(document).ready(function(){
             jQuery("#iton").hide();
 
         }
-    });
+    });// Einde ITONCALL
+    // Completed by, date veld Bepaal wat de status is. Als cancelled of closed dan velden laten zien
+    var status = jQuery('#status option:selected').val();
+    if (status == 'Closed' || status == 'Cancelled' ) {
+        jQuery("#completedate").show();
+        jQuery("#completeby").show();
+    } else {
+        jQuery("#completedate").hide();
+        jQuery("#completeby").hide();
+    }
+
+    jQuery("#status").focusout(function(){
+        var status = jQuery('#status option:selected').val();
+
+        if (status == 'Closed' || status == 'Cancelled') {
+            jQuery("#completedate").show();
+            jQuery("#completeby").show();
+        } else {
+            jQuery("#completedate").hide();
+            jQuery("#completeby").hide();
+        }
+    });// Einde
+
+
     jQuery( "#toevoegen" ).click(function() {
         jQuery("#form_edit").hide();
         jQuery("#show-update").show();
@@ -28,5 +51,5 @@ jQuery(document).ready(function(){
         jQuery("#show-edit").show()
 
     });
-});     // Einde ITONCALL
-//Begin click functie
+});
+

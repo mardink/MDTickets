@@ -2,6 +2,9 @@
 defined('_JEXEC') or die();
 
 JHTML::_('behavior.framework');
+// Load the CSS file
+FOFTemplateUtils::addCSS('media://com_mdtickets/css/mdtickets-list.css');
+// Load helper
 $this->loadHelper('select');
 $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
 ?>
@@ -64,6 +67,7 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
         <button class="btn btn-small btn-danger" onclick="document.adminForm.itoncall.value='';this.form.submit();">
             <?php echo JText::_('JSEARCH_RESET') ?>
         </button>
+
         <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&format=csv" ><?php echo JText::_('COM_MDTICKETS_DOWNLOAD_CSV') ?></a>
         <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&tmpl=component" ><?php echo JText::_('COM_MDTICKETS_PRINT') ?></a>
 
@@ -220,7 +224,8 @@ $m = 1 - $m;
     <td><span class="deadline"><?php
             $DateDeadline = $item->deadline;
             $newDateDeadline = date("d-m-Y", strtotime($DateDeadline));
-            echo $newDateDeadline; ?></span></td>
+            if ($DateDeadline!= '0000-00-00'){
+            echo $newDateDeadline;} else { echo "-"; } ?></span></td>
     <td><span class="modified_on"><?php
             $DateModifiedOn = $item->modified_on;
             $newDateModifiedOn = date("d-m-Y", strtotime($DateModifiedOn));
