@@ -111,4 +111,6 @@ class MdticketsModelItems extends FOFModel
 
         return $query;
     }
+
+
 }
