@@ -21,7 +21,7 @@ class MdticketsControllerItem extends FOFController {
        return $data;
    }
 
-  /*  public function onAfterApplySave(){
+  public function onAfterApplySave(){
         $model = $this->getThisModel();
         $id = $model->getId();
         $item = $model->getItem();
@@ -35,7 +35,8 @@ class MdticketsControllerItem extends FOFController {
         $query = $db->getQuery(true);
         $query
             ->update($db->qn('#__mdtickets_items'))
-            ->set($db->qn('remark').' = '.$db->q(""))
+            ->set($db->qn('remark').' = '.$db->q("Test of created goed blijft2"))
+            //->set($db->qn('created_on').' = '.$db->q($created_on))
             ->where($db->qn('mdtickets_item_id').' = '.$db->q($id));
         $db->setQuery($query);
 
@@ -46,5 +47,5 @@ class MdticketsControllerItem extends FOFController {
         }
         return parent::onAfterApplySave();
 
-    }*/
+    }
 }
