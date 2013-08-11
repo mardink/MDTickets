@@ -4,6 +4,12 @@ defined('_JEXEC') or die();
 JHTML::_('behavior.framework');
 // Load the CSS file
 FOFTemplateUtils::addCSS('media://com_mdtickets/css/mdtickets-list.css');
+
+// eerst JQuery toevoegen
+JHtml::_('bootstrap.framework');
+// Load custom js file
+$document = JFactory::getDocument();
+$document->addScript('media/com_mdtickets/js/mdtickets-list.js');
 // Load helper
 $this->loadHelper('select');
 $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();

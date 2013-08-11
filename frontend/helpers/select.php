@@ -33,11 +33,15 @@ class MdticketsHelperSelect
     {
         $options = array();
         $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDTICKETS_PRIO_TYPE_SELECT').' -');
-        $options[] = JHTML::_('select.option','normaal',JText::_('COM_MDTICKETS_PRIO_TYPE_NORMAL'));
-        $options[] = JHTML::_('select.option','hoog',JText::_('COM_MDTICKETS_PRIO_TYPE_HIGH'));
+        $options[] = JHTML::_('select.option','Normaal',JText::_('COM_MDTICKETS_PRIO_TYPE_NORMAL'));
+        $options[] = JHTML::_('select.option','Hoog',JText::_('COM_MDTICKETS_PRIO_TYPE_HIGH'));
+        $options[] = JHTML::_('select.option','Laag',JText::_('COM_MDTICKETS_PRIO_TYPE_LAAG'));
+        $options[] = JHTML::_('select.option','Periodiek',JText::_('COM_MDTICKETS_PRIO_TYPE_PERIODIEK'));
+        $options[] = JHTML::_('select.option','tzt',JText::_('COM_MDTICKETS_PRIO_TYPE_TZT'));
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
+
     // Get the category fields
     public static function category($selected = null, $id = 'type', $attribs = array() )
     {
