@@ -198,7 +198,7 @@ $m = 1 - $m;
         $num = $item->mdtickets_item_id;
         $ticketNum = sprintf("%04d", $num);?>
         <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $item->mdtickets_item_id;?>"><?php echo $ticketNum; ?></a>
-        </span></td>
+         </span></td>
     <td><span class="short"><?php echo $item->short;?></span></td>
     <td><span class="prio label <?php if ($item->prio=='Hoog'){?>label-important<?php }
         elseif ($item->prio=='Normaal'){?>label-success<?php }
