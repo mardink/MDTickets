@@ -96,10 +96,7 @@ $editor = JFactory::getEditor();
                 </div>
                 <div class="span1">
                     <label for="deadline" class="control-label">Deadline</label>
-                    <input type="date" name="deadline" id="deadline" value="
-                    <?php $DateDeadline = $this->item->deadline;
-                    $newDateDeadline = date("d-m-Y", strtotime($DateDeadline));
-                    echo $newDateDeadline;?>"/>
+                    <input type="date" name="deadline" id="deadline" value="<?php echo $this->item->deadline;;?>"/>
                 </div>
 
             </div>
