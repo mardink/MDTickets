@@ -108,5 +108,14 @@ class MdticketsHelperSelect
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
+    // select finished state
+    public static function finished($selected = null, $id = 'finished', $attribs = array())
+    {
+        $options = array();
+        $options[] = JHTML::_('select.option','0',JText::_('COM_MDTICKETS_NO'));
+        $options[] = JHTML::_('select.option','1',JText::_('COM_MDTICKETS_YES'));
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
 
 }

@@ -67,6 +67,20 @@ class MdticketsModelItems extends FOFModel
             $query->where($db->qn('assigned').' LIKE '.$db->q($fltAssigned));
         }
 
+        $fltFinished		= $this->getState('finished', null, 'string');
+        if($fltFinished == '0') {
+        $show_date = date("Y-m-d", strtotime("- 8 day"));
+            //$query->where($db->qn('status').' != '.$db->q('Closed'));
+            //$query->where($db->qn('status').' != '.$db->q('Cancelled'));
+            //$query->where($db->qn('completion_date').' >= '.$db->q($show_date));
+            $query->where(
+                '('.
+                '('.$db->qn('completion_date').' >= '.$db->q($show_date).') OR'.
+                '('.$db->qn('status').' != '.$db->quote('Closed').') AND'.
+                '('.$db->qn('status').' != '.$db->quote('Cancelled').')'.
+                ')'
+            );
+        }
         $fltAccess		= $this->getState('access', null, 'cmd');
         if($fltAccess) {
             $query->where($db->qn('access').' = '.$db->q($fltAccess));

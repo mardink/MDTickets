@@ -73,6 +73,7 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
         <button class="btn btn-small btn-danger" onclick="document.adminForm.itoncall.value='';this.form.submit();">
             <?php echo JText::_('JSEARCH_RESET') ?>
         </button>
+    <?php echo JText::_('COM_MDTICKETS_FINSIHED') ?><?php echo MdticketsHelperSelect::finished($this->getModel()->getState('finished'), 'finished', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?>
 
         <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&format=csv" ><?php echo JText::_('COM_MDTICKETS_DOWNLOAD_CSV') ?></a>
         <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&tmpl=component" ><?php echo JText::_('COM_MDTICKETS_PRINT') ?></a>
@@ -148,6 +149,7 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
         <td colspan="20">
             <?php if($this->pagination->total > 0) echo $this->pagination->getListFooter() ?>
         </td>
+        <td><?php echo JText::_('COM_MDTICKETS_PAGINATION') ?></td>
         <td><?php echo MdticketsHelperSelect::pagination($this->getModel()->getState('limit'), 'limit', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
     </tr>
     </tfoot>
@@ -251,7 +253,9 @@ endforeach;
     <tr>
         <td colspan="10" align="center"><?php echo JText::_('COM_MDTICKETS_COMMON_NOITEMS_LABEL') ?></td>
     </tr>
-<?php endif ?>
+<?php endif;?>
+
+
 
 
 </tbody>
