@@ -19,8 +19,7 @@ class MdticketsControllerItem extends FOFController {
            $modified_on = date("Y-m-d H:i:s");
            $data['modified_on'] = $modified_on;
        }
-
-       if($remark != ''){
+      /* if($remark !=""){
            $user =& JFactory::getUser();
            $name = $user->name;
            $datum = date("Y-m-d H:i:s");
@@ -28,26 +27,34 @@ class MdticketsControllerItem extends FOFController {
            $text = $datum .' : ' . $name . '<br />' . $remark . '<br /><hr>' . $detail;
            $data['detail'] = $text;
            $data['remark'] = '';
-       }
+       }*/
 
        return $data;
    }
 
-  /*public function onAfterApplySave(){
+  public function onAfterApplySave(){
         $model = $this->getThisModel();
         $id = $model->getId();
         $item = $model->getItem();
-        $created_on = $item->get('created_on');
-        $modified_on = $item->get('modified_on');
+        $jinput = JFactory::getApplication()->input;
+        $remark = $jinput->get('remark', '', 'string');
+        $detail = $item->get('detail');
+        $user =& JFactory::getUser();
+        $name = $user->name;
+        $datum = date("Y-m-d H:i:s");
+        // Collect all data and form a new string.
+        $text = $datum .' : ' . $name . '<br />' . $remark . '<hr>' . $detail;
+        $remark_new = '';
 
-        if ($modified_on == 0) {
+        if ($remark != "") {
             // Get a db connection.
             $db = JFactory::getDbo();
             // Create a new query object.
             $query = $db->getQuery(true);
             $query
                 ->update($db->qn('#__mdtickets_items'))
-                ->set($db->qn('modified_on').' = '.$db->q($created_on))
+                ->set($db->qn('detail').' = '.$db->q($text))
+                ->set($db->qn('remark').' = '.$db->q($remark_new))
                 ->where($db->qn('mdtickets_item_id').' = '.$db->q($id));
             $db->setQuery($query);
 
@@ -57,7 +64,7 @@ class MdticketsControllerItem extends FOFController {
                 // Catch the error.
             }
         }
-        return parent::onAfterApplySave();
+        return true;
 
-    }*/
+    }
 }

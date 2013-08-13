@@ -23,7 +23,7 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
         <input type="hidden" name="boxchecked" id="boxchecked" value="0" />
         <input type="hidden" name="hidemainmenu" id="hidemainmenu" value="0" />
         <input type="hidden" name="filter_order" id="filter_order" value="<?php echo $this->lists->order; ?>" />
-        <input type="hidden" name="filter_order_Dir" id="filter_order_Dir" value="<?php echo $this->lists->order_Dir; ?>" />
+        <input type="hidden" name="filter_order_Dir" id="filter_order_Dir" value="ASC" />
         <input type="hidden" name="<?php echo JFactory::getSession()->getFormToken();?>" value="1" />
 
 <table class="adminlist table table-striped" id="itemsList">
@@ -148,6 +148,7 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
         <td colspan="20">
             <?php if($this->pagination->total > 0) echo $this->pagination->getListFooter() ?>
         </td>
+        <td><?php echo MdticketsHelperSelect::pagination($this->getModel()->getState('limit'), 'limit', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
     </tr>
     </tfoot>
 <tbody>

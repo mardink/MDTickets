@@ -112,5 +112,24 @@ class MdticketsModelItems extends FOFModel
         return $query;
     }
 
+    /*public function getPagination()
+    {
+        if (empty($this->pagination))
+        {
+            // Import the pagination library
+            JLoader::import('joomla.html.pagination');
 
+            // Prepare pagination values
+            $total = $this->getTotal();
+            //$limitstart = $this->getState('limitstart');
+            //$limit = $this->getState('limit');
+            $limit = '1111';
+            $limitstart = '0';
+
+            // Create the pagination object
+            $this->pagination = new JPagination($total, $limitstart, $limit);
+        }
+
+        return $this->pagination;
+    }*/
 }
