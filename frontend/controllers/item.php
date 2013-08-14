@@ -15,10 +15,21 @@ class MdticketsControllerItem extends FOFController {
        $remark = $item->get('remark');
        $modified = $item->get('modified');
        $detail = $item->get('detail');
+       $status = $item->get('status');
+       $completion_date = $item->get('completion_date');
        if(!$modified){
            $modified_on = date("Y-m-d H:i:s");
            $data['modified_on'] = $modified_on;
        }
+        if($status == 'Cancelled' || 'Closed') {
+            if($completion_date == '0000-00-00') {
+                $date = date("Y-m-d H:i:s");
+                $data['completion_date'] = $date;
+            }
+        }
+
+
+
       /* if($remark !=""){
            $user =& JFactory::getUser();
            $name = $user->name;
@@ -43,7 +54,7 @@ class MdticketsControllerItem extends FOFController {
         $name = $user->name;
         $datum = date("Y-m-d H:i:s");
         // Collect all data and form a new string.
-        $text = $datum .' : ' . $name . '<br />' . $remark . '<hr>' . $detail;
+        $text = $datum .' : ' . $name . $remark . '<hr>' . $detail;
         $remark_new = '';
 
         if ($remark != "") {
