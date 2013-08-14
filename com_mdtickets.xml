@@ -23,6 +23,7 @@
 	<!-- Front end translation files -->
 	<languages folder="language/frontend">
 		<language tag="en-GB">en-GB/en-GB.com_mdtickets.ini</language>
+		<language tag="nl-NL">nl-NL/nl-NL.com_mdtickets.ini</language>
 	</languages>
 
 	<!-- SQL query files to execute on installation -->
