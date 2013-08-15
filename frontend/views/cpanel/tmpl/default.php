@@ -7,6 +7,8 @@
  * To change this template use File | Settings | File Templates.
  */
 defined('_JEXEC') or die();
+// Load helper
+$this->loadHelper('dashboard');
 
 JHTML::_('behavior.framework');
 
@@ -27,4 +29,10 @@ $username =  $user->get('username');
 </div>
 <?php
 echo "hallo";
+$test = MdticketsHelperDashboard::test();
+echo $test;
+$sqls = MdticketsHelperDashboard::sql();
+foreach ($sqls as $sql) {
+echo $sql['short'];
+}
 ?>
