@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="user">
+    <name>Gebruiker - MdticketsLastlogin</name>
+    <author>M. Hiddink</author>
+    <creationDate>17-08-2013</creationDate>
+    <copyright>Copyright (C) 2013 MardinkWebdesign / M. Hiddink</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <authorEmail>support@mardinkwebdesign.com</authorEmail>
+    <authorUrl>www.mardinkwebdesign.com</authorUrl>
+    <version>1.0.0</version>
+    <description>Last login is part of the MDTickets component. SAving lastvisitdate to previou visit date after user login</description>
+    <files>
+        <filename plugin="mdticketslastlogin">mdticketslastlogin.php</filename>
+        <filename>index.html</filename>
+    </files>
+    <languages>
+        <language tag="en-GB">en-GB.plg_user_mdticketslastlogin.ini</language>
+        <language tag="en-GB">en-GB.plg_user_mdticketslastlogin.sys.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+
+            <fieldset name="basic">
+
+            </fieldset>
+
+        </fields>
+    </config>
+</extension>

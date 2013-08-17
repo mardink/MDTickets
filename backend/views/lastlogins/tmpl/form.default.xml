@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	@package	contactus
+	@copyright	Copyright (c)2013 Nicholas K. Dionysopoulos / AkeebaBackup.com
+	@license	GNU General Public License version 2 or later
+	
+	Items view form file
+-->
+<form
+	type="browse"
+	show_header="1"
+	show_filters="0"
+	show_pagination="1"
+	norows_placeholder="COM_MDTICKETS_COMMON_NORECORDS"
+>
+	<headerset>
+		<header name="mdtickets_lastlogin_id" type="rowselect" tdwidth="20" />
+        <header name="COM_MDTICKETS_LABEL_USERID" type="field" buttons="no" buttonclass="btn"/>
+        <header name="COM_MDTICKETS_LABEL_LASTLOGIN" sortable="true" type="field" buttons="yes" buttonclass="btn"/>
+		<header name="COM_MDTICKETS_LABEL_PREVIOUSLOGIN" type="field" sortable="true" tdwidth="20%" />
+	</headerset>
+
+	<fieldset name="items">
+		<field name="mdtickets_lastlogin_id" type="selectrow"/>
+        <field name="user_id" type="sql"
+               translate="false" query="SELECT * FROM #__users"
+               key_field="id" value_field="name"/>
+		<field name="lastlogin" type="text"/>
+		<field name="previouslogin" type="text"/>
+	</fieldset>
+</form>

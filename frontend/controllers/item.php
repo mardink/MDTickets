@@ -54,7 +54,7 @@ class MdticketsControllerItem extends FOFController {
         $name = $user->name;
         $datum = date("Y-m-d H:i:s");
         // Collect all data and form a new string.
-        $text = $datum .' : ' . $name . $remark . '<hr>' . $detail;
+        $text = $datum .' : ' . $name . '</br>' . $remark . '<hr>' . $detail;
         $remark_new = '';
 
         if ($remark != "") {

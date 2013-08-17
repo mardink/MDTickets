@@ -12,6 +12,7 @@
 	show_filters="1"
 	show_pagination="1"
 	norows_placeholder="COM_MDTICKETS_COMMON_NORECORDS"
+    render_toolbar="0"
 >
 	<headerset>
 		<header name="mdtickets_item_id" type="rowselect" tdwidth="20" />

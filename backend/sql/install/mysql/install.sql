@@ -25,3 +25,18 @@ CREATE TABLE IF NOT EXISTS `#__mdtickets_items` (
   `remark` mediumtext NOT NULL,
   PRIMARY KEY (`mdtickets_item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `#__mdtickets_lastlogins` (
+  `mdtickets_lastlogin_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL,
+  `lastlogin` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `previouslogin` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `published` tinyint(3) NOT NULL DEFAULT 1,
+  `token` char(32) DEFAULT NULL,
+  `created_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_by` bigint(20) NOT NULL DEFAULT '0',
+  `modified_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modified_by` bigint(20) NOT NULL DEFAULT '0',
+  `locked_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `locked_by` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`mdtickets_lastlogin_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

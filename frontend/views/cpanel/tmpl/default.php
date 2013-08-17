@@ -9,8 +9,11 @@
 defined('_JEXEC') or die();
 // Load helper
 $this->loadHelper('dashboard');
-
 JHTML::_('behavior.framework');
+// eerst JQuery toevoegen
+JHtml::_('bootstrap.framework');
+
+FOFTemplateUtils::addJS('media://com_mdtickets/js/mdtickets_dashboard.js');
 
 //variables
 $user = JFactory::getUser();
@@ -28,11 +31,11 @@ $username =  $user->get('username');
 
 </div>
 <?php
-echo "hallo";
 $test = MdticketsHelperDashboard::test();
 echo $test;
 $sqls = MdticketsHelperDashboard::sql();
 foreach ($sqls as $sql) {
 echo $sql['short'];
 }
+
 ?>
