@@ -13,6 +13,11 @@ $document->addScript('media/com_mdtickets/js/mdtickets-list.js');
 // Load helper
 $this->loadHelper('select');
 $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
+// variables
+$user = JFactory::getUser();
+$user_id = $user->id;
+//Get the previouslogin date and time
+$lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
 ?>
 <div class="row-fluid">
     <div class="span12">
@@ -74,10 +79,9 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
             <?php echo JText::_('JSEARCH_RESET') ?>
         </button>
     <?php echo JText::_('COM_MDTICKETS_FINSIHED') ?><?php echo MdticketsHelperSelect::finished($this->getModel()->getState('finished'), 'finished', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?>
-
-        <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&format=csv" ><?php echo JText::_('COM_MDTICKETS_DOWNLOAD_CSV') ?></a>
+    <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&format=csv" ><?php echo JText::_('COM_MDTICKETS_DOWNLOAD_CSV') ?></a>
         <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&tmpl=component" ><?php echo JText::_('COM_MDTICKETS_PRINT') ?></a>
-
+    <?php echo $this->getModel()->getState('finished');?>
         <thead>
 <tr>
     <?php if($hasAjaxOrderingSupport !== false): ?>
@@ -88,10 +92,10 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
     <th width="20px">
         <input type="checkbox" name="toggle" value="" onclick="Joomla.checkAll(this);" />
     </th>
-    <th width="50px">
+    <th width="70px">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_ID', 'mdticket_item_id', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th width="290px">
+    <th width="270px">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_SHORT', 'short', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
@@ -199,7 +203,14 @@ $m = 1 - $m;
     <td><?php echo JHTML::_('grid.id', $i, $item->mdtickets_item_id); ?></td>
     <td><span class="ticket"><?php
         $num = $item->mdtickets_item_id;
-        $ticketNum = sprintf("%04d", $num);?>
+        $ticketNum = sprintf("%04d", $num);
+            $creation_date = $item->created_on;
+            $DateModifiedOn = $item->modified_on;
+            if ($lastlogin<= $creation_date) {
+                ?><i class="icon-star"></i><?php
+            } elseif ($lastlogin<= $DateModifiedOn) {
+              ?><i class="icon-warning"></i><?php
+            } ?>
         <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $item->mdtickets_item_id;?>"><?php echo $ticketNum; ?></a>
          </span></td>
     <td><span class="short"><?php echo $item->short;?></span></td>
@@ -232,12 +243,11 @@ $m = 1 - $m;
     </td>
     <td><span class="deadline"><?php
             $DateDeadline = $item->deadline;
-            $newDateDeadline = date("d-m-Y", strtotime($DateDeadline));
+            $newDateDeadline = date("d-m-y", strtotime($DateDeadline));
             if ($DateDeadline!= '0000-00-00'){
             echo $newDateDeadline;} else { echo "-"; } ?></span></td>
     <td><span class="modified_on"><?php
-            $DateModifiedOn = $item->modified_on;
-            $newDateModifiedOn = date("d-m-Y", strtotime($DateModifiedOn));
+            $newDateModifiedOn = date("d-m-y", strtotime($DateModifiedOn));
             echo $newDateModifiedOn;?></span></td>
     <!-- Nog niet
     <td><span class="published">

@@ -117,5 +117,19 @@ class MdticketsHelperSelect
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
+    //get the lastlogin date from the mdtickets_lastlogins database
+    // Userid should be set as parameter
+    public static function getLastlogin($id){
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select('previouslogin');
+        $query->from('#__mdtickets_lastlogins');
+        $query->where($db->qn('user_id').' = '.$db->q($id));
+        // Reset the query using our newly populated query object.
+        $db->setQuery($query);
+        $previouslogin = $db->loadResult();
+
+        return $previouslogin;
+    }
 
 }

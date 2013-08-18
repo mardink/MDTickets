@@ -24,12 +24,7 @@ class MdticketsHelperDashboard {
 				->from($db->quoteName('#__mdtickets_items'))
 				->where($db->qn('mdtickets_item_id').' = '.$db->q('1'));
             $db->setQuery($query);
-
-            try {
-                $result = $db->execute(); // Use $db->execute() for Joomla 3.0.
-            } catch (Exception $e) {
-                // Catch the error.
-            }
+            $result = $db->loadResult();
 			return $result;
         }
 		}
