@@ -81,8 +81,7 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
     <?php echo JText::_('COM_MDTICKETS_FINSIHED') ?><?php echo MdticketsHelperSelect::finished($this->getModel()->getState('finished'), 'finished', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?>
     <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&format=csv" ><?php echo JText::_('COM_MDTICKETS_DOWNLOAD_CSV') ?></a>
         <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&tmpl=component" ><?php echo JText::_('COM_MDTICKETS_PRINT') ?></a>
-    <?php echo $this->getModel()->getState('finished');?>
-        <thead>
+            <thead>
 <tr>
     <?php if($hasAjaxOrderingSupport !== false): ?>
         <th width="20px">

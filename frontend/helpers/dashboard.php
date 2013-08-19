@@ -27,4 +27,62 @@ class MdticketsHelperDashboard {
             $result = $db->loadResult();
 			return $result;
         }
-		}
+    /*
+     * $number = number of items to show (mandatory)
+     */
+    public static function getLatestNew($number) {
+        // Get a db connection.
+        $db = JFactory::getDbo();
+        // Create a new query object.
+        $query = $db->getQuery(true);
+        $query
+            ->select('*')
+            ->from($db->quoteName('#__mdtickets_items'))
+            ->where(
+                '('.
+                '('.$db->qn('status').' != '.$db->quote('Closed').') AND'.
+                '('.$db->qn('status').' != '.$db->quote('Cancelled').')'.
+                ')'
+            )
+            ->order($db->qn('created_on').' desc');
+        $db->setQuery($query,0,$number); //set the limit
+        $result = $db->loadObjectList();
+        return $result;
+    }
+
+    /*
+     * $number = number of items to show (mandatory)
+     */
+    public static function getLatestChanged($number) {
+        // Get a db connection.
+        $db = JFactory::getDbo();
+        // Create a new query object.
+        $query = $db->getQuery(true);
+        $query
+            ->select('*')
+            ->from($db->quoteName('#__mdtickets_items'))
+            ->order($db->qn('modified_on').' desc');
+        $db->setQuery($query,0,$number); //set the limit
+        $result = $db->loadObjectList();
+        return $result;
+    }
+    public static function getLatestFinished($number) {
+        // Get a db connection.
+        $db = JFactory::getDbo();
+        // Create a new query object.
+        $query = $db->getQuery(true);
+        $query
+            ->select('*')
+            ->from($db->quoteName('#__mdtickets_items'))
+            ->where(
+                '('.
+                '('.$db->qn('status').' = '.$db->quote('Closed').') OR'.
+                '('.$db->qn('status').' = '.$db->quote('Cancelled').')'.
+                ')'
+            )
+            ->order($db->qn('completion_date').' desc');
+        $db->setQuery($query,0,$number); //set the limit
+        $result = $db->loadObjectList();
+        return $result;
+    }
+}
