@@ -15,6 +15,8 @@ JHtml::_('bootstrap.framework');
 
 FOFTemplateUtils::addJS('media://com_mdtickets/js/mdtickets_dashboard.js');
 FOFTemplateUtils::addJS('media://com_mdtickets/js/mdtickets_login.js');
+// Load the CSS file
+FOFTemplateUtils::addCSS('media://com_mdtickets/css/mdtickets.css');
 
 //variables
 $user = JFactory::getUser();
@@ -23,6 +25,8 @@ $user_id = $user->id;
 // set the return page after succesfull login
 $return = "index.php?option=com_mdtickets&view=cpanel";
 $return = urlencode(base64_encode($return));
+$current_date = date("Y-m-d");
+$warning_date = date("Y-m-d", strtotime("- 8 day"));
 
 ?>
 <!-- begin login / logout form -->
@@ -99,11 +103,38 @@ $return = urlencode(base64_encode($return));
                 $ticketID_finished = sprintf("%04d", $id_finished);
                 $showfinishedDate = date("d-m-y", strtotime($finisheditem->completion_date));
                 ?>
-                <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $latestitem->mdtickets_item_id;?>"><?php echo $ticketID_finished; ?></a>
+                <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $finisheditemnisheditem->mdtickets_item_id;?>"><?php echo $ticketID_finished; ?></a>
                 <?php echo " - " . $finisheditem->short;?><span class="pull-right"><?php echo $showfinishedDate;?></span><br/>
             <?php }
             ?>
         </div>
+        <div class="well span5">
+            <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_DEADLINES');?></h5>
+            <?php $deadlines = MdticketsHelperDashboard::getDeadlines(5);
+            foreach ($deadlines as $deadline){
+                $id_deadline = $deadline->mdtickets_item_id;
+                $ticketID_deadline = sprintf("%04d", $id_deadline);
+                $showdeadlineDate = date("d-m-y", strtotime($deadline->deadline));
+                ?>
+                <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $deadline->mdtickets_item_id;?>"><?php echo $ticketID_deadline; ?></a>
+                <?php echo " - " . $deadline->short;?><span class="pull-right <?php
+                if($showdeadlineDate < $current_date) { echo "deadline_error";
+                } elseif ($showdeadlineDate >= $warning_date) { echo "deadlinewarning";}?>"><?php echo $showdeadlineDate;?></span><br/>
+            <?php }
+            ?>
+        </div>
+        <div class="well span2">
+            <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_STATISTICS');?></h5>
+            <a href="index.php?option=com_mdtickets&view=items&task=browse&finished=0"><?php echo JText::_('COM_MDTICKETS_DASHBOARD_OPENCALLS');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsOpen();?></span><br/>
+            <a href="index.php?option=com_mdtickets&view=items&prio=Hoog&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOHIGH');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioHigh();?></span><br/>
+            <a href="index.php?option=com_mdtickets&view=items&prio=Normaal&assigned=">Normale prio calls</a><br/>
+            <a href="index.php?option=com_mdtickets&view=items&prio=Laag&assigned=">LAge prio calls</a><br/>
+            <a href="index.php?option=com_mdtickets&view=items&prio=tzt&assigned=">tzt Calls</a><br/>
+            <a href="index.php?option=com_mdtickets&view=items&prio=Periodiek&assigned=">periodieke calls</a><br/>
+            <a href="index.php?option=com_mdtickets&view=items&assigned=MHI&prio=">Eigen calls</a><br/>
+            <a href="index.php?option=com_mdtickets&view=items&assigned=ITON&prio=">Iton calls</a><br/>
+        </div>
+
 
 
 </div><!-- End content -->

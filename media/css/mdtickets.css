@@ -19,3 +19,15 @@
 hr {
     border-top: 1px solid #000000;
 }
+#mdtickets-dashboard {
+    min-height: 650px;
+}
+.ticket a{
+    float: right;
+}
+.deadline_warning {
+    color: orangered;
+}
+.deadline_error {
+    color: red;
+}
