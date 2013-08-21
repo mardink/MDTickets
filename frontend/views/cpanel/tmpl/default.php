@@ -14,14 +14,23 @@ JHTML::_('behavior.framework');
 JHtml::_('bootstrap.framework');
 
 FOFTemplateUtils::addJS('media://com_mdtickets/js/mdtickets_dashboard.js');
-FOFTemplateUtils::addJS('media://com_mdtickets/js/mdtickets_login.js');
+// load JQPlot js files
+FOFTemplateUtils::addJS('media://com_mdtickets/js/jqplot/jquery.jqplot.min.js');
+FOFTemplateUtils::addJS('media://com_mdtickets/js/jqplot/jqplot.barRenderer.min.js');
+FOFTemplateUtils::addJS('media://com_mdtickets/js/jqplot/jqplot.categoryAxisRenderer.min.js');
+FOFTemplateUtils::addJS('media://com_mdtickets/js/jqplot/jqplot.pointLabels.min.js');
+FOFTemplateUtils::addJS('media://com_mdtickets/js/jqplot/jqplot.pieRenderer.min.js');
+
 // Load the CSS file
 FOFTemplateUtils::addCSS('media://com_mdtickets/css/mdtickets.css');
+FOFTemplateUtils::addCSS('media://com_mdtickets/css/jquery.jqplot.min.css');
 
 //variables
 $user = JFactory::getUser();
 $username =  $user->get('username');
 $user_id = $user->id;
+$name_user = $user->name;
+
 // set the return page after succesfull login
 $return = "index.php?option=com_mdtickets&view=cpanel";
 $return = urlencode(base64_encode($return));
@@ -127,14 +136,101 @@ $warning_date = date("Y-m-d", strtotime("- 8 day"));
             <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_STATISTICS');?></h5>
             <a href="index.php?option=com_mdtickets&view=items&task=browse&finished=0"><?php echo JText::_('COM_MDTICKETS_DASHBOARD_OPENCALLS');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsOpen();?></span><br/>
             <a href="index.php?option=com_mdtickets&view=items&prio=Hoog&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOHIGH');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioHigh();?></span><br/>
-            <a href="index.php?option=com_mdtickets&view=items&prio=Normaal&assigned=">Normale prio calls</a><br/>
-            <a href="index.php?option=com_mdtickets&view=items&prio=Laag&assigned=">LAge prio calls</a><br/>
-            <a href="index.php?option=com_mdtickets&view=items&prio=tzt&assigned=">tzt Calls</a><br/>
-            <a href="index.php?option=com_mdtickets&view=items&prio=Periodiek&assigned=">periodieke calls</a><br/>
-            <a href="index.php?option=com_mdtickets&view=items&assigned=MHI&prio=">Eigen calls</a><br/>
-            <a href="index.php?option=com_mdtickets&view=items&assigned=ITON&prio=">Iton calls</a><br/>
+            <a href="index.php?option=com_mdtickets&view=items&prio=Normaal&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIONORMAL');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioNormal();?></span><br/>
+            <a href="index.php?option=com_mdtickets&view=items&prio=Laag&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOLOW');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioLow();?></span><br/>
+            <a href="index.php?option=com_mdtickets&view=items&prio=tzt&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOTZT');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioTzt();?></span><br/>
+            <a href="index.php?option=com_mdtickets&view=items&prio=Periodiek&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOPERIODIEK');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioPeriodiek();?></span><br/>
+            <a href="index.php?option=com_mdtickets&view=items&assigned=MHI&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_EIGEN');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsUser($name_user);?></span><br/>
+            <a href="index.php?option=com_mdtickets&view=items&assigned=ITON&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_ITON');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsIton();?></span><br/>
         </div>
-
-
-
+    </div>
+        <!-- Row for jQplot graphs -->
+        <div class="row">
+            <div class="span5">
+                <div id="chart1" style="height:300px;width:600px; "></div>
+            </div>
+            <div class="span5">
+                <div id="chart2" style="height:300px;width:600px; "></div>
+            </div>
+        </div>
 </div><!-- End content -->
+<?php // prepare data for graphs
+$charts2 = MdticketsHelperDashboard::getCallsCategorie();
+$charts1 = MdticketsHelperDashboard::getCallsCountNew();
+$charts1closed = MdticketsHelperDashboard::getCallsCountClosed();
+$charts1iton = MdticketsHelperDashboard::getCallsCountIton();
+?>
+    <!-- Script chart1 -->
+    <script>
+        jQuery(document).ready(function(){
+            var s1 = [<?php foreach($charts1 as $chart1){ echo $chart1->count . ', ';}?>]
+            var s2 = [<?php foreach($charts1closed as $chart1closed){ echo $chart1closed->count . ', ';}?>];
+            var s3 = [<?php foreach($charts1iton as $chart1iton){ echo $chart1iton->count . ', ';}?>];
+            // Can specify a custom tick Array.
+            // Ticks should match up one for each y value (category) in the series.
+            var ticks = [<?php foreach($charts1 as $chart1){ echo '\'' .$chart1->month . '\', '; }?>];
+            var plot1 = jQuery.jqplot('chart1', [s1, s2, s3], {
+                // The "seriesDefaults" option is an options object that will
+                // be applied to all series in the chart.
+                seriesDefaults:{
+                    renderer:jQuery.jqplot.BarRenderer,
+                    rendererOptions: {fillToZero: true},
+                    pointLabels: {show: true} // laat de waarde van de bar zien
+                },
+                // Custom labels for the series are specified with the "label"
+                // option on the series option.  Here a series option object
+                // is specified for each series.
+                series:[
+                    {label:'New Calls'},
+                    {label:'closed calls'},
+                    {label:'ITON Calls'}
+                ],
+                // Show the legend and put it outside the grid, but inside the
+                // plot container, shrinking the grid to accomodate the legend.
+                // A value of "outside" would not shrink the grid and allow
+                // the legend to overflow the container.
+                legend: {
+                    show: true,
+                    placement: 'outsideGrid'
+                },
+                axes: {
+                    // Use a category axis on the x axis and use our custom ticks.
+                    xaxis: {
+                        renderer: jQuery.jqplot.CategoryAxisRenderer,
+                        ticks: ticks
+                    },
+                    // Pad the y axis just a little so bars can get close to, but
+                    // not touch, the grid boundaries.  1.2 is the default padding.
+                    yaxis: {
+                        pad: 1.05,
+
+                        //tickOptions: {formatString: '$%d'}
+                    }
+                }
+
+            });
+        });
+    </script>
+<!-- Script chart2 -->
+    <script>
+        jQuery(document).ready(function(){
+            var data = [
+                <?php foreach($charts2 as $chart2){
+                echo '[\''.$chart2->category .'\',' .$chart2->count . '], '; } ?>
+            ];
+            var plot1 = jQuery.jqplot ('chart2', [data],
+                {
+                    seriesDefaults: {
+                        // Make this a pie chart.
+                        renderer: jQuery.jqplot.PieRenderer,
+                        rendererOptions: {
+                            // Put data labels on the pie slices.
+                            // By default, labels show the percentage of the slice.
+                            showDataLabels: true
+                        }
+                    },
+                    legend: { show:true, location: 'e' }
+                }
+            );
+        });
+    </script>

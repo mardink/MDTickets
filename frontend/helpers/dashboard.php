@@ -131,4 +131,109 @@ class MdticketsHelperDashboard {
         $numrow = $db->getNumRows();
         return $numrow;
     }
+    //get number of normal prio calls
+    public static function getCallsPrioNormal() {
+        // Get a db connection.
+        $db = JFactory::getDBO();
+        $query = "SELECT * from #__mdtickets_items where prio = 'Normaal' and status != 'Cancelled' and status != 'Closed' ";
+        $db->setQuery($query);
+        $db->query();
+        $numrow = $db->getNumRows();
+        return $numrow;
+    }
+    //get number of low prio calls
+    public static function getCallsPrioLow() {
+        // Get a db connection.
+        $db = JFactory::getDBO();
+        $query = "SELECT * from #__mdtickets_items where prio = 'Laag' and status != 'Cancelled' and status != 'Closed' ";
+        $db->setQuery($query);
+        $db->query();
+        $numrow = $db->getNumRows();
+        return $numrow;
+    }
+    //get number of tzt prio calls
+    public static function getCallsPrioTzt() {
+        // Get a db connection.
+        $db = JFactory::getDBO();
+        $query = "SELECT * from #__mdtickets_items where prio = 'tzt' and status != 'Cancelled' and status != 'Closed' ";
+        $db->setQuery($query);
+        $db->query();
+        $numrow = $db->getNumRows();
+        return $numrow;
+    }
+    //get number of periodoiek prio calls
+    public static function getCallsPrioPeriodiek() {
+        // Get a db connection.
+        $db = JFactory::getDBO();
+        $query = "SELECT * from #__mdtickets_items where prio = 'Periodiek' and status != 'Cancelled' and status != 'Closed' ";
+        $db->setQuery($query);
+        $db->query();
+        $numrow = $db->getNumRows();
+        return $numrow;
+    }
+    //get number of user calls
+    public static function getCallsUser($user) {
+        if ($user!=''){
+        // Get a db connection.
+        $db = JFactory::getDBO();
+        $query = "SELECT * from #__mdtickets_items where ( assigned = '$user' or assigned = 'MHI-HvT' ) and (status != 'Cancelled' or status != 'Closed') ";
+        $db->setQuery($query);
+        $db->query();
+        $numrow = $db->getNumRows();
+        return $numrow;
+        }
+        else {
+            return 'Log in';
+        }
+    }
+    //get number of ITON calls
+    public static function getCallsIton() {
+        // Get a db connection.
+        $db = JFactory::getDBO();
+        $query = "SELECT * from #__mdtickets_items where assigned = 'ITON' and (status != 'Cancelled' or status != 'Closed') ";
+        $db->setQuery($query);
+        $db->query();
+        $numrow = $db->getNumRows();
+        return $numrow;
+    }
+    // Count calls per categories
+    public static function getCallsCategorie() {
+        // Get a db connection.
+        $db = JFactory::getDBO();
+        $query = "SELECT category, COUNT(*) as count FROM #__mdtickets_items GROUP BY category";
+        $db->setQuery($query);
+        $db->query();
+        $result = $db->loadObjectList();
+        return $result;
+    }
+    // Count new calls per month
+    public static function getCallsCountNew() {
+        // Get a db connection.
+        $db = JFactory::getDBO();
+        $query = "SELECT MONTHNAME(created_on) as month, COUNT(*) as count FROM #__mdtickets_items GROUP BY MONTH(created_on)";
+        $db->setQuery($query);
+        $db->query();
+        $result = $db->loadObjectList();
+        return $result;
+    }
+    // Count closed calls per month
+    public static function getCallsCountClosed() {
+        // Get a db connection.
+        $db = JFactory::getDBO();
+        $query = "SELECT MONTHNAME(completion_date) as month, COUNT(*) as count FROM #__mdtickets_items where completion_date !='0000-00-00' GROUP BY MONTH(completion_date)";
+        $db->setQuery($query);
+        $db->query();
+        $result = $db->loadObjectList();
+        return $result;
+    }
+    // Count ITON calls per month
+    public static function getCallsCountIton() {
+        // Get a db connection.
+        $db = JFactory::getDBO();
+        $query = "SELECT MONTHNAME(created_on) as month, COUNT(*) as count FROM #__mdtickets_items where assigned ='ITON' GROUP BY MONTH(created_on)";
+        $db->setQuery($query);
+        $db->query();
+        $result = $db->loadObjectList();
+        return $result;
+    }
 }
