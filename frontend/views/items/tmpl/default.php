@@ -31,8 +31,8 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
         <input type="hidden" name="filter_order_Dir" id="filter_order_Dir" value="ASC" />
         <input type="hidden" name="<?php echo JFactory::getSession()->getFormToken();?>" value="1" />
 
-<table class="adminlist table table-striped" id="itemsList">
-    <div class="row">
+<table class="adminlist table table-striped span12" id="itemsList">
+    <div class="row span12">
     <!-- Search in ticket number -->
     <input type="text" name="mdtickets_item_id" id="mdtickets_item_id"
            value="<?php echo $this->escape($this->getModel()->getState('mdtickets_item_id',''));?>"
@@ -55,19 +55,7 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
     <button class="btn btn-small btn-danger" onclick="document.adminForm.short.value='';this.form.submit();">
         <?php echo JText::_('JSEARCH_RESET') ?>
     </button>
-    <!-- Search in all - Niet handig als er nummers in omschrijving staat Uitgezet
-            <input type="text" name="search" id="search"
-           value="<?php echo $this->escape($this->getModel()->getState('search',''));?>"
-           class="text_area" onchange="document.adminForm.submit();"
-           placeholder="<?php echo JText::_('COM_MDTICKETS_SEARCH') ?>"/>
-    <button class="btn btn-small" onclick="this.form.submit();">
-        <?php echo JText::_('JSEARCH_FILTER') ?>
-    </button>
-    <button class="btn btn-small" onclick="document.adminForm.search.value='';this.form.submit();">
-        <?php echo JText::_('JSEARCH_RESET') ?>
-    </button>
-     Einde-->
-        <!-- Search ITONCall -->
+    <!-- Search ITONCall -->
         <input type="text" name="itoncall" id="itoncall"
                value="<?php echo $this->escape($this->getModel()->getState('itoncall',''));?>"
                class="text_area" onchange="document.adminForm.submit();"
@@ -79,8 +67,8 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
             <?php echo JText::_('JSEARCH_RESET') ?>
         </button>
     <?php echo JText::_('COM_MDTICKETS_FINSIHED') ?><?php echo MdticketsHelperSelect::finished($this->getModel()->getState('finished'), 'finished', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?>
-    <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&format=csv" ><?php echo JText::_('COM_MDTICKETS_DOWNLOAD_CSV') ?></a>
-        <a class="btn btn-small btn-success pull-right" href="index.php?option=com_mdtickets&view=items&tmpl=component" ><?php echo JText::_('COM_MDTICKETS_PRINT') ?></a>
+
+   </div>
             <thead>
 <tr>
     <?php if($hasAjaxOrderingSupport !== false): ?>
@@ -94,7 +82,7 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
     <th width="70px">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_ID', 'mdticket_item_id', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th width="270px">
+    <th width="400px">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_SHORT', 'short', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
@@ -121,15 +109,7 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
     <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_MODIFIED', 'modified_on', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <!-- Onderstaand niet nodig?
-    <th width="10%">
-        <?php echo JHTML::_('grid.sort', 'JFIELD_ORDERING_LABEL', 'ordering', $this->lists->order_Dir, $this->lists->order); ?>
-        <?php echo JHTML::_('grid.order', $this->items); ?>
-    </th>
-    <th width="8%">
-        <?php echo JHTML::_('grid.sort', 'JPUBLISHED', 'published', $this->lists->order_Dir, $this->lists->order); ?>
-    </th>-->
-</tr>
+    </tr>
         <tr>
             <td></td>
             <td></td>
@@ -142,9 +122,6 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
             <td></td>
             <td></td>
             <td></td>
-            <!-- Werkt nog niet goed
-            <td><?php echo MdticketsHelperSelect::published($this->getModel()->getState('published'), 'published', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
-        -->
         </tr>
     </thead>
     <tfoot>
@@ -152,8 +129,8 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
         <td colspan="20">
             <?php if($this->pagination->total > 0) echo $this->pagination->getListFooter() ?>
         </td>
-        <td><?php echo JText::_('COM_MDTICKETS_PAGINATION') ?></td>
-        <td><?php echo MdticketsHelperSelect::pagination($this->getModel()->getState('limit'), 'limit', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
+        <td class="noprint"><?php echo JText::_('COM_MDTICKETS_PAGINATION') ?></td>
+        <td><?php echo MdticketsHelperSelect::pagination($this->getModel()->getState('limit'), 'limit', array('onchange'=>'this.form.submit();','class' => 'input-small noprint')) ?></td>
     </tr>
     </tfoot>
 <tbody>

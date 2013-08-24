@@ -1,0 +1,9 @@
+@media print {
+    #print_btn, #csv_btn, #toolbar, .menu, .noprint, header nav, footer {
+        display: none;
+    }
+
+}
+@page {
+    size: A3 landscape;
+}

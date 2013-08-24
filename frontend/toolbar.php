@@ -321,6 +321,8 @@ class MdticketsToolbar extends FOFToolbar
 	{
 		// On frontend, buttons must be added specifically
 
+
+
 		if (FOFPlatform::getInstance()->isBackend() || $this->renderFrontendSubmenu)
 		{
 			$this->renderSubmenu();
@@ -714,5 +716,69 @@ class MdticketsToolbar extends FOFToolbar
 	{
 		return $this->renderFrontendSubmenu;
 	}
+
+    /**
+     * No toolbar required in dashboard/cpanel view
+     *
+     */
+    public function onItemsBrowse()
+    {
+        if (FOFPlatform::getInstance()->isBackend() || $this->renderFrontendSubmenu)
+        {
+            $this->renderSubmenu();
+        }
+
+        if (!FOFPlatform::getInstance()->isBackend() && !$this->renderFrontendButtons)
+        {
+            return;
+        }
+
+        // Set toolbar title
+        $option = $this->input->getCmd('option', 'com_foobar');
+        $subtitle_key = strtoupper($option . '_TITLE_' . $this->input->getCmd('view', 'cpanel'));
+        JToolBarHelper::title(JText::_(strtoupper($option)) . ' &ndash; <small>' . JText::_($subtitle_key) . '</small>', str_replace('com_', '', $option));
+
+        // Add toolbar buttons
+
+        if ($this->perms->create)
+        {
+            if (FOFPlatform::getInstance()->checkVersion(JVERSION, '3.0', 'ge'))
+            {
+                JToolBarHelper::addNew();
+            }
+            else
+            {
+                JToolBarHelper::addNewX();
+            }
+        }
+
+        if ($this->perms->edit)
+        {
+            if (FOFPlatform::getInstance()->checkVersion(JVERSION, '3.0', 'ge'))
+            {
+                JToolBarHelper::editList();
+            }
+            else
+            {
+                JToolBarHelper::editListX();
+            }
+        }
+
+        if ($this->perms->create || $this->perms->edit)
+        {
+            JToolBarHelper::divider();
+        }
+
+        if ($this->perms->editstate)
+        {
+            JToolBarHelper::divider();
+        }
+
+        if ($this->perms->delete)
+        {
+            $msg = JText::_($this->input->getCmd('option', 'com_foobar') . '_CONFIRM_DELETE');
+            JToolBarHelper::deleteList($msg);
+        }
+    }
 
 }
