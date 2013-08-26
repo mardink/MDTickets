@@ -33,7 +33,7 @@ class MdticketsToolbar extends FOFToolbar
 	protected $renderFrontendSubmenu = false;
 
 	/** @var bool Should I render buttons in the front-end? */
-	protected $renderFrontendButtons = true;
+	protected $renderFrontendButtons = false;
 
 	/**
 	 * Gets an instance of a component's toolbar

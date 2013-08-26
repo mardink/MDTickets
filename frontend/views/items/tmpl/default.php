@@ -39,10 +39,10 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
            class="text_area" onchange="document.adminForm.submit();"
            placeholder="<?php echo JText::_('COM_MDTICKETS_SEARCH_TICKET') ?>"/>
     <button class="btn btn-small btn-success" onclick="this.form.submit();">
-        <?php echo JText::_('JSEARCH_FILTER') ?>
+        <?php echo JText::_('COM_MDTICKETS_SEARCH_FILTER') ?>
     </button>
     <button class="btn btn-small btn-danger" onclick="document.adminForm.mdtickets_item_id.value='';this.form.submit();">
-        <?php echo JText::_('JSEARCH_RESET') ?>
+        <?php echo JText::_('COM_MDTICKETS_SEARCH_RESET') ?>
     </button>
     <!-- Search Short -->
         <input type="text" name="short" id="short"
@@ -50,10 +50,10 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
            class="text_area" onchange="document.adminForm.submit();"
            placeholder="<?php echo JText::_('COM_MDTICKETS_SEARCH_SHORT') ?>"/>
         <button class="btn btn-small btn-success" onclick="this.form.submit();">
-        <?php echo JText::_('JSEARCH_FILTER') ?>
+        <?php echo JText::_('COM_MDTICKETS_SEARCH_FILTER') ?>
     </button>
     <button class="btn btn-small btn-danger" onclick="document.adminForm.short.value='';this.form.submit();">
-        <?php echo JText::_('JSEARCH_RESET') ?>
+        <?php echo JText::_('COM_MDTICKETS_SEARCH_RESET') ?>
     </button>
     <!-- Search ITONCall -->
         <input type="text" name="itoncall" id="itoncall"
@@ -61,10 +61,10 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
                class="text_area" onchange="document.adminForm.submit();"
                 placeholder="<?php echo JText::_('COM_MDTICKETS_SEARCH_ITONCALL') ?>"/>
         <button class="btn btn-small btn-success" onclick="this.form.submit();">
-            <?php echo JText::_('JSEARCH_FILTER') ?>
+            <?php echo JText::_('COM_MDTICKETS_SEARCH_FILTER') ?>
         </button>
         <button class="btn btn-small btn-danger" onclick="document.adminForm.itoncall.value='';this.form.submit();">
-            <?php echo JText::_('JSEARCH_RESET') ?>
+            <?php echo JText::_('COM_MDTICKETS_SEARCH_RESET') ?>
         </button>
     <?php echo JText::_('COM_MDTICKETS_FINSIHED') ?><?php echo MdticketsHelperSelect::finished($this->getModel()->getState('finished'), 'finished', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?>
         <input type="button" id="print_btn" class="btn btn-small btn-success" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">

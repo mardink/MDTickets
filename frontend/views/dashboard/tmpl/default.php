@@ -62,22 +62,23 @@ $warning_date = date("Y-m-d", strtotime("- 8 day"));
 
 </div> <!-- End of the login/logout form -->
 <!-- Begin content -->
-<div id="mdtickets-dashboard">
-    <div class="row">
-        <div class="well span5">
+<div id="mdtickets-dashboard" class="container">
+    <div class="row-fluid span10">
+        <div class="row">
+        <div class="well span6">
             <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTNEW');?></h5>
-        <?php $latestitems = MdticketsHelperDashboard::getLatestNew(5);
-        foreach ($latestitems as $latestitem){
-            $id = $latestitem->mdtickets_item_id;
-            $ticketID = sprintf("%04d", $id);
-            $showLatestDate = date("d-m-y", strtotime($latestitem->created_on));
+            <?php $latestitems = MdticketsHelperDashboard::getLatestNew(5);
+            foreach ($latestitems as $latestitem){
+                $id = $latestitem->mdtickets_item_id;
+                $ticketID = sprintf("%04d", $id);
+                $showLatestDate = date("d-m-y", strtotime($latestitem->created_on));
+                ?>
+                <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $latestitem->mdtickets_item_id;?>"><?php echo $ticketID; ?></a>
+                <?php echo " - " . $latestitem->short;?><span class="pull-right"><?php echo $showLatestDate;?></span><br/>
+            <?php }
             ?>
-            <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $latestitem->mdtickets_item_id;?>"><?php echo $ticketID; ?></a>
-            <?php echo " - " . $latestitem->short;?><span class="pull-right"><?php echo $showLatestDate;?></span><br/>
-        <?php }
-        ?>
         </div>
-        <div class="well span5">
+        <div class="well span6">
             <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTCHANGED');?></h5>
             <?php $latestitemschanged = MdticketsHelperDashboard::getLatestChanged(5);
             foreach ($latestitemschanged as $latestitemchanged){
@@ -90,21 +91,9 @@ $warning_date = date("Y-m-d", strtotime("- 8 day"));
             <?php }
             ?>
         </div>
-        <div class="well span2">
-            <!-- Begin load a joomla module position. Module posname Dashboard -->
-            <?php jimport('joomla.application.module.helper');
-            // this is where you want to load your module position
-            $modules = JModuleHelper::getModules('dashboard');
-            foreach($modules as $module)
-            {
-            echo JModuleHelper::renderModule($module);
-            }
-            ?>
-            <!-- End load a joomla module position. Module posname Dashboard -->
         </div>
-    </div>
-    <div class="row">
-        <div class="well span5">
+        <div class="row">
+        <div class="well span6">
             <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTFINISHED');?></h5>
             <?php $finisheditems = MdticketsHelperDashboard::getLatestFinished(5);
             foreach ($finisheditems as $finisheditem){
@@ -117,7 +106,7 @@ $warning_date = date("Y-m-d", strtotime("- 8 day"));
             <?php }
             ?>
         </div>
-        <div class="well span5">
+        <div class="well span6">
             <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_DEADLINES');?></h5>
             <?php $deadlines = MdticketsHelperDashboard::getDeadlines(5);
             foreach ($deadlines as $deadline){
@@ -132,27 +121,44 @@ $warning_date = date("Y-m-d", strtotime("- 8 day"));
             <?php }
             ?>
         </div>
-        <div class="well span2">
-            <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_STATISTICS');?></h5>
-            <a href="index.php?option=com_mdtickets&view=items&task=browse&finished=0"><?php echo JText::_('COM_MDTICKETS_DASHBOARD_OPENCALLS');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsOpen();?></span><br/>
-            <a href="index.php?option=com_mdtickets&view=items&prio=Hoog&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOHIGH');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioHigh();?></span><br/>
-            <a href="index.php?option=com_mdtickets&view=items&prio=Normaal&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIONORMAL');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioNormal();?></span><br/>
-            <a href="index.php?option=com_mdtickets&view=items&prio=Laag&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOLOW');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioLow();?></span><br/>
-            <a href="index.php?option=com_mdtickets&view=items&prio=tzt&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOTZT');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioTzt();?></span><br/>
-            <a href="index.php?option=com_mdtickets&view=items&prio=Periodiek&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOPERIODIEK');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioPeriodiek();?></span><br/>
-            <a href="index.php?option=com_mdtickets&view=items&assigned=MHI&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_EIGEN');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsUser($name_user);?></span><br/>
-            <a href="index.php?option=com_mdtickets&view=items&assigned=ITON&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_ITON');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsIton();?></span><br/>
         </div>
-    </div>
+
         <!-- Row for jQplot graphs -->
         <div class="row">
-            <div class="span5">
+            <div class="span6">
                 <div id="chart1" style="height:300px;width:600px; "></div>
             </div>
-            <div class="span5">
+            <div class="span6">
                 <div id="chart2" style="height:300px;width:600px; "></div>
             </div>
         </div>
+    </div>
+    <div class="well row span2">
+        <!-- Begin load a joomla module position. Module posname Dashboard -->
+        <?php jimport('joomla.application.module.helper');
+        // this is where you want to load your module position
+        $modules = JModuleHelper::getModules('dashboard');
+        foreach($modules as $module)
+        {
+            echo JModuleHelper::renderModule($module);
+        }
+        ?>
+        <!-- End load a joomla module position. Module posname Dashboard -->
+    </div>
+    <div class="well row span2">
+        <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_STATISTICS');?></h5>
+        <a href="index.php?option=com_mdtickets&view=items&task=browse&finished=0"><?php echo JText::_('COM_MDTICKETS_DASHBOARD_OPENCALLS');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsOpen();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&prio=Hoog&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOHIGH');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioHigh();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&prio=Normaal&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIONORMAL');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioNormal();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&prio=Laag&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOLOW');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioLow();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&prio=tzt&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOTZT');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioTzt();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&prio=Periodiek&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOPERIODIEK');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioPeriodiek();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&assigned=MHI&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_EIGEN');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsUser($name_user);?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&assigned=ITON&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_ITON');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsIton();?></span><br/>
+    </div>
+
+
+</div>
 </div><!-- End content -->
 <?php // prepare data for graphs
 $charts2 = MdticketsHelperDashboard::getCallsCategorie();

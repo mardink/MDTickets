@@ -16,7 +16,6 @@ $document = JFactory::getDocument();
 $document->addScript('media/com_mdtickets/js/mdtickets.js');
 
 
-
 // Load the editor
 $editor = JFactory::getEditor();
 ?>
@@ -26,7 +25,31 @@ $editor = JFactory::getEditor();
     <input type="hidden" name="task" value="" />
     <input type="hidden" id="mdtickets_item_id" name="mdtickets_item_id" value="<?php echo $this->item->mdtickets_item_id ?>" />
     <input type="hidden" name="<?php echo JFactory::getSession()->getFormToken();?>" value="1" />
+    <div class="row well">
+    <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-small btn-success">
+        <i class="icon-apply icon-white">
+        </i>
+        Opslaan
+    </button>
 
+    <button href="#" onclick="Joomla.submitbutton('save')" class="btn btn-small">
+        <i class="icon-save ">
+        </i>
+        Opslaan &amp; sluiten
+    </button>
+
+    <button href="#" onclick="Joomla.submitbutton('savenew')" class="btn btn-small">
+        <i class="icon-save-new ">
+        </i>
+        Opslaan &amp; nieuw
+    </button>
+
+    <button href="#" onclick="Joomla.submitbutton('cancel')" class="btn btn-small">
+        <i class="icon-cancel ">
+        </i>
+        Annuleren
+    </button>
+    </div>
     <div class="row-fluid">
         <div class="span12">
             <?php
