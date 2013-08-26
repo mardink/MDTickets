@@ -67,12 +67,12 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
             <?php echo JText::_('JSEARCH_RESET') ?>
         </button>
     <?php echo JText::_('COM_MDTICKETS_FINSIHED') ?><?php echo MdticketsHelperSelect::finished($this->getModel()->getState('finished'), 'finished', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?>
-
+        <input type="button" id="print_btn" class="btn btn-small btn-success" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
    </div>
             <thead>
 <tr>
     <?php if($hasAjaxOrderingSupport !== false): ?>
-        <th width="20px">
+        <th width="10px">
             <?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'ordering', $this->lists->order_Dir, $this->lists->order, null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
         </th>
     <?php endif; ?>
@@ -91,7 +91,7 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
     <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_REQUESTER', 'requester', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span2">
+    <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_CATEGORY', 'category', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
@@ -225,11 +225,6 @@ $m = 1 - $m;
     <td><span class="modified_on"><?php
             $newDateModifiedOn = date("d-m-y", strtotime($DateModifiedOn));
             echo $newDateModifiedOn;?></span></td>
-    <!-- Nog niet
-    <td><span class="published">
-            <?php if ($item->assigned=='ITON') {?>
-            <a href="http://helpdesk.iton.nl/" target="_blank"><?php echo $item->published;?></a></span>
-        <?php } ?></td>-->
 </tr>
     <?php
     $i++;

@@ -32,7 +32,7 @@ $user_id = $user->id;
 $name_user = $user->name;
 
 // set the return page after succesfull login
-$return = "index.php?option=com_mdtickets&view=cpanel";
+$return = "index.php?option=com_mdtickets&view=dashboard";
 $return = urlencode(base64_encode($return));
 $current_date = date("Y-m-d");
 $warning_date = date("Y-m-d", strtotime("- 8 day"));
