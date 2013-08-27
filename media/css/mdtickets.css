@@ -31,3 +31,12 @@ hr {
 .deadline_error {
     color: red;
 }
+@media print {
+    @page {
+        size: A3 landscape;
+    }
+    #print_btn, #mdtickets_toolbar, .menu, .noprint, header nav, footer {
+        display: none;
+    }
+
+}

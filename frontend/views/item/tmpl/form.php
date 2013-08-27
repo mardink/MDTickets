@@ -15,40 +15,48 @@ JHtml::_('bootstrap.framework');
 $document = JFactory::getDocument();
 $document->addScript('media/com_mdtickets/js/mdtickets.js');
 
+//load joomla validation
+JHTML::_('behavior.formvalidation');
 
 // Load the editor
 $editor = JFactory::getEditor();
 ?>
-<form action="index.php" method="post" id="adminForm" class="form-validate" xmlns="http://www.w3.org/1999/html">
+<form action="index.php" method="post" id="adminForm" class="form-validate" onsubmit="return isValid()"> <!-- added onsubmit="return isValid()"  to prevent saaving-->
     <input type="hidden" name="option" value="com_mdtickets" />
     <input type="hidden" name="view" value="item" />
     <input type="hidden" name="task" value="" />
     <input type="hidden" id="mdtickets_item_id" name="mdtickets_item_id" value="<?php echo $this->item->mdtickets_item_id ?>" />
     <input type="hidden" name="<?php echo JFactory::getSession()->getFormToken();?>" value="1" />
-    <div class="row well">
+    <div id="mdtickets_toolbar" class="row well">
     <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-small btn-success">
         <i class="icon-apply icon-white">
         </i>
-        Opslaan
+        <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE' );?>
     </button>
 
     <button href="#" onclick="Joomla.submitbutton('save')" class="btn btn-small">
         <i class="icon-save ">
         </i>
-        Opslaan &amp; sluiten
+        <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE_CLOSE' );?>
     </button>
 
     <button href="#" onclick="Joomla.submitbutton('savenew')" class="btn btn-small">
         <i class="icon-save-new ">
         </i>
-        Opslaan &amp; nieuw
+        <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE_NEW' );?>
     </button>
-
+<!-- onderstaande werkt niet als het veld leeg is door de validator if statement nodig
     <button href="#" onclick="Joomla.submitbutton('cancel')" class="btn btn-small">
         <i class="icon-cancel ">
         </i>
         Annuleren
-    </button>
+    </button> -->
+        <a href="index.php?option=com_mdtickets&view=items&Itemid=116"  class="btn btn-small">
+            <i class="icon-cancel ">
+            </i>
+            <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_CANCEL' );?>
+        </a>
+        <input type="button" id="print_btn" class="btn btn-small btn-success" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
     </div>
     <div class="row-fluid">
         <div class="span12">
@@ -68,14 +76,21 @@ $editor = JFactory::getEditor();
                         $newDate = date("d-m-Y", strtotime($originalDate));
                         echo  $newDate;
                     echo JText::_( 'COM_MDTICKETS_CREATED_BY' );
-                    echo $username?></h4>
+                    echo $username;
+                    echo " " . JText::_( 'COM_MDTICKETS_MODIFIED_TEXT' );
+                        $modifiedDate = $this->item->modified_on;
+                        $modifiedDate = date("d-m-Y", strtotime($modifiedDate));
+                    echo " " . $modifiedDate;
+                        ?>
+
+                    </h4>
                 <?php } ?>
                 </div>
             <div id="form_edit">
             <div class="row">
                 <div class="span4">
                     <label for="short" class="control-label">Korte omschrijving(max 54 characters) </label>
-                    <input type="text" name="short" id="short" maxlength="54" value="<?php echo $this->item->short?>" required="true"/>
+                    <input type="text" name="short" id="short" maxlength="54" value="<?php echo $this->item->short?>" class="required"/>
                 </div>
                 <div class="span2">
                     <label for="prio" class="control-label">Prioriteit</label>
