@@ -26,10 +26,16 @@ hr {
     float: right;
 }
 .deadline_warning {
-    color: orangered;
+    color: orange;
 }
 .deadline_error {
     color: red;
+}
+#myModal {
+    width: 900px;
+}
+.modal-body {
+    width: 800px;
 }
 @media print {
     @page {

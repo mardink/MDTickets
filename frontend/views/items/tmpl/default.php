@@ -217,9 +217,14 @@ $m = 1 - $m;
             <a href="http://helpdesk.iton.nl/" target="_blank"><?php echo $item->itoncall;?></a></span>
         <?php } ?>
     </td>
-    <td><span class="deadline"><?php
-            $DateDeadline = $item->deadline;
-            $newDateDeadline = date("d-m-y", strtotime($DateDeadline));
+    <td><span class="deadline <?php
+        $current_date = date("Y-m-d");
+        $warning_date = date("Y-m-d", strtotime("+ 8 day"));
+        $DateDeadline = $item->deadline;
+        $newDateDeadline = date("d-m-y", strtotime($DateDeadline));
+        if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00') { echo "deadline_error";
+        } elseif($DateDeadline <= $warning_date) { echo "deadline_warning";
+        }?>"><?php
             if ($DateDeadline!= '0000-00-00'){
             echo $newDateDeadline;} else { echo "-"; } ?></span></td>
     <td><span class="modified_on"><?php

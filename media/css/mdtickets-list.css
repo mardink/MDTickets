@@ -1,3 +1,9 @@
+.deadline_warning {
+    color: orange;
+}
+.deadline_error {
+    color: red;
+}
 @media print {
     @page {
         size: A3 landscape;

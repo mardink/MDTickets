@@ -1,6 +1,11 @@
 jQuery(document).ready(function(){
     jQuery("#show-edit").hide();
     jQuery("#show-update").hide();
+    var item_id = jQuery('#mdtickets_item_id').val();
+
+     if (item_id) {
+         jQuery("#btn_save").hide();
+     }
     // ITONCall veld Bepaal wie de assigned is. Als ITON dan een itoncall vel plaatsen
     var assigned = jQuery('#assigned option:selected').val();
     if (assigned == 'ITON') {
@@ -24,9 +29,11 @@ jQuery(document).ready(function(){
     if (status == 'Closed' || status == 'Cancelled' ) {
         jQuery("#completedate").show();
         jQuery("#completeby").show();
+
     } else {
         jQuery("#completedate").hide();
         jQuery("#completeby").hide();
+
     }
 
     jQuery("#status").focusout(function(){
@@ -35,9 +42,11 @@ jQuery(document).ready(function(){
         if (status == 'Closed' || status == 'Cancelled') {
             jQuery("#completedate").show();
             jQuery("#completeby").show();
+
         } else {
             jQuery("#completedate").hide();
             jQuery("#completeby").hide();
+
         }
     });// Einde
 
@@ -48,7 +57,8 @@ jQuery(document).ready(function(){
     });
     jQuery( "#edit-button" ).click(function() {
         jQuery("#tekst").hide();
-        jQuery("#show-edit").show()
+        jQuery("#show-edit").show();
+        jQuery("#btn_save").show();
 
     });
 

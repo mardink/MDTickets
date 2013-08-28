@@ -20,6 +20,10 @@ JHTML::_('behavior.formvalidation');
 
 // Load the editor
 $editor = JFactory::getEditor();
+
+//some variables
+$num = $this->item->mdtickets_item_id;
+
 ?>
 <form action="index.php" method="post" id="adminForm" class="form-validate" onsubmit="return isValid()"> <!-- added onsubmit="return isValid()"  to prevent saaving-->
     <input type="hidden" name="option" value="com_mdtickets" />
@@ -27,8 +31,11 @@ $editor = JFactory::getEditor();
     <input type="hidden" name="task" value="" />
     <input type="hidden" id="mdtickets_item_id" name="mdtickets_item_id" value="<?php echo $this->item->mdtickets_item_id ?>" />
     <input type="hidden" name="<?php echo JFactory::getSession()->getFormToken();?>" value="1" />
-    <div id="mdtickets_toolbar" class="row well">
-    <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-small btn-success">
+    <div id="mdtickets_toolbar" class="row well btn-toolbar">
+    <button id="edit-button" class="btn btn-small btn-primary <?php if(!$num){?> hide <?php } ?>" type="button"><?php echo Jtext::_('COM_MDTICKETS_TICKET_EDIT') ?></button>
+    <a href="#myModal" role="button" class="btn btn-small btn-success <?php if(!$num){?> hide <?php } ?>" data-toggle="modal"><?php echo Jtext::_('COM_MDTICKETS_TICKET_UPDATE') ?></a>
+    <div id="btn_save" class="btn-group">
+        <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-small btn-success">
         <i class="icon-apply icon-white">
         </i>
         <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE' );?>
@@ -45,23 +52,24 @@ $editor = JFactory::getEditor();
         </i>
         <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE_NEW' );?>
     </button>
+        </div>
 <!-- onderstaande werkt niet als het veld leeg is door de validator if statement nodig
     <button href="#" onclick="Joomla.submitbutton('cancel')" class="btn btn-small">
         <i class="icon-cancel ">
         </i>
         Annuleren
     </button> -->
-        <a href="index.php?option=com_mdtickets&view=items&Itemid=116"  class="btn btn-small">
+        <a href="index.php?option=com_mdtickets&view=items&Itemid=116"  class="btn btn-small btn-danger">
             <i class="icon-cancel ">
             </i>
             <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_CANCEL' );?>
         </a>
-        <input type="button" id="print_btn" class="btn btn-small btn-success" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
+        <input type="button" id="print_btn" class="btn btn-small btn-info" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
+
     </div>
     <div class="row-fluid">
         <div class="span12">
             <?php
-            $num = $this->item->mdtickets_item_id;
             $ticketNum = sprintf("%04d", $num);
             $user_id = $this->item->created_by;
             $user = JFactory::getUser($user_id);
@@ -199,8 +207,7 @@ $editor = JFactory::getEditor();
             </div> <?php
             } else {
             ?>
-                <button id="edit-button" class="btn btn-small btn-primary" type="button">Edit</button><button id="toevoegen" class="btn btn-small btn-success" type="button">Toevoegen</button>
-            <div class="row" id="show-detail">
+                <div class="row" id="show-detail">
                 <label for="showdetail" class="control-label">Detail description</label>
                 <div id="tekst" class="well"><?php echo $this->item->detail?></div>
             </div>
@@ -213,4 +220,22 @@ $editor = JFactory::getEditor();
             <h3>Update</h3>
             <?php echo $editor->display('remark', $this->item->remark, '100%', '300', '60', '20', false); ?></div>
     </div>
+    <!-- Modal voor update -->
+<div id="myModal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3><?php echo Jtext::_('COM_MDTICKETS_MODAL_UPDATE') ?></h3>
+    </div>
+    <div class="modal-body">
+        <?php echo $editor->display('remark', $this->item->remark, '100%', '300', '60', '20', false); ?>
+    </div>
+    <div class="modal-footer">
+        <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-small btn-success">
+            <i class="icon-apply icon-white">
+            </i>
+            <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE' );?>
+        </button>
+        <button type="button" class="btn btn-small btn-danger" data-dismiss="modal" aria-hidden="true"><?php echo Jtext::_('COM_MDTICKETS_TOOLBAR_CANCEL') ?></button>
+    </div>
+</div>
 </form>
