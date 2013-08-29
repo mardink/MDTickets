@@ -32,10 +32,10 @@ hr {
     color: red;
 }
 #myModal {
-    width: 900px;
+    width: 1000px;
 }
 .modal-body {
-    width: 800px;
+    width: 950px;
 }
 @media print {
     @page {

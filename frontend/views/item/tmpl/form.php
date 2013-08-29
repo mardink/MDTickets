@@ -25,7 +25,7 @@ $editor = JFactory::getEditor();
 $num = $this->item->mdtickets_item_id;
 
 ?>
-<form action="index.php" method="post" id="adminForm" class="form-validate" onsubmit="return isValid()"> <!-- added onsubmit="return isValid()"  to prevent saaving-->
+<form action="index.php" method="post" id="adminForm" class="form-validate" onsubmit="return isValid()" enctype="multipart/form-data"> <!-- added onsubmit="return isValid()"  to prevent saaving-->
     <input type="hidden" name="option" value="com_mdtickets" />
     <input type="hidden" name="view" value="item" />
     <input type="hidden" name="task" value="" />
@@ -216,10 +216,7 @@ $num = $this->item->mdtickets_item_id;
 
         </div>
         </div>
-        <div id="show-update">
-            <h3>Update</h3>
-            <?php echo $editor->display('remark', $this->item->remark, '100%', '300', '60', '20', false); ?></div>
-    </div>
+
     <!-- Modal voor update -->
 <div id="myModal" class="modal hide fade">
     <div class="modal-header">
@@ -228,6 +225,11 @@ $num = $this->item->mdtickets_item_id;
     </div>
     <div class="modal-body">
         <?php echo $editor->display('remark', $this->item->remark, '100%', '300', '60', '20', false); ?>
+        <p></p>
+        <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_ADD') ?></h4>
+        <p><input type="file" name="bijlage[test][]"></p>
+        <p><input type="file" name="bijlage[test][]"></p>
+        <p><input type="file" name="bijlage[test][]"></p>
     </div>
     <div class="modal-footer">
         <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-small btn-success">
@@ -238,4 +240,33 @@ $num = $this->item->mdtickets_item_id;
         <button type="button" class="btn btn-small btn-danger" data-dismiss="modal" aria-hidden="true"><?php echo Jtext::_('COM_MDTICKETS_TOOLBAR_CANCEL') ?></button>
     </div>
 </div>
+        <div id="files" class="row">
+<div class="well">
+    <?php if(!$num){?>
+        <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_ADD') ?></h4>
+        <p><input type="file" name="bijlage[test][]"></p>
+        <p><input type="file" name="bijlage[test][]"></p>
+        <p><input type="file" name="bijlage[test][]"></p>
+    <?php } else {
+//Import filesystem libraries. Perhaps not necessary, but does not hurt
+jimport('joomla.filesystem.file');
+jimport('joomla.filesystem.folder');
+$searchpath = JPATH_COMPONENT . DS . "bijlage" . DS . $ticketNum;
+if (JFolder::exists($searchpath)) {
+$jpg_files = JFolder::files($searchpath, '.*');
+if ($jpg_files) { ?>
+    <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT') ?></h4>
+    <?php foreach ($jpg_files as $jpg_file)
+    { ?>
+    <a href="<?php echo JURI::root()  . "components/com_mdtickets/bijlage/" . $ticketNum . DS . $jpg_file;?>" target="_blank"><?php echo $jpg_file; ?></a><br/>
+    <?php }
+} else { ?>
+    <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_NO'); ?> </h4> <?php
+}
+} else { ?>
+    <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_NO'); ?> </h4> <?php
+}
+    }?>
+</div>
+        </div>
 </form>

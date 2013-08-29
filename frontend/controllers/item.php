@@ -28,19 +28,40 @@ class MdticketsControllerItem extends FOFController {
             }
         }
 
+// uplaod files
+       jimport('joomla.filesystem.file');
+       jimport('joomla.filesystem.folder');
+       $num = $item->get('mdtickets_item_id');
+       $ticketNum = sprintf("%04d", $num);
+       // get the file
+       $input = JFactory::getApplication()->input;
+       $files = $input->files->get('bijlage');
+       $savepath = JPATH_COMPONENT . "/bijlage/" . $ticketNum;
+       if(isset($files)){
+           if (!JFolder::exists($savepath)) {
+               JFolder::create($savepath);
+           }
+           $max = ini_get('upload_max_filesize');
+           //$file_type = $params->get( 'type' );
+           $file_type = "*";
+           foreach ($files as $file){
+               foreach ($file as $file1) {
+               //if($files['size'] > $max) $msg = JText::_('ONLY_FILES_UNDER').' '.$max;
+               //Set up the source and destination of the file
+                   //Clean up filename to get rid of strange characters like spaces etc
+                   $filename = JFile::makeSafe($file1['name']);
+               $src = $file1['tmp_name'];
+               $dest = $savepath . "/" . $filename;
+                //First check if the file has the right extension, we need jpg only
+                   if ($file1['type'] == $file_type || $file_type == '*') {
+                       JFile::upload($src, $dest);
+                   }
+               }
+           }
+       }
 
 
-      /* if($remark !=""){
-           $user =& JFactory::getUser();
-           $name = $user->name;
-           $datum = date("Y-m-d H:i:s");
-           // Collect all data and form a new string.
-           $text = $datum .' : ' . $name . '<br />' . $remark . '<br /><hr>' . $detail;
-           $data['detail'] = $text;
-           $data['remark'] = '';
-       }*/
-
-       return $data;
+           return $data;
    }
 
   public function onAfterApplySave(){
@@ -54,7 +75,7 @@ class MdticketsControllerItem extends FOFController {
         $name = $user->name;
         $datum = date("Y-m-d H:i:s");
         // Collect all data and form a new string.
-        $text = $datum .' : ' . $name . '</br>' . $remark . '<hr>' . $detail;
+        $text = $datum .' : ' . $name . ' ' . $remark . '<hr>' . $detail;
         $remark_new = '';
 
         if ($remark != "") {
