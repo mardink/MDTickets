@@ -38,19 +38,17 @@ $num = $this->item->mdtickets_item_id;
         <i class="icon-apply icon-white">
         </i>
         <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE' );?>
-    </button>
-
-    <button href="#" onclick="Joomla.submitbutton('save')" class="btn btn-small">
-        <i class="icon-save ">
-        </i>
-        <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE_CLOSE' );?>
-    </button>
-
-    <button href="#" onclick="Joomla.submitbutton('savenew')" class="btn btn-small">
-        <i class="icon-save-new ">
-        </i>
-        <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE_NEW' );?>
-    </button>
+        </button>
+        <button href="#" onclick="Joomla.submitbutton('save')" class="btn btn-small">
+            <i class="icon-save ">
+            </i>
+            <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE_CLOSE' );?>
+        </button>
+        <button href="#" onclick="Joomla.submitbutton('savenew')" class="btn btn-small">
+            <i class="icon-save-new ">
+            </i>
+            <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE_NEW' );?>
+        </button>
         </div>
 <!-- onderstaande werkt niet als het veld leeg is door de validator if statement nodig
     <button href="#" onclick="Joomla.submitbutton('cancel')" class="btn btn-small">
@@ -58,7 +56,7 @@ $num = $this->item->mdtickets_item_id;
         </i>
         Annuleren
     </button> -->
-        <a href="index.php?option=com_mdtickets&view=items&Itemid=116"  class="btn btn-small btn-danger">
+        <a href="index.php?option=com_mdtickets&view=items&Itemid=116"  class="btn btn-small btn-danger"> <!-- hardcoded menu item -->
             <i class="icon-cancel ">
             </i>
             <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_CANCEL' );?>
@@ -75,8 +73,10 @@ $num = $this->item->mdtickets_item_id;
             $username =  $user->get('username');
 
             if(!$num){?>
-                    <h3>Nieuw Ticket</h3>
+                <!-- ony for new document -->
+                    <h3><?php echo JText::_('COM_MDTICKETS_ITEM_NEW') ?></h3>
                 <?php } else { ?>
+            <!-- ony for existing document -->
                 <div class="row">
                 <h3 class="span2">Ticket <?php echo $ticketNum;?></h3> <h4><?php echo JText::_( 'COM_MDTICKETS_CREATED_DATE' );
                         $originalDate = $this->item->created_on;
@@ -96,11 +96,11 @@ $num = $this->item->mdtickets_item_id;
             <div id="form_edit">
             <div class="row">
                 <div class="span4">
-                    <label for="short" class="control-label">Korte omschrijving(max 54 characters) </label>
+                    <label for="short" class="control-label"><?php echo JText::_('COM_MDTICKETS_ITEM_SHORT') ?></label>
                     <input type="text" name="short" id="short" maxlength="54" value="<?php echo $this->item->short?>" class="required"/>
                 </div>
                 <div class="span2">
-                    <label for="prio" class="control-label">Prioriteit</label>
+                    <label for="prio" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_PRIO') ?></label>
                     <select name="prio" id="prio"/>
                         <?php
                         $priorities = array('Normaal', 'Hoog', 'Laag', 'Periodiek', 'tzt');
@@ -119,7 +119,7 @@ $num = $this->item->mdtickets_item_id;
 
                 </div>
                 <div class="span2">
-                    <label for="category" class="control-label">Categorie</label>
+                    <label for="category" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_CATEGORY') ?></label>
                     <select name="category" id="category"/>
                     <?php
                     $categories = array('Telefonie', 'Mob-telefonie', 'Netwerk', 'Applicaties', 'Software', 'Hardware', 'Beheer', 'Security', 'Internet');
@@ -136,18 +136,18 @@ $num = $this->item->mdtickets_item_id;
                     </select>
                 </div>
                 <div class="span1">
-                    <label for="requester" class="control-label">Requested by</label>
+                    <label for="requester" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_REQUESTER') ?></label>
                     <input type="text" name="requester" id="requester" value="<?php echo $this->item->requester?>"/>
                 </div>
                 <div class="span1">
-                    <label for="deadline" class="control-label">Deadline</label>
+                    <label for="deadline" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_DEADLINE') ?></label>
                     <input type="date" name="deadline" id="deadline" value="<?php echo $this->item->deadline;;?>"/>
                 </div>
 
             </div>
             <div class="row">
                 <div class="span2">
-                    <label for="status" class="control-label">Status</label>
+                    <label for="status" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_STATUS') ?></label>
                     <select name="status" id="status"/>
                      <?php
                      $statussen = array('Not Started', 'Started', 'Pauzed', 'Waiting for ITON', 'Waiting for supplier', 'Waiting for other', 'Closed', 'Cancelled');
@@ -164,15 +164,15 @@ $num = $this->item->mdtickets_item_id;
                     </select>
                 </div>
                 <div id="completeby" class="span2">
-                    <label for="completed_by" class="control-label">Completed by</label>
+                    <label for="completed_by" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED') ?></label>
                     <input type="text" name="completed_by" id="completed_by" value="<?php echo $this->item->requester?>"/>
                 </div>
                 <div id="completedate"class="span2">
-                    <label for="completion_date" class="control-label">Completion date</label>
+                    <label for="completion_date" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED_DATE') ?></label>
                     <input type="date" name="completion_date" id="completion_date" value="<?php echo $this->item->completion_date?>"/>
                 </div>
                 <div class="span2">
-                    <label for="assigned" class="control-label">Assigned</label>
+                    <label for="assigned" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_ASSIGNED') ?></label>
                     <select name="assigned" id="assigned"/>
                     <?php
                     $assign = array('MHI', 'HvT', 'MHI-HvT', 'ITON', 'Other');
@@ -189,8 +189,8 @@ $num = $this->item->mdtickets_item_id;
                     </select>
                 </div>
 
-                <div id="iton" class="span2">
-                    <label for="itoncall" class="control-label">ITON Call</label>
+                <div id="iton" class="span2"> <!-- Only shown when assigned is ITON CALL -->
+                    <label for="itoncall" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_ITONCALL') ?></label>
                     <input type="text" name="itoncall" id="itoncall" value="<?php echo $this->item->itoncall?>"/>
 
                 </div>
@@ -200,16 +200,19 @@ $num = $this->item->mdtickets_item_id;
             // check if document is new or edit
             $doc_id = $this->item->mdtickets_item_id;
             if (!$doc_id) {?>
-                <p class="control-label">Detail description</p>
+                <!-- For new document -->
+                <p class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_DETAIL') ?></p>
                 <div class="row" id="detail-editor">
                     <?php echo $editor->display('detail', $this->item->detail, '100%', '300', '60', '20', false); ?>
             </div> <?php
             } else {
             ?>
+                <!-- start of showing detail info no edit  show by default-->
                 <div class="row" id="show-detail">
-                <label for="showdetail" class="control-label">Detail description</label>
+                <label for="showdetail" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_DETAIL') ?></label>
                 <div id="tekst" class="well"><?php echo $this->item->detail?></div>
-            </div>
+            </div><!-- start of showing detail info no edit -->
+                                  <!-- start of edit detail when tickets is not new hidden by default -->
                 <div id="show-edit"><?php echo $editor->display('detail', $this->item->detail, '100%', '300', '60', '20', false); ?></div>
             <?php } ?>
 
@@ -217,55 +220,55 @@ $num = $this->item->mdtickets_item_id;
         </div>
 
     <!-- Modal voor update -->
-<div id="myModal" class="modal hide fade">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3><?php echo Jtext::_('COM_MDTICKETS_MODAL_UPDATE') ?></h3>
-    </div>
-    <div class="modal-body">
-        <?php echo $editor->display('remark', $this->item->remark, '100%', '300', '60', '20', false); ?>
-        <p></p>
-        <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_ADD') ?></h4>
-        <p><input type="file" name="bijlage[test][]"></p>
-        <p><input type="file" name="bijlage[test][]"></p>
-        <p><input type="file" name="bijlage[test][]"></p>
-    </div>
-    <div class="modal-footer">
-        <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-small btn-success">
-            <i class="icon-apply icon-white">
-            </i>
-            <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE' );?>
-        </button>
-        <button type="button" class="btn btn-small btn-danger" data-dismiss="modal" aria-hidden="true"><?php echo Jtext::_('COM_MDTICKETS_TOOLBAR_CANCEL') ?></button>
-    </div>
-</div>
-        <div id="files" class="row">
-<div class="well">
-    <?php if(!$num){?>
-        <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_ADD') ?></h4>
-        <p><input type="file" name="bijlage[test][]"></p>
-        <p><input type="file" name="bijlage[test][]"></p>
-        <p><input type="file" name="bijlage[test][]"></p>
-    <?php } else {
-//Import filesystem libraries. Perhaps not necessary, but does not hurt
-jimport('joomla.filesystem.file');
-jimport('joomla.filesystem.folder');
-$searchpath = JPATH_COMPONENT . DS . "bijlage" . DS . $ticketNum;
-if (JFolder::exists($searchpath)) {
-$jpg_files = JFolder::files($searchpath, '.*');
-if ($jpg_files) { ?>
-    <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT') ?></h4>
-    <?php foreach ($jpg_files as $jpg_file)
-    { ?>
-    <a href="<?php echo JURI::root()  . "components/com_mdtickets/bijlage/" . $ticketNum . DS . $jpg_file;?>" target="_blank"><?php echo $jpg_file; ?></a><br/>
-    <?php }
-} else { ?>
-    <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_NO'); ?> </h4> <?php
-}
-} else { ?>
-    <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_NO'); ?> </h4> <?php
-}
-    }?>
-</div>
+    <div id="myModal" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3><?php echo Jtext::_('COM_MDTICKETS_MODAL_UPDATE') ?></h3>
         </div>
+        <div class="modal-body">
+            <?php echo $editor->display('remark', $this->item->remark, '100%', '300', '60', '20', false); ?>
+            <p></p>
+            <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_ADD') ?></h4>
+            <p><input type="file" name="bijlage[test][]"></p>
+            <!--<p><input type="file" name="bijlage[test][]"></p>
+            <p><input type="file" name="bijlage[test][]"></p> werkt nog niet -->
+        </div>
+        <div class="modal-footer">
+            <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-small btn-success">
+                <i class="icon-apply icon-white">
+                </i>
+                <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE' );?>
+            </button>
+            <button type="button" class="btn btn-small btn-danger" data-dismiss="modal" aria-hidden="true"><?php echo Jtext::_('COM_MDTICKETS_TOOLBAR_CANCEL') ?></button>
+        </div>
+    </div> <!-- End of Modal -->
+    <div id="files" class="row"> <!-- Start of showing attachments or comment when empty -->
+        <div class="well">
+            <?php if(!$num){?>
+                <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_ADD') ?></h4>
+                <p><input type="file" name="bijlage[test][]"></p>
+                <!-- <p><input type="file" name="bijlage[test][]"></p>
+                <p><input type="file" name="bijlage[test][]"></p> werkt nog niet-->
+            <?php } else {
+        //Import filesystem libraries. Perhaps not necessary, but does not hurt
+        jimport('joomla.filesystem.file');
+        jimport('joomla.filesystem.folder');
+        $searchpath = JPATH_COMPONENT . DS . "bijlage" . DS . $ticketNum;
+        if (JFolder::exists($searchpath)) {
+        $jpg_files = JFolder::files($searchpath, '.*');
+        if ($jpg_files) { ?>
+            <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT') ?></h4>
+            <?php foreach ($jpg_files as $jpg_file)
+            { ?>
+            <a href="<?php echo JURI::root()  . "components/com_mdtickets/bijlage/" . $ticketNum . DS . $jpg_file;?>" target="_blank"><?php echo $jpg_file; ?></a><br/>
+            <?php }
+        } else { ?>
+            <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_NO'); ?> </h4> <?php
+        }
+        } else { ?>
+            <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_NO'); ?> </h4> <?php
+        }
+            }?>
+        </div>
+    </div> <!-- End of showing attachments or comment when empty -->
 </form>

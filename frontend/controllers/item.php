@@ -7,12 +7,18 @@
 defined('_JEXEC') or die();
 
 class MdticketsControllerItem extends FOFController {
-   public function onBeforeApplySave(&$data) {
+   /*
+    * Before saving the ticket the following will be done
+    * When creating a new ticket the modified date will be set with the current date
+    * When a ticket is closed or cancelled and no completion date is set the current date will be set
+    * When a file is given teh file will be cleaned from strange letters and upload to a subfolder bijlage
+    *
+    */
+
+    public function onBeforeApplySave(&$data) {
        $model = $this->getThisModel();
        $item = $model->getItem();
-       $remark = $item->get('remark');
        $modified = $item->get('modified');
-       $detail = $item->get('detail');
        $status = $item->get('status');
        $completion_date = $item->get('completion_date');
        if(!$modified){
@@ -26,16 +32,17 @@ class MdticketsControllerItem extends FOFController {
             }
         }
 
-// uplaod files
+// uplaod files to the subfolder
        jimport('joomla.filesystem.file');
        jimport('joomla.filesystem.folder');
        $num = $item->get('mdtickets_item_id');
        $ticketNum = sprintf("%04d", $num);
        // get the file
        $input = JFactory::getApplication()->input;
-       $files = $input->files->get('bijlage');
+       $files = $input->files->get('bijlage'); // should be changed to a parameter from teh component
        $savepath = JPATH_COMPONENT . "/bijlage/" . $ticketNum;
-       if(isset($files)){
+       // check if folder excist if not create folder. Foldername is ticket number in 4 digits
+        if(isset($files)){
            if (!JFolder::exists($savepath)) {
                JFolder::create($savepath);
            }
@@ -50,7 +57,7 @@ class MdticketsControllerItem extends FOFController {
                    $filename = JFile::makeSafe($file1['name']);
                $src = $file1['tmp_name'];
                $dest = $savepath . "/" . $filename;
-                //First check if the file has the right extension, we need jpg only
+                //First check if the file has the right extension, current all files are allowed
                    if ($file1['type'] == $file_type || $file_type == '*') {
                        JFile::upload($src, $dest);
                    }
@@ -62,7 +69,13 @@ class MdticketsControllerItem extends FOFController {
            return $data;
    }
 
-  public function onAfterApplySave(){
+    /*
+     * When the ticket is saved and before returning to the view the following will be executed
+     * The remark text will be added in the detail desciption
+     * First the date and the user will be added followed by the remark(update text) followed by a hr line
+     * The new detail description will be set in the database
+     */
+    public function onAfterApplySave(){
         $model = $this->getThisModel();
         $id = $model->getId();
         $item = $model->getItem();

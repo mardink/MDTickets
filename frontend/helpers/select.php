@@ -27,7 +27,7 @@ class MdticketsHelperSelect
 
         return JHTML::_('select.genericlist', $list, $name, $attribs, 'value', 'text', $selected, $idTag);
     }
-    // Get the prio fields
+    // Set the prio fields
     public static function prio($selected = null, $id = 'type', $attribs = array() )
     {
         $options = array();
@@ -41,7 +41,7 @@ class MdticketsHelperSelect
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
 
-    // Get the category fields
+    // Set the category fields
     public static function category($selected = null, $id = 'type', $attribs = array() )
     {
         $options = array();
@@ -59,7 +59,7 @@ class MdticketsHelperSelect
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
 
-    // Get the status fields
+    // Set the status fields
     public static function status($selected = null, $id = 'type', $attribs = array() )
     {
         $options = array();
@@ -75,7 +75,7 @@ class MdticketsHelperSelect
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
-    // Get the assigned fields
+    // Set the assigned fields
     public static function assigned($selected = null, $id = 'type', $attribs = array() )
     {
         $options = array();
@@ -88,6 +88,7 @@ class MdticketsHelperSelect
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
+    // Set the published fields
     public static function published($selected = null, $id = 'enabled', $attribs = array())
     {
         $options = array();
@@ -97,6 +98,7 @@ class MdticketsHelperSelect
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
+    // Set the pagination fields
     public static function pagination($selected = null, $id = 'limit', $attribs = array())
     {
         $options = array();
@@ -107,7 +109,7 @@ class MdticketsHelperSelect
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
-    // select finished state
+    // set finished state
     public static function finished($selected = null, $id = 'finished', $attribs = array())
     {
         $options = array();
@@ -117,7 +119,7 @@ class MdticketsHelperSelect
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
     //get the lastlogin date from the mdtickets_lastlogins database
-    // Userid should be set as parameter
+    //  $id Userid should be set as parameter
     public static function getLastlogin($id){
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);

@@ -9,10 +9,11 @@ defined('_JEXEC') or die();
 
 // Load helper
 $this->loadHelper('dashboard');
+// Load framework
 JHTML::_('behavior.framework');
 // eerst JQuery toevoegen
 JHtml::_('bootstrap.framework');
-
+// Load jquery file
 FOFTemplateUtils::addJS('media://com_mdtickets/js/mdtickets_dashboard.js');
 // load JQPlot js files
 FOFTemplateUtils::addJS('media://com_mdtickets/js/jqplot/jquery.jqplot.min.js');
@@ -21,7 +22,7 @@ FOFTemplateUtils::addJS('media://com_mdtickets/js/jqplot/jqplot.categoryAxisRend
 FOFTemplateUtils::addJS('media://com_mdtickets/js/jqplot/jqplot.pointLabels.min.js');
 FOFTemplateUtils::addJS('media://com_mdtickets/js/jqplot/jqplot.pieRenderer.min.js');
 
-// Load the CSS file
+// Load the CSS files
 FOFTemplateUtils::addCSS('media://com_mdtickets/css/mdtickets.css');
 FOFTemplateUtils::addCSS('media://com_mdtickets/css/jquery.jqplot.min.css');
 
@@ -58,70 +59,68 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
                <input type="submit" id="btn_login" name="btn_login" class="btn btn-primary" value="Login" />
             </form>
         <?php } ?>
-
-
 </div> <!-- End of the login/logout form -->
 <!-- Begin content -->
 <div id="mdtickets-dashboard" class="container">
-    <div class="row-fluid span10">
+    <div class="row-fluid span10">  <!-- begin left content -->
         <div class="row">
-        <div class="well span6">
-            <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTNEW');?></h5>
-            <?php $latestitems = MdticketsHelperDashboard::getLatestNew(5);
-            foreach ($latestitems as $latestitem){
-                $id = $latestitem->mdtickets_item_id;
-                $ticketID = sprintf("%04d", $id);
-                $showLatestDate = date("d-m-y", strtotime($latestitem->created_on));
+            <div class="well span6">
+                <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTNEW');?></h5>
+                <?php $latestitems = MdticketsHelperDashboard::getLatestNew(5);
+                foreach ($latestitems as $latestitem){
+                    $id = $latestitem->mdtickets_item_id;
+                    $ticketID = sprintf("%04d", $id);
+                    $showLatestDate = date("d-m-y", strtotime($latestitem->created_on));
+                    ?>
+                    <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $latestitem->mdtickets_item_id;?>"><?php echo $ticketID; ?></a>
+                    <?php echo " - " . $latestitem->short;?><span class="pull-right"><?php echo $showLatestDate;?></span><br/>
+                <?php }
                 ?>
-                <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $latestitem->mdtickets_item_id;?>"><?php echo $ticketID; ?></a>
-                <?php echo " - " . $latestitem->short;?><span class="pull-right"><?php echo $showLatestDate;?></span><br/>
-            <?php }
-            ?>
-        </div>
-        <div class="well span6">
-            <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTCHANGED');?></h5>
-            <?php $latestitemschanged = MdticketsHelperDashboard::getLatestChanged(5);
-            foreach ($latestitemschanged as $latestitemchanged){
-                $id_changed = $latestitemchanged->mdtickets_item_id;
-                $ticketID_changed = sprintf("%04d", $id_changed);
-                $showLatestDateChanged = date("d-m-y", strtotime($latestitemchanged->modified_on));
+            </div>
+            <div class="well span6">
+                <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTCHANGED');?></h5>
+                <?php $latestitemschanged = MdticketsHelperDashboard::getLatestChanged(5);
+                foreach ($latestitemschanged as $latestitemchanged){
+                    $id_changed = $latestitemchanged->mdtickets_item_id;
+                    $ticketID_changed = sprintf("%04d", $id_changed);
+                    $showLatestDateChanged = date("d-m-y", strtotime($latestitemchanged->modified_on));
+                    ?>
+                    <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $latestitemchanged->mdtickets_item_id;?>"><?php echo $ticketID_changed; ?></a>
+                    <?php echo " - " . $latestitemchanged->short;?><span class="pull-right"><?php echo $showLatestDateChanged;?></span><br/>
+                <?php }
                 ?>
-                <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $latestitemchanged->mdtickets_item_id;?>"><?php echo $ticketID_changed; ?></a>
-                <?php echo " - " . $latestitemchanged->short;?><span class="pull-right"><?php echo $showLatestDateChanged;?></span><br/>
-            <?php }
-            ?>
-        </div>
-        </div>
+            </div>
+        </div> <!-- end of row -->
         <div class="row">
-        <div class="well span6">
-            <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTFINISHED');?></h5>
-            <?php $finisheditems = MdticketsHelperDashboard::getLatestFinished(5);
-            foreach ($finisheditems as $finisheditem){
-                $id_finished = $finisheditem->mdtickets_item_id;
-                $ticketID_finished = sprintf("%04d", $id_finished);
-                $showfinishedDate = date("d-m-y", strtotime($finisheditem->completion_date));
+            <div class="well span6">
+                <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTFINISHED');?></h5>
+                <?php $finisheditems = MdticketsHelperDashboard::getLatestFinished(5);
+                foreach ($finisheditems as $finisheditem){
+                    $id_finished = $finisheditem->mdtickets_item_id;
+                    $ticketID_finished = sprintf("%04d", $id_finished);
+                    $showfinishedDate = date("d-m-y", strtotime($finisheditem->completion_date));
+                    ?>
+                    <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $finisheditemnisheditem->mdtickets_item_id;?>"><?php echo $ticketID_finished; ?></a>
+                    <?php echo " - " . $finisheditem->short;?><span class="pull-right"><?php echo $showfinishedDate;?></span><br/>
+                <?php }
                 ?>
-                <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $finisheditemnisheditem->mdtickets_item_id;?>"><?php echo $ticketID_finished; ?></a>
-                <?php echo " - " . $finisheditem->short;?><span class="pull-right"><?php echo $showfinishedDate;?></span><br/>
-            <?php }
-            ?>
-        </div>
-        <div class="well span6">
-            <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_DEADLINES');?></h5>
-            <?php $deadlines = MdticketsHelperDashboard::getDeadlines(5);
-            foreach ($deadlines as $deadline){
-                $id_deadline = $deadline->mdtickets_item_id;
-                $ticketID_deadline = sprintf("%04d", $id_deadline);
-                $showdeadlineDate = date("d-m-y", strtotime($deadline->deadline));
+            </div>
+            <div class="well span6">
+                <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_DEADLINES');?></h5>
+                <?php $deadlines = MdticketsHelperDashboard::getDeadlines(5);
+                foreach ($deadlines as $deadline){
+                    $id_deadline = $deadline->mdtickets_item_id;
+                    $ticketID_deadline = sprintf("%04d", $id_deadline);
+                    $showdeadlineDate = date("d-m-y", strtotime($deadline->deadline));
+                    ?>
+                    <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $deadline->mdtickets_item_id;?>"><?php echo $ticketID_deadline; ?></a>
+                    <?php echo " - " . $deadline->short;?><span class="pull-right <?php
+                    if($showdeadlineDate < $current_date) { echo "deadline_error";
+                    } elseif ($showdeadlineDate >= $warning_date) { echo "deadline_warning";}?>"><?php echo $showdeadlineDate;?></span><br/>
+                <?php }
                 ?>
-                <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $deadline->mdtickets_item_id;?>"><?php echo $ticketID_deadline; ?></a>
-                <?php echo " - " . $deadline->short;?><span class="pull-right <?php
-                if($showdeadlineDate < $current_date) { echo "deadline_error";
-                } elseif ($showdeadlineDate >= $warning_date) { echo "deadline_warning";}?>"><?php echo $showdeadlineDate;?></span><br/>
-            <?php }
-            ?>
-        </div>
-        </div>
+            </div>
+        </div> <!-- end of row -->
 
         <!-- Row for jQplot graphs -->
         <div class="row">
@@ -131,8 +130,8 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
             <div class="span6">
                 <div id="chart2" style="height:300px;width:600px; "></div>
             </div>
-        </div>
-    </div>
+        </div> <!-- end of row -->
+    </div>  <!-- end of leftside content -->
     <div class="well row span2">
         <!-- Begin load a joomla module position. Module posname Dashboard -->
         <?php jimport('joomla.application.module.helper');
@@ -145,7 +144,7 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
         ?>
         <!-- End load a joomla module position. Module posname Dashboard -->
     </div>
-    <div class="well row span2">
+    <div class="well row span2">  <!-- begin of statistics -->
         <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_STATISTICS');?></h5>
         <a href="index.php?option=com_mdtickets&view=items&task=browse&finished=0"><?php echo JText::_('COM_MDTICKETS_DASHBOARD_OPENCALLS');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsOpen();?></span><br/>
         <a href="index.php?option=com_mdtickets&view=items&prio=Hoog&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOHIGH');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioHigh();?></span><br/>
@@ -155,11 +154,12 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
         <a href="index.php?option=com_mdtickets&view=items&prio=Periodiek&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOPERIODIEK');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioPeriodiek();?></span><br/>
         <a href="index.php?option=com_mdtickets&view=items&assigned=MHI&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_EIGEN');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsUser($name_user);?></span><br/>
         <a href="index.php?option=com_mdtickets&view=items&assigned=ITON&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_ITON');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsIton();?></span><br/>
-    </div>
+    </div> <!-- end of statistics-->
 
 
 </div>
 </div><!-- End content -->
+<!-- Begin scripts ofr graphs see JQplot webiste for more information -->
 <?php // prepare data for graphs
 $charts2 = MdticketsHelperDashboard::getCallsCategorie();
 $charts1 = MdticketsHelperDashboard::getCallsCountNew();

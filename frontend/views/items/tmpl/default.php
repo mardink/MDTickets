@@ -147,18 +147,7 @@ $m = 1;
 foreach($this->items as $item):
 $m = 1 - $m;
 
-//$checkedout = ($item->checked_out != 0);
 
-//$ordering = $this->lists->order == 'ordering';
-
-// This is a stupid requirement of JHTML. Go figure!
-//switch($item->access) {
-//    case 0: $item->groupname = JText::_('public'); break;
-//    case 1: $item->groupname = JText::_('registered'); break;
-//    case 2: $item->groupname = JText::_('special'); break;
-//}
-
-//$icon = $base_folder.'/media/com_ars/icons/' . (empty($item->groups) ? 'unlocked_16.png' : 'locked_16.png');
 ?>
 <tr class="row<?php echo $m?>">
     <?php if($hasAjaxOrderingSupport !== false): ?>

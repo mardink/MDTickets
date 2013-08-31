@@ -8,25 +8,10 @@
 defined('_JEXEC') or die();
 
 class MdticketsHelperDashboard {
-// test helper
-	public static function test() {
-	return 'Dit is een test en nog een';
-	}
-	// sql test helper
-	public static function sql() {
-	// Get a db connection.
-            $db = JFactory::getDbo();
-            // Create a new query object.
-            $query = $db->getQuery(true);
-            $query
-                ->select('short')
-				->from($db->quoteName('#__mdtickets_items'))
-				->where($db->qn('mdtickets_item_id').' = '.$db->q('1'));
-            $db->setQuery($query);
-            $result = $db->loadResult();
-			return $result;
-        }
+
     /*
+     * This helper gets the latest new tickets from the database where items are not closed or cancelled
+     * Ordered by created date latest first
      * $number = number of items to show (mandatory)
      */
     public static function getLatestNew($number) {
@@ -50,6 +35,8 @@ class MdticketsHelperDashboard {
     }
 
     /*
+     * This helper gets the latest modified tickets from the database
+     * ordered by modified date  latest first
      * $number = number of items to show (mandatory)
      */
     public static function getLatestChanged($number) {
@@ -66,6 +53,8 @@ class MdticketsHelperDashboard {
         return $result;
     }
     /*
+     * This helper gets the latest finished tickets from the database where items are closed or cancelled
+     * ordered by the completion date latest first
      * $number = number of items to show (mandatory)
      */
     public static function getLatestFinished($number) {
@@ -88,6 +77,8 @@ class MdticketsHelperDashboard {
         return $result;
     }
     /*
+     * This helper gets the deadlines from the tickets from the database where items are not closed or cancelled or empty
+     * Ordered by deadline earliest deadline first
      * $number = number of items to show (mandatory)
      */
     public static function getDeadlines($number) {
@@ -110,7 +101,9 @@ class MdticketsHelperDashboard {
         $result = $db->loadObjectList();
         return $result;
     }
-        //get number of open calls
+        /*
+         * This helper gets the number of open calls from the database
+         */
     public static function getCallsOpen() {
         // Get a db connection.
         $db = JFactory::getDBO();
@@ -120,7 +113,10 @@ class MdticketsHelperDashboard {
         $numrow = $db->getNumRows();
         return $numrow;
     }
-    //get number of high prio calls
+
+    /*
+     * This helper gets the number of high priority calls from the database
+     */
     public static function getCallsPrioHigh() {
         // Get a db connection.
         $db = JFactory::getDBO();
@@ -130,7 +126,10 @@ class MdticketsHelperDashboard {
         $numrow = $db->getNumRows();
         return $numrow;
     }
-    //get number of normal prio calls
+
+    /*
+     * This helper gets the number of normal priority calls from the database
+     */
     public static function getCallsPrioNormal() {
         // Get a db connection.
         $db = JFactory::getDBO();
@@ -140,7 +139,9 @@ class MdticketsHelperDashboard {
         $numrow = $db->getNumRows();
         return $numrow;
     }
-    //get number of low prio calls
+    /*
+     * This helper gets the number of low priority calls from the database
+     */
     public static function getCallsPrioLow() {
         // Get a db connection.
         $db = JFactory::getDBO();
@@ -150,7 +151,9 @@ class MdticketsHelperDashboard {
         $numrow = $db->getNumRows();
         return $numrow;
     }
-    //get number of tzt prio calls
+    /*
+     * This helper gets the number of tzt calls from the database
+     */
     public static function getCallsPrioTzt() {
         // Get a db connection.
         $db = JFactory::getDBO();
@@ -160,7 +163,9 @@ class MdticketsHelperDashboard {
         $numrow = $db->getNumRows();
         return $numrow;
     }
-    //get number of periodoiek prio calls
+    /*
+     * This helper gets the number of periodiek calls from the database
+     */
     public static function getCallsPrioPeriodiek() {
         // Get a db connection.
         $db = JFactory::getDBO();
@@ -170,7 +175,10 @@ class MdticketsHelperDashboard {
         $numrow = $db->getNumRows();
         return $numrow;
     }
-    //get number of user calls
+    /*
+     * This helper gets the number calls from the current user from the database
+     * User must be logged in
+     */
     public static function getCallsUser($user) {
         if ($user!=''){
         // Get a db connection.
@@ -185,7 +193,9 @@ class MdticketsHelperDashboard {
             return 'Log in';
         }
     }
-    //get number of ITON calls
+    /*
+     * This helper gets the number of ITON calls from the database
+     */
     public static function getCallsIton() {
         // Get a db connection.
         $db = JFactory::getDBO();
@@ -195,7 +205,10 @@ class MdticketsHelperDashboard {
         $numrow = $db->getNumRows();
         return $numrow;
     }
-    // Count calls per categories
+    /*
+     * This helper gets the number of calls per category from the database
+     * The result is used for the pie graph
+     */
     public static function getCallsCategorie() {
         // Get a db connection.
         $db = JFactory::getDBO();
@@ -205,7 +218,10 @@ class MdticketsHelperDashboard {
         $result = $db->loadObjectList();
         return $result;
     }
-    // Count new calls per month
+    /*
+     * This helper gets the number new calls per month from the database
+     * The result is used for the bar graph
+     */
     public static function getCallsCountNew() {
         // Get a db connection.
         $db = JFactory::getDBO();
@@ -215,7 +231,10 @@ class MdticketsHelperDashboard {
         $result = $db->loadObjectList();
         return $result;
     }
-    // Count closed calls per month
+    /*
+     * This helper gets the number closed calls per month from the database
+     * The result is used for the bar graph
+     */
     public static function getCallsCountClosed() {
         // Get a db connection.
         $db = JFactory::getDBO();
@@ -225,7 +244,10 @@ class MdticketsHelperDashboard {
         $result = $db->loadObjectList();
         return $result;
     }
-    // Count ITON calls per month
+    /*
+     * This helper gets the number of iton calls per month from the database
+     * The result is used for the bar graph
+     */
     public static function getCallsCountIton() {
         // Get a db connection.
         $db = JFactory::getDBO();

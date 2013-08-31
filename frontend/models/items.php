@@ -25,7 +25,6 @@ class MdticketsModelItems extends FOFModel
 
         $fltPrio		= $this->getState('prio', null, 'string');
         if($fltPrio) {
-            //$fltPrio = "%$fltPrio%";
             $query->where($db->qn('prio').' = '.$db->q($fltPrio));
         }
 
@@ -70,9 +69,6 @@ class MdticketsModelItems extends FOFModel
         $fltFinished		= $this->getState('finished', null, 'string');
         if($fltFinished == '0') {
         $show_date = date("Y-m-d", strtotime("- 8 day"));
-            //$query->where($db->qn('status').' != '.$db->q('Closed'));
-            //$query->where($db->qn('status').' != '.$db->q('Cancelled'));
-            //$query->where($db->qn('completion_date').' >= '.$db->q($show_date));
             $query->where(
                 '('.
                 '('.$db->qn('completion_date').' >= '.$db->q($show_date).') OR'.
