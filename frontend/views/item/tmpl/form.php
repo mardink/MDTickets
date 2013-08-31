@@ -1,11 +1,10 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: Martijn
- * Date: 29-7-13
- * Time: 20:49
- * To change this template use File | Settings | File Templates.
+ * @package MDTickets
+ * @copyright Copyright (c)2013 Martijn Hiddink / mardinkwebdesign.com
+ * @license GNU General Public License version 3 or later
  */
+
 // Load the CSS file
 FOFTemplateUtils::addCSS('media://com_mdtickets/css/mdtickets.css');
 

@@ -1,9 +1,9 @@
 <?php
 /**
- * @package		contactus
- * @copyright	Copyright (c)2013 Nicholas K. Dionysopoulos / AkeebaBackup.com
- * @license		GNU General Public License version 2 or later
- */
+* @package MDTickets
+* @copyright Copyright (c)2013 Martijn Hiddink / mardinkwebdesign.com
+* @license GNU General Public License version 3 or later
+*/
 
 defined('_JEXEC') or die();
 

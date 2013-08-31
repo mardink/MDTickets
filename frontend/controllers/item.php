@@ -1,10 +1,8 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: Martijn
- * Date: 10-8-13
- * Time: 19:47
- * To change this template use File | Settings | File Templates.
+ * @package MDTickets
+ * @copyright Copyright (c)2013 Martijn Hiddink / mardinkwebdesign.com
+ * @license GNU General Public License version 3 or later
  */
 defined('_JEXEC') or die();
 

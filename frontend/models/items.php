@@ -1,8 +1,8 @@
 <?php
 /**
- * @package AkeebaReleaseSystem
- * @copyright Copyright (c)2010-2013 Nicholas K. Dionysopoulos
- * @license GNU General Public License version 3, or later
+ * @package MDTickets
+ * @copyright Copyright (c)2013 Martijn Hiddink / mardinkwebdesign.com
+ * @license GNU General Public License version 3 or later
  */
 
 defined('_JEXEC') or die();

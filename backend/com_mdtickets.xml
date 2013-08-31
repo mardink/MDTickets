@@ -66,7 +66,7 @@
 	<administration>
 		<!-- Administration menu -->
 		<menu view="items"
-			img="../media/com_mdtickets/images/contactus-16.png">COM_MDTICKETS</menu>
+			img="../media/com_mdtickets/images/mdtickets-16.png">COM_MDTICKETS</menu>
 
 		<!-- Back-end files -->
 		<files folder="backend">

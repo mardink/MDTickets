@@ -1,11 +1,10 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: Martijn
- * Date: 7-8-13
- * Time: 21:27
- * To change this template use File | Settings | File Templates.
+ * @package MDTickets
+ * @copyright Copyright (c)2013 Martijn Hiddink / mardinkwebdesign.com
+ * @license GNU General Public License version 3 or later
  */
+
 defined('_JEXEC') or die();
 
 class MdticketsHelperDashboard {
