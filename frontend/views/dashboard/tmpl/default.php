@@ -100,7 +100,7 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
                     $ticketID_finished = sprintf("%04d", $id_finished);
                     $showfinishedDate = date("d-m-y", strtotime($finisheditem->completion_date));
                     ?>
-                    <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $finisheditemnisheditem->mdtickets_item_id;?>"><?php echo $ticketID_finished; ?></a>
+                    <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $finisheditem->mdtickets_item_id;?>"><?php echo $ticketID_finished; ?></a>
                     <?php echo " - " . $finisheditem->short;?><span class="pull-right"><?php echo $showfinishedDate;?></span><br/>
                 <?php }
                 ?>
@@ -147,13 +147,13 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
     <div class="well row span2">  <!-- begin of statistics -->
         <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_STATISTICS');?></h5>
         <a href="index.php?option=com_mdtickets&view=items&task=browse&finished=0"><?php echo JText::_('COM_MDTICKETS_DASHBOARD_OPENCALLS');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsOpen();?></span><br/>
-        <a href="index.php?option=com_mdtickets&view=items&prio=Hoog&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOHIGH');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioHigh();?></span><br/>
-        <a href="index.php?option=com_mdtickets&view=items&prio=Normaal&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIONORMAL');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioNormal();?></span><br/>
-        <a href="index.php?option=com_mdtickets&view=items&prio=Laag&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOLOW');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioLow();?></span><br/>
-        <a href="index.php?option=com_mdtickets&view=items&prio=tzt&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOTZT');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioTzt();?></span><br/>
-        <a href="index.php?option=com_mdtickets&view=items&prio=Periodiek&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOPERIODIEK');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioPeriodiek();?></span><br/>
-        <a href="index.php?option=com_mdtickets&view=items&assigned=MHI&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_EIGEN');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsUser($name_user);?></span><br/>
-        <a href="index.php?option=com_mdtickets&view=items&assigned=ITON&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_ITON');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsIton();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&prio=Hoog&finished=0&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOHIGH');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioHigh();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&prio=Normaal&finished=0&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIONORMAL');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioNormal();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&prio=Laag&finished=0&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOLOW');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioLow();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&prio=tzt&finished=0&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOTZT');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioTzt();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&prio=Periodiek&finished=0&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOPERIODIEK');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioPeriodiek();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&assigned=MHI&finished=0&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_EIGEN');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsUser($name_user);?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&assigned=ITON&finished=0&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_ITON');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsIton();?></span><br/>
     </div> <!-- end of statistics-->
 
 
