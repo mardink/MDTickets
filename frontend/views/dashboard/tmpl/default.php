@@ -152,7 +152,7 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
         <a href="index.php?option=com_mdtickets&view=items&prio=Laag&finished=0&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOLOW');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioLow();?></span><br/>
         <a href="index.php?option=com_mdtickets&view=items&prio=tzt&finished=0&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOTZT');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioTzt();?></span><br/>
         <a href="index.php?option=com_mdtickets&view=items&prio=Periodiek&finished=0&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOPERIODIEK');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioPeriodiek();?></span><br/>
-        <a href="index.php?option=com_mdtickets&view=items&assigned=MHI&finished=0&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_EIGEN');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsUser($name_user);?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&assigned=<?php echo $name_user;?>&finished=0&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_EIGEN');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsUser($name_user);?></span><br/>
         <a href="index.php?option=com_mdtickets&view=items&assigned=ITON&finished=0&prio="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_ITON');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsIton();?></span><br/>
     </div> <!-- end of statistics-->
 
