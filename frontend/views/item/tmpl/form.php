@@ -230,8 +230,8 @@ $num = $this->item->mdtickets_item_id;
             <p></p>
             <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_ADD') ?></h4>
             <p><input type="file" name="bijlage[test][]"></p>
-            <!--<p><input type="file" name="bijlage[test][]"></p>
-            <p><input type="file" name="bijlage[test][]"></p> werkt nog niet -->
+            <p><input type="file" name="bijlage[test][]"></p>
+            <p><input type="file" name="bijlage[test][]"></p>
         </div>
         <div class="modal-footer">
             <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-small btn-success">
@@ -247,8 +247,8 @@ $num = $this->item->mdtickets_item_id;
             <?php if(!$num){?>
                 <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_ADD') ?></h4>
                 <p><input type="file" name="bijlage[test][]"></p>
-                <!-- <p><input type="file" name="bijlage[test][]"></p>
-                <p><input type="file" name="bijlage[test][]"></p> werkt nog niet-->
+                <input type="file" name="bijlage[test][]"></p>
+                <p><input type="file" name="bijlage[test][]"></p>
             <?php } else {
         //Import filesystem libraries. Perhaps not necessary, but does not hurt
         jimport('joomla.filesystem.file');

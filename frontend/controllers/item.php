@@ -42,7 +42,7 @@ class MdticketsControllerItem extends FOFController {
        $files = $input->files->get('bijlage'); // should be changed to a parameter from teh component
        $savepath = JPATH_COMPONENT . "/bijlage/" . $ticketNum;
        // check if folder excist if not create folder. Foldername is ticket number in 4 digits
-        if(isset($files)){
+
            if (!JFolder::exists($savepath)) {
                JFolder::create($savepath);
            }
@@ -59,11 +59,13 @@ class MdticketsControllerItem extends FOFController {
                $dest = $savepath . "/" . $filename;
                 //First check if the file has the right extension, current all files are allowed
                    if ($file1['type'] == $file_type || $file_type == '*') {
+                       if ($file1['name'] !=""){
                        JFile::upload($src, $dest);
+                       }
                    }
                }
            }
-       }
+
 
 
            return $data;
