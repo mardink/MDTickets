@@ -56,7 +56,7 @@ $num = $this->item->mdtickets_item_id;
         </i>
         Annuleren
     </button> -->
-        <a href="index.php?option=com_mdtickets&view=items&Itemid=116"  class="btn btn-small btn-danger"> <!-- hardcoded menu item -->
+        <a href="index.php?option=com_mdtickets&view=items"  class="btn btn-small btn-danger">
             <i class="icon-cancel ">
             </i>
             <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_CANCEL' );?>
@@ -97,11 +97,11 @@ $num = $this->item->mdtickets_item_id;
             <div class="row">
                 <div class="span4">
                     <label for="short" class="control-label"><?php echo JText::_('COM_MDTICKETS_ITEM_SHORT') ?></label>
-                    <input type="text" name="short" id="short" maxlength="54" value="<?php echo $this->item->short?>" class="required"/>
+                    <input type="text" name="short" id="short" maxlength="54" value="<?php echo $this->item->short?>" class="required changeEdit"/>
                 </div>
                 <div class="span2">
                     <label for="prio" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_PRIO') ?></label>
-                    <select name="prio" id="prio"/>
+                    <select name="prio" id="prio" class="changeEdit"/>
                         <?php
                         $priorities = array('Normaal', 'Hoog', 'Laag', 'Periodiek', 'tzt');
                         $current_prio = $this->item->prio;
@@ -120,7 +120,7 @@ $num = $this->item->mdtickets_item_id;
                 </div>
                 <div class="span2">
                     <label for="category" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_CATEGORY') ?></label>
-                    <select name="category" id="category"/>
+                    <select name="category" id="category" class="changeEdit"/>
                     <?php
                     $categories = array('Telefonie', 'Mob-telefonie', 'Netwerk', 'Applicaties', 'Software', 'Hardware', 'Beheer', 'Security', 'Internet');
                     $current_category = $this->item->category;
@@ -137,18 +137,18 @@ $num = $this->item->mdtickets_item_id;
                 </div>
                 <div class="span1">
                     <label for="requester" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_REQUESTER') ?></label>
-                    <input type="text" name="requester" id="requester" value="<?php echo $this->item->requester?>"/>
+                    <input type="text" name="requester" id="requester" class="changeEdit" value="<?php echo $this->item->requester?>"/>
                 </div>
                 <div class="span1">
                     <label for="deadline" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_DEADLINE') ?></label>
-                    <input type="date" name="deadline" id="deadline" value="<?php echo $this->item->deadline;;?>"/>
+                    <input type="date" name="deadline" id="deadline" class="changeEdit" value="<?php echo $this->item->deadline;;?>"/>
                 </div>
 
             </div>
             <div class="row">
                 <div class="span2">
                     <label for="status" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_STATUS') ?></label>
-                    <select name="status" id="status"/>
+                    <select name="status" id="status" class="changeEdit"/>
                      <?php
                      $statussen = array('Not Started', 'Started', 'Pauzed', 'Waiting for ITON', 'Waiting for supplier', 'Waiting for other', 'Closed', 'Cancelled');
                      $current_status = $this->item->status;
@@ -165,15 +165,15 @@ $num = $this->item->mdtickets_item_id;
                 </div>
                 <div id="completeby" class="span2">
                     <label for="completed_by" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED') ?></label>
-                    <input type="text" name="completed_by" id="completed_by" value="<?php echo $this->item->requester?>"/>
+                    <input type="text" name="completed_by" id="completed_by" class="changeEdit" value="<?php echo $this->item->requester?>"/>
                 </div>
                 <div id="completedate"class="span2">
                     <label for="completion_date" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED_DATE') ?></label>
-                    <input type="date" name="completion_date" id="completion_date" value="<?php echo $this->item->completion_date?>"/>
+                    <input type="date" name="completion_date" id="completion_date" class="changeEdit" value="<?php echo $this->item->completion_date?>"/>
                 </div>
                 <div class="span2">
                     <label for="assigned" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_ASSIGNED') ?></label>
-                    <select name="assigned" id="assigned"/>
+                    <select name="assigned" id="assigned" class="changeEdit"/>
                     <?php
                     $assign = array('MHI', 'HvT', 'MHI-HvT', 'ITON', 'Other');
                     $current_assigned = $this->item->assigned;
@@ -191,7 +191,7 @@ $num = $this->item->mdtickets_item_id;
 
                 <div id="iton" class="span2"> <!-- Only shown when assigned is ITON CALL -->
                     <label for="itoncall" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_ITONCALL') ?></label>
-                    <input type="text" name="itoncall" id="itoncall" value="<?php echo $this->item->itoncall?>"/>
+                    <input type="text" name="itoncall" id="itoncall" class="changeEdit" value="<?php echo $this->item->itoncall?>"/>
 
                 </div>
             </div>

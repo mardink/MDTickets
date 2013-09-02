@@ -5,7 +5,7 @@ jQuery(document).ready(function(){
 
      if (item_id) {
          jQuery("#btn_save").hide();
-     }
+              }
     // ITONCall veld Bepaal wie de assigned is. Als ITON dan een itoncall vel plaatsen
     var assigned = jQuery('#assigned option:selected').val();
     if (assigned == 'ITON') {
@@ -59,7 +59,11 @@ jQuery(document).ready(function(){
         jQuery("#tekst").hide();
         jQuery("#show-edit").show();
         jQuery("#btn_save").show();
+        jQuery(".changeEdit").removeAttr()
 
+    });
+    jQuery(".changeEdit").change(function() {
+        jQuery("#btn_save").show();
     });
 
 });
