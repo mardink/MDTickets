@@ -18,21 +18,22 @@ class MdticketsControllerItem extends FOFController {
     public function onBeforeApplySave(&$data) {
        $model = $this->getThisModel();
        $item = $model->getItem();
+       $jinput = JFactory::getApplication()->input;
        $modified = $item->get('modified');
-       $status = $item->get('status');
-       $completion_date = $item->get('completion_date');
+       $status = $jinput->get('status', '', 'string');
+       $completion_date = $jinput->get('completion_date', '', 'date');
        if(!$modified){
            $modified_on = date("Y-m-d H:i:s");
            $data['modified_on'] = $modified_on;
        }
-        if($status == 'Cancelled' || 'Closed') {
-            if($completion_date == '0000-00-00') {
+        if($status == 'Cancelled' || $status == 'Closed') {
+            if($completion_date == '') {
                 $date = date("Y-m-d H:i:s");
                 $data['completion_date'] = $date;
             }
         }
 
-// uplaod files to the subfolder
+// upload files to the subfolder
        jimport('joomla.filesystem.file');
        jimport('joomla.filesystem.folder');
        $num = $item->get('mdtickets_item_id');
