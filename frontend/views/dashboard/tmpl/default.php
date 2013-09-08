@@ -146,7 +146,7 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
     </div>
     <div class="well row span2">  <!-- begin of statistics -->
         <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_STATISTICS');?></h5>
-        <a href="index.php?option=com_mdtickets&view=items&task=browse&finished=0"><?php echo JText::_('COM_MDTICKETS_DASHBOARD_OPENCALLS');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsOpen();?></span><br/>
+        <a href="index.php?option=com_mdtickets&view=items&task=browse&finished=0&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_OPENCALLS');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsOpen();?></span><br/>
         <a href="index.php?option=com_mdtickets&view=items&prio=Hoog&finished=0&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOHIGH');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioHigh();?></span><br/>
         <a href="index.php?option=com_mdtickets&view=items&prio=Normaal&finished=0&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIONORMAL');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioNormal();?></span><br/>
         <a href="index.php?option=com_mdtickets&view=items&prio=Laag&finished=0&assigned="><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PRIOLOW');?></a><span class="pull-right"><?php echo MdticketsHelperDashboard::getCallsPrioLow();?></span><br/>

@@ -183,7 +183,7 @@ class MdticketsHelperDashboard {
         if ($user!=''){
         // Get a db connection.
         $db = JFactory::getDBO();
-        $query = "SELECT * from #__mdtickets_items where ( assigned = '$user' or assigned = 'MHI-HvT' ) and (status != 'Cancelled' or status != 'Closed') ";
+        $query = "SELECT * from #__mdtickets_items where ( assigned = '$user' or assigned = 'MHI-HvT' ) and (status != 'Cancelled' and status != 'Closed') ";
         $db->setQuery($query);
         $db->query();
         $numrow = $db->getNumRows();
@@ -199,7 +199,7 @@ class MdticketsHelperDashboard {
     public static function getCallsIton() {
         // Get a db connection.
         $db = JFactory::getDBO();
-        $query = "SELECT * from #__mdtickets_items where assigned = 'ITON' and (status != 'Cancelled' or status != 'Closed') ";
+        $query = "SELECT * from #__mdtickets_items where assigned = 'ITON' and (status != 'Cancelled' and status != 'Closed') ";
         $db->setQuery($query);
         $db->query();
         $numrow = $db->getNumRows();
