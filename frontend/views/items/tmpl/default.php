@@ -72,7 +72,7 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
         <button class="btn btn-small btn-danger" onclick="document.adminForm.itoncall.value='';this.form.submit();">
             <?php echo JText::_('COM_MDTICKETS_SEARCH_RESET') ?>
         </button>
-    <?php echo JText::_('COM_MDTICKETS_FINSIHED') ?><?php echo MdticketsHelperSelect::finished($this->getModel()->getState('finished'), 'finished', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?>
+    <?php echo JText::_('COM_MDTICKETS_FINSIHED') ?><?php echo MdticketsHelperSelect::finished($this->getModel()->getState('finished'), 'finished', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?>
         <input type="button" id="print_btn" class="btn btn-small btn-success" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
    </div>
             <thead>
@@ -120,11 +120,11 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
             <td></td>
             <td></td>
             <td></td>
-            <td><?php echo MdticketsHelperSelect::prio($this->getModel()->getState('prio'), 'prio', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
+            <td><?php echo MdticketsHelperSelect::prio($this->getModel()->getState('prio'), 'prio', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td></td>
-            <td><?php echo MdticketsHelperSelect::category($this->getModel()->getState('category'), 'category', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
-            <td><?php echo MdticketsHelperSelect::status($this->getModel()->getState('status'), 'status', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
-            <td><?php echo MdticketsHelperSelect::assigned($this->getModel()->getState('assigned'), 'assigned', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
+            <td><?php echo MdticketsHelperSelect::category($this->getModel()->getState('category'), 'category', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
+            <td><?php echo MdticketsHelperSelect::status($this->getModel()->getState('status'), 'status', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
+            <td><?php echo MdticketsHelperSelect::assigned($this->getModel()->getState('assigned'), 'assigned', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td></td>
             <td></td>
             <td></td>
@@ -136,7 +136,7 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
             <?php if($this->pagination->total > 0) echo $this->pagination->getListFooter() ?>
         </td>
         <td class="noprint"><?php echo JText::_('COM_MDTICKETS_PAGINATION') ?></td>
-        <td><?php echo MdticketsHelperSelect::pagination($this->getModel()->getState('limit'), 'limit', array('onchange'=>'this.form.submit();','class' => 'input-small noprint')) ?></td>
+        <td><?php echo MdticketsHelperSelect::pagination($this->getModel()->getState('limit'), 'limit', array('onchange'=>'this.form.submit();','class' => 'input-mini noprint')) ?></td>
     </tr>
     </tfoot>
 <tbody>
