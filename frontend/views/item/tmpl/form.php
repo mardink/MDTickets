@@ -137,7 +137,7 @@ $num = $this->item->mdtickets_item_id;
                 </div>
                 <div class="span1">
                     <label for="requester" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_REQUESTER') ?></label>
-                    <input type="text" name="requester" id="requester" class="changeEdit" value="<?php echo $this->item->requester?>"/>
+                    <input type="text" name="requester" id="requester" class="required changeEdit" value="<?php echo $this->item->requester?>"/>
                 </div>
                 <div class="span1">
                     <label for="deadline" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_DEADLINE') ?></label>
