@@ -22,8 +22,12 @@ class MdticketsControllerItem extends FOFController {
        $modified = $item->get('modified');
        $status = $jinput->get('status', '', 'string');
        $completion_date = $jinput->get('completion_date', '', 'date');
+        JLoader::import('joomla.utilities.date');
+        $date = new JDate();
+
        if(!$modified){
-           $modified_on = date("Y-m-d H:i:s");
+           //$modified_on = date("Y-m-d H:i:s");
+           $modified_on = $date->toSql();
            $data['modified_on'] = $modified_on;
        }
         if($status == 'Cancelled' || $status == 'Closed') {
@@ -126,5 +130,6 @@ class MdticketsControllerItem extends FOFController {
         return true;
 
     }
+
 
 }
