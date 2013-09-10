@@ -22,6 +22,9 @@ $editor = JFactory::getEditor();
 
 //some variables
 $num = $this->item->mdtickets_item_id;
+//Get options
+jimport('joomla.application.component.helper');
+$location = JComponentHelper::getParams('com_mdtickets')->get('location');
 
 ?>
 <form action="index.php" method="post" id="adminForm" class="form-validate" onsubmit="return isValid()" enctype="multipart/form-data"> <!-- added onsubmit="return isValid()"  to prevent saaving-->
@@ -253,7 +256,8 @@ $num = $this->item->mdtickets_item_id;
         //Import filesystem libraries. Perhaps not necessary, but does not hurt
         jimport('joomla.filesystem.file');
         jimport('joomla.filesystem.folder');
-        $searchpath = JPATH_COMPONENT . DS . "bijlage" . DS . $ticketNum;
+
+        $searchpath = JPATH_BASE . $location . DS . $ticketNum;
         if (JFolder::exists($searchpath)) {
         $jpg_files = JFolder::files($searchpath, '.*');
         if ($jpg_files) { ?>

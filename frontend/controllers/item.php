@@ -38,20 +38,27 @@ class MdticketsControllerItem extends FOFController {
        jimport('joomla.filesystem.folder');
        $num = $item->get('mdtickets_item_id');
        $ticketNum = sprintf("%04d", $num);
+        //Get options
+        jimport('joomla.application.component.helper');
+        $location = JComponentHelper::getParams('com_mdtickets')->get('location');
        // get the file
        $input = JFactory::getApplication()->input;
-       $files = $input->files->get('bijlage'); // should be changed to a parameter from teh component
-       $savepath = JPATH_COMPONENT . "/bijlage/" . $ticketNum;
+       $files = $input->files->get('bijlage');
+       $savepathbase = JPATH_BASE . $location;
+        //create folder if not exists
+        if (!JFolder::exists($savepathbase)) {
+            JFolder::create($savepathbase);
+        }
+       $savepath =  $savepathbase . "/" . $ticketNum; // should be changed to a parameter from teh component
        // check if folder excist if not create folder. Foldername is ticket number in 4 digits
 
-           if (!JFolder::exists($savepath)) {
-               JFolder::create($savepath);
-           }
+
            $max = ini_get('upload_max_filesize');
            //$file_type = $params->get( 'type' );
            $file_type = "*";
            foreach ($files as $file){
                foreach ($file as $file1) {
+
                //if($files['size'] > $max) $msg = JText::_('ONLY_FILES_UNDER').' '.$max;
                //Set up the source and destination of the file
                    //Clean up filename to get rid of strange characters like spaces etc
@@ -61,6 +68,9 @@ class MdticketsControllerItem extends FOFController {
                 //First check if the file has the right extension, current all files are allowed
                    if ($file1['type'] == $file_type || $file_type == '*') {
                        if ($file1['name'] !=""){
+                           if (!JFolder::exists($savepath)) {
+                               JFolder::create($savepath);
+                           }
                        JFile::upload($src, $dest);
                        }
                    }
