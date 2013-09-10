@@ -41,6 +41,7 @@ class MdticketsControllerItem extends FOFController {
         //Get options
         jimport('joomla.application.component.helper');
         $location = JComponentHelper::getParams('com_mdtickets')->get('location');
+        $filetype = explode(',', JComponentHelper::getParams('com_mdtickets')->get('filetype'));
        // get the file
        $input = JFactory::getApplication()->input;
        $files = $input->files->get('bijlage');
@@ -54,8 +55,8 @@ class MdticketsControllerItem extends FOFController {
 
 
            $max = ini_get('upload_max_filesize');
-           //$file_type = $params->get( 'type' );
-           $file_type = "*";
+
+
            foreach ($files as $file){
                foreach ($file as $file1) {
 
@@ -66,7 +67,9 @@ class MdticketsControllerItem extends FOFController {
                $src = $file1['tmp_name'];
                $dest = $savepath . "/" . $filename;
                 //First check if the file has the right extension, current all files are allowed
-                   if ($file1['type'] == $file_type || $file_type == '*') {
+                    $currentFileType = $file1['type'];
+                   $fileExt =  strtolower(JFile::getExt($filename) );
+                       if (in_array($fileExt, $filetype)) {
                        if ($file1['name'] !=""){
                            if (!JFolder::exists($savepath)) {
                                JFolder::create($savepath);

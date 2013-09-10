@@ -27,7 +27,8 @@ jimport('joomla.application.component.helper');
 $location = JComponentHelper::getParams('com_mdtickets')->get('location');
 
 ?>
-<form action="index.php" method="post" id="adminForm" class="form-validate" onsubmit="return isValid()" enctype="multipart/form-data"> <!-- added onsubmit="return isValid()"  to prevent saaving-->
+<form action="index.php" method="post" id="adminForm" class="form-validate" onsubmit="return isValid()"
+      enctype="multipart/form-data" xmlns="http://www.w3.org/1999/html"> <!-- added onsubmit="return isValid()"  to prevent saaving-->
     <input type="hidden" name="option" value="com_mdtickets" />
     <input type="hidden" name="view" value="item" />
     <input type="hidden" name="task" value="" />
@@ -233,8 +234,8 @@ $location = JComponentHelper::getParams('com_mdtickets')->get('location');
             <p></p>
             <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_ADD') ?></h4>
             <p><input type="file" name="bijlage[test][]"></p>
-            <p><input type="file" name="bijlage[test][]"></p>
-            <p><input type="file" name="bijlage[test][]"></p>
+            <!--<p><input type="file" name="bijlage[test][]"></p>
+            <p><input type="file" name="bijlage[test][]"></p> eentje genoeg -->
         </div>
         <div class="modal-footer">
             <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-small btn-success">
@@ -250,8 +251,8 @@ $location = JComponentHelper::getParams('com_mdtickets')->get('location');
             <?php if(!$num){?>
                 <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_ADD') ?></h4>
                 <p><input type="file" name="bijlage[test][]"></p>
-                <input type="file" name="bijlage[test][]"></p>
-                <p><input type="file" name="bijlage[test][]"></p>
+                <!-- <input type="file" name="bijlage[test][]"></p>
+                <p><input type="file" name="bijlage[test][]"></p> eentje is genoeg -->
             <?php } else {
         //Import filesystem libraries. Perhaps not necessary, but does not hurt
         jimport('joomla.filesystem.file');
@@ -262,6 +263,7 @@ $location = JComponentHelper::getParams('com_mdtickets')->get('location');
         $jpg_files = JFolder::files($searchpath, '.*');
         if ($jpg_files) { ?>
             <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT') ?></h4>
+            <p><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_TIP') ?></p>
             <?php foreach ($jpg_files as $jpg_file)
             { ?>
             <a href="<?php echo JURI::root()  . "components/com_mdtickets/bijlage/" . $ticketNum . DS . $jpg_file;?>" target="_blank"><?php echo $jpg_file; ?></a><br/>

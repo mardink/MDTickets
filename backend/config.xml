@@ -9,7 +9,9 @@
                default="5" filter="integer" class="inputbox"	/>
         <field name="location" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_LOCATION_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_LOCATION_DESC"
                default="/attachment" class="inputbox"	/>
-        </fieldset>
+        <field name="filetype" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_FILETYPE_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_FILETYPE_DESC"
+                   default="pdf,jpg,txt,xls,xlsx,doc,docx,bmp,png,zip" class="inputbox"	/>
+    </fieldset>
     <fieldset
 		name="permissions"
 		label="JCONFIG_PERMISSIONS_LABEL"
