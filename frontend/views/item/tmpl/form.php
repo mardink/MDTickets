@@ -165,7 +165,7 @@ $num = $this->item->mdtickets_item_id;
                 </div>
                 <div id="completeby" class="span2">
                     <label for="completed_by" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED') ?></label>
-                    <input type="text" name="completed_by" id="completed_by" class="changeEdit" value="<?php echo $this->item->requester?>"/>
+                    <input type="text" name="completed_by" id="completed_by" class="changeEdit" value="<?php echo $this->item->completed_by?>"/>
                 </div>
                 <div id="completedate"class="span2">
                     <label for="completion_date" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED_DATE') ?></label>
