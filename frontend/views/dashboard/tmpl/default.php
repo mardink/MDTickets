@@ -8,6 +8,7 @@
 defined('_JEXEC') or die();
 
 // Load helper
+jimport('joomla.application.component.helper');
 $this->loadHelper('dashboard');
 // Load framework
 JHTML::_('behavior.framework');
@@ -31,6 +32,9 @@ $user = JFactory::getUser();
 $username =  $user->get('username');
 $user_id = $user->id;
 $name_user = $user->name;
+
+//Get options
+$NumberCalls = JComponentHelper::getParams('com_mdtickets')->get('number_calls');
 
 // set the return page after succesfull login
 $return = "index.php?option=com_mdtickets&view=dashboard";
@@ -66,7 +70,7 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
         <div class="row">
             <div class="well span6">
                 <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTNEW');?></h5>
-                <?php $latestitems = MdticketsHelperDashboard::getLatestNew(5);
+                <?php $latestitems = MdticketsHelperDashboard::getLatestNew($NumberCalls);
                 foreach ($latestitems as $latestitem){
                     $id = $latestitem->mdtickets_item_id;
                     $ticketID = sprintf("%04d", $id);
@@ -79,7 +83,7 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
             </div>
             <div class="well span6">
                 <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTCHANGED');?></h5>
-                <?php $latestitemschanged = MdticketsHelperDashboard::getLatestChanged(5);
+                <?php $latestitemschanged = MdticketsHelperDashboard::getLatestChanged($NumberCalls);
                 foreach ($latestitemschanged as $latestitemchanged){
                     $id_changed = $latestitemchanged->mdtickets_item_id;
                     $ticketID_changed = sprintf("%04d", $id_changed);
@@ -94,7 +98,7 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
         <div class="row">
             <div class="well span6">
                 <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTFINISHED');?></h5>
-                <?php $finisheditems = MdticketsHelperDashboard::getLatestFinished(5);
+                <?php $finisheditems = MdticketsHelperDashboard::getLatestFinished($NumberCalls);
                 foreach ($finisheditems as $finisheditem){
                     $id_finished = $finisheditem->mdtickets_item_id;
                     $ticketID_finished = sprintf("%04d", $id_finished);
@@ -107,7 +111,7 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
             </div>
             <div class="well span6">
                 <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_DEADLINES');?></h5>
-                <?php $deadlines = MdticketsHelperDashboard::getDeadlines(5);
+                <?php $deadlines = MdticketsHelperDashboard::getDeadlines($NumberCalls);
                 foreach ($deadlines as $deadline){
                     $id_deadline = $deadline->mdtickets_item_id;
                     $ticketID_deadline = sprintf("%04d", $id_deadline);

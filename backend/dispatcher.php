@@ -9,5 +9,5 @@ defined('_JEXEC') or die();
 
 class MdticketsDispatcher extends FOFDispatcher
 {
-    public $defaultView = 'items';
+    public $defaultView = 'cpanels';
 }

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<fieldset
+    <fieldset
+            name="Basic"
+            label="COM_MDTICKETS_OPTIONS_CONFIG_BASIC_LABEL"
+            description="COM_MDTICKETS_OPTIONS_CONFIG_BASIC_DESC"
+            >
+        <field name="number_calls" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_NRCALL_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_NRCALL_DESC"
+               default="5" filter="integer" class="inputbox"	/>
+        <field name="subject" type="text" label="Subject of the message" class="inputbox"	/>
+        <field name="adress" type="editor" label="Adress information to be shown on the page" buttons="false" filter="safehtml"/>
+    </fieldset>
+    <fieldset
 		name="permissions"
 		label="JCONFIG_PERMISSIONS_LABEL"
 		description="JCONFIG_PERMISSIONS_DESC"
