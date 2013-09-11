@@ -226,7 +226,7 @@ $m = 1 - $m;
             $newDateModifiedOn = date("d-m-y", strtotime($DateModifiedOn));
             echo $newDateModifiedOn;?></span></td>
 </tr>
-    <?php
+        <?php
     $i++;
 endforeach;
     ?>
