@@ -35,6 +35,7 @@ $name_user = $user->name;
 
 //Get options
 $NumberCalls = JComponentHelper::getParams('com_mdtickets')->get('number_calls');
+$months = JComponentHelper::getParams('com_mdtickets')->get('number_months');
 
 // set the return page after succesfull login
 $return = "index.php?option=com_mdtickets&view=dashboard";
@@ -166,9 +167,9 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
 <!-- Begin scripts ofr graphs see JQplot webiste for more information -->
 <?php // prepare data for graphs
 $charts2 = MdticketsHelperDashboard::getCallsCategorie();
-$charts1 = MdticketsHelperDashboard::getCallsCountNew();
-$charts1closed = MdticketsHelperDashboard::getCallsCountClosed();
-$charts1iton = MdticketsHelperDashboard::getCallsCountIton();
+$charts1 = MdticketsHelperDashboard::getCallsCountNew($months);
+$charts1closed = MdticketsHelperDashboard::getCallsCountClosed($months);
+$charts1iton = MdticketsHelperDashboard::getCallsCountIton($months);
 ?>
     <!-- Script chart1 -->
     <script>

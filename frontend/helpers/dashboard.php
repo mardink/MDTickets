@@ -223,10 +223,10 @@ class MdticketsHelperDashboard {
      * This helper gets the number new calls per month from the database
      * The result is used for the bar graph
      */
-    public static function getCallsCountNew() {
+    public static function getCallsCountNew($months) {
         // Get a db connection.
         $db = JFactory::getDBO();
-        $query = "SELECT MONTHNAME(created_on) as month, COUNT(*) as count FROM #__mdtickets_items GROUP BY MONTH(created_on)";
+        $query = "SELECT MONTHNAME(created_on) as month, COUNT(*) as count FROM #__mdtickets_items where created_on > DATE_SUB(now(), INTERVAL $months MONTH) GROUP BY MONTH(created_on)";
         $db->setQuery($query);
         $db->query();
         $result = $db->loadObjectList();
@@ -236,10 +236,10 @@ class MdticketsHelperDashboard {
      * This helper gets the number closed calls per month from the database
      * The result is used for the bar graph
      */
-    public static function getCallsCountClosed() {
+    public static function getCallsCountClosed($months) {
         // Get a db connection.
         $db = JFactory::getDBO();
-        $query = "SELECT MONTHNAME(completion_date) as month, COUNT(*) as count FROM #__mdtickets_items where completion_date !='0000-00-00' GROUP BY MONTH(completion_date)";
+        $query = "SELECT MONTHNAME(completion_date) as month, COUNT(*) as count FROM #__mdtickets_items where completion_date > DATE_SUB(now(), INTERVAL $months MONTH) and completion_date !='0000-00-00' GROUP BY MONTH(completion_date)";
         $db->setQuery($query);
         $db->query();
         $result = $db->loadObjectList();
@@ -249,10 +249,10 @@ class MdticketsHelperDashboard {
      * This helper gets the number of iton calls per month from the database
      * The result is used for the bar graph
      */
-    public static function getCallsCountIton() {
+    public static function getCallsCountIton($months) {
         // Get a db connection.
         $db = JFactory::getDBO();
-        $query = "SELECT MONTHNAME(created_on) as month, COUNT(*) as count FROM #__mdtickets_items where assigned ='ITON' GROUP BY MONTH(created_on)";
+        $query = "SELECT MONTHNAME(created_on) as month, COUNT(*) as count FROM #__mdtickets_items where assigned ='ITON' AND created_on > DATE_SUB(now(), INTERVAL $months MONTH) GROUP BY MONTH(created_on)";
         $db->setQuery($query);
         $db->query();
         $result = $db->loadObjectList();
