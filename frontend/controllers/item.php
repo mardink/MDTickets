@@ -26,8 +26,8 @@ class MdticketsControllerItem extends FOFController {
         $date = new JDate();
 
        if(!$modified){
-           //$modified_on = date("Y-m-d H:i:s");
-           $modified_on = $date->toSql();
+           $modified_on = date("Y-m-d H:i:s");
+           //$modified_on = $date->toSql(true);
            $data['modified_on'] = $modified_on;
        }
         if($status == 'Cancelled' || $status == 'Closed') {

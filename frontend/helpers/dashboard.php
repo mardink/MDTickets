@@ -47,6 +47,7 @@ class MdticketsHelperDashboard {
         $query
             ->select('*')
             ->from($db->quoteName('#__mdtickets_items'))
+            ->where('('.$db->qn('modified_by').' != '.$db->quote('0').')')
             ->order($db->qn('modified_on').' desc');
         $db->setQuery($query,0,$number); //set the limit
         $result = $db->loadObjectList();
