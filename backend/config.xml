@@ -6,13 +6,13 @@
             description="COM_MDTICKETS_OPTIONS_CONFIG_BASIC_DESC"
             >
         <field name="number_calls" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_NRCALL_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_NRCALL_DESC"
-               default="5" filter="integer" class="inputbox"	/>
+               default="5" filter="integer" class="inputbox validate-numeric"	/>
         <field name="location" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_LOCATION_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_LOCATION_DESC"
                default="/attachment" class="inputbox"	/>
         <field name="filetype" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_FILETYPE_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_FILETYPE_DESC"
                    default="pdf,jpg,txt,xls,xlsx,doc,docx,bmp,png,zip" class="inputbox"	/>
         <field name="number_months" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_NRMONTH_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_NRMONTH_DESC"
-               default="6" filter="integer" class="inputbox"	/>
+               default="6" filter="integer" class="inputbox validate-numeric"	/>
     </fieldset>
     <fieldset
 		name="permissions"
