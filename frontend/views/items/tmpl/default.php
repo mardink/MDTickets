@@ -88,7 +88,7 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
     <th width="70px">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_ID', 'mdticket_item_id', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th width="400px">
+    <th width="380px">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_SHORT', 'short', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
@@ -184,7 +184,7 @@ $m = 1 - $m;
             } ?>
         <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $item->mdtickets_item_id;?>"><?php echo $ticketNum; ?></a>
          </span></td>
-    <td><span class="short"><?php echo $item->short;?></span></td>
+    <td class="expand"><img src="media/com_mdtickets/images/plus.png"/> <span class="short"><?php echo $item->short;?></span></td>
     <td><span class="prio label <?php if ($item->prio=='Hoog'){?>label-important<?php }
         elseif ($item->prio=='Normaal'){?>label-success<?php }
         elseif ($item->prio=='Laag'){?>label-warning<?php }
@@ -226,12 +226,17 @@ $m = 1 - $m;
             $newDateModifiedOn = date("d-m-y", strtotime($DateModifiedOn));
             echo $newDateModifiedOn;?></span></td>
 </tr>
+    <tr style="display: none;">
+        <td></td>
+        <td colspan="12"><?php echo $item->detail;?></td>
+    </tr>
         <?php
     $i++;
 endforeach;
     ?>
 <?php else : ?>
     <tr>
+        <td></td>
         <td colspan="10" align="center"><?php echo JText::_('COM_MDTICKETS_COMMON_NOITEMS_LABEL') ?></td>
     </tr>
 <?php endif;?>
