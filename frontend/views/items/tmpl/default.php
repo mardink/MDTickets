@@ -40,41 +40,51 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
 <table class="adminlist table table-striped span12" id="itemsList">
     <div class="row span12">
     <!-- Search in ticket number -->
+        <span class="input-append">
     <input type="text" name="mdtickets_item_id" id="mdtickets_item_id"
            value="<?php echo $this->escape($this->getModel()->getState('mdtickets_item_id',''));?>"
-           class="text_area" onchange="document.adminForm.submit();"
+           class="text_area input-small" onchange="document.adminForm.submit();"
            placeholder="<?php echo JText::_('COM_MDTICKETS_SEARCH_TICKET') ?>"/>
-    <button class="btn btn-small btn-success" onclick="this.form.submit();">
-        <?php echo JText::_('COM_MDTICKETS_SEARCH_FILTER') ?>
+    <button class="btn" onclick="document.adminForm.mdtickets_item_id.value='';this.form.submit();">
+        <i class="icon-cancel"></i>
     </button>
-    <button class="btn btn-small btn-danger" onclick="document.adminForm.mdtickets_item_id.value='';this.form.submit();">
-        <?php echo JText::_('COM_MDTICKETS_SEARCH_RESET') ?>
-    </button>
+        </span>
     <!-- Search Short -->
+        <span class="input-append">
         <input type="text" name="short" id="short"
            value="<?php echo $this->escape($this->getModel()->getState('short',''));?>"
            class="text_area" onchange="document.adminForm.submit();"
            placeholder="<?php echo JText::_('COM_MDTICKETS_SEARCH_SHORT') ?>"/>
-        <button class="btn btn-small btn-success" onclick="this.form.submit();">
-        <?php echo JText::_('COM_MDTICKETS_SEARCH_FILTER') ?>
+    <button class="btn" onclick="document.adminForm.short.value='';this.form.submit();">
+        <i class="icon-cancel"></i>
     </button>
-    <button class="btn btn-small btn-danger" onclick="document.adminForm.short.value='';this.form.submit();">
-        <?php echo JText::_('COM_MDTICKETS_SEARCH_RESET') ?>
-    </button>
+            </span>
     <!-- Search ITONCall -->
+        <span class="input-append">
         <input type="text" name="itoncall" id="itoncall"
                value="<?php echo $this->escape($this->getModel()->getState('itoncall',''));?>"
-               class="text_area" onchange="document.adminForm.submit();"
+               class="text_area input-small" onchange="document.adminForm.submit();"
                 placeholder="<?php echo JText::_('COM_MDTICKETS_SEARCH_ITONCALL') ?>"/>
-        <button class="btn btn-small btn-success" onclick="this.form.submit();">
-            <?php echo JText::_('COM_MDTICKETS_SEARCH_FILTER') ?>
+        <button class="btn" onclick="document.adminForm.itoncall.value='';this.form.submit();">
+            <i class="icon-cancel"></i>
         </button>
-        <button class="btn btn-small btn-danger" onclick="document.adminForm.itoncall.value='';this.form.submit();">
-            <?php echo JText::_('COM_MDTICKETS_SEARCH_RESET') ?>
+            </span>
+        <button class="btn" onclick="this.form.submit();">
+            <i class="icon-search"></i><?php echo JText::_('COM_MDTICKETS_SEARCH_FILTER') ?>
         </button>
     <?php echo JText::_('COM_MDTICKETS_FINSIHED') ?><?php echo MdticketsHelperSelect::finished($this->getModel()->getState('finished'), 'finished', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?>
-        <input type="button" id="print_btn" class="btn btn-small btn-success" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
+        <?php echo JText::_('COM_MDTICKETS_DATEOVERVIEW') ?><input type="checkbox" name="checkbox_dateoverview" id="checkbox_dateoverview" class="input-large" value="1">
+        <input type="button" id="print_btn" class="btn pull-right" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
    </div>
+    <div class="row span12" id="date_overview" style="display: none;">
+        <?php echo MdticketsHelperSelect::dateOverview($this->getModel()->getState('dateOverview'), 'dateOverview', array('class' => 'input-medium')) ?>
+        <input type="date"  name="fromdate" id="fromdate" class="input-medium" value="<?php echo $this->getModel()->getState('fromdate'); ?>" />
+        <input type="date"  name="todate" id="todate" class="input-medium" value="<?php echo $this->getModel()->getState('todate'); ?>" />
+        <button class="btn tip hasTooltip" type="buttin" onclick="this.form.submit(); return false;" title="<?php echo JText::_('COM_MDTICKETS_SEARCH_SHOW'); ?>"><?php echo JText::_('COM_MDTICKETS_SEARCH_SHOW'); ?></button>
+        <button class="btn" onclick="document.adminForm.dateOverview.value='';document.adminForm.fromdate.value='';document.adminForm.todate.value='';this.form.submit();">
+            <?php echo JText::_('COM_MDTICKETS_SEARCH_RESET'); ?>
+        </button>
+    </div>
             <thead>
 <tr>
     <?php if($hasAjaxOrderingSupport !== false): ?>

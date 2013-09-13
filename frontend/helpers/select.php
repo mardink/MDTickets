@@ -118,6 +118,18 @@ class MdticketsHelperSelect
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
+    // Set the DateOverview fields
+    public static function dateOverview($selected = null, $id = 'type', $attribs = array() )
+    {
+        $options = array();
+        $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDTICKETS_DATEOVERVIEW_TYPE_SELECT').' -');
+        $options[] = JHTML::_('select.option','created_on',JText::_('COM_MDTICKETS_DATEOVERVIEW_TYPE_CREATED'));
+        $options[] = JHTML::_('select.option','modified_on',JText::_('COM_MDTICKETS_DATEOVERVIEW_TYPE_MODIFIED'));
+        $options[] = JHTML::_('select.option','completion_date',JText::_('COM_MDTICKETS_DATEOVERVIEW_TYPE_COMPLETION'));
+        $options[] = JHTML::_('select.option','deadline',JText::_('COM_MDTICKETS_PRIO_DATEOVERVIEW_TYPE_DEADLINE'));
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
     //get the lastlogin date from the mdtickets_lastlogins database
     //  $id Userid should be set as parameter
     public static function getLastlogin($id){

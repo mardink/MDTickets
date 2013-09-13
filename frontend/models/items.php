@@ -66,6 +66,14 @@ class MdticketsModelItems extends FOFModel
             $query->where($db->qn('assigned').' LIKE '.$db->q($fltAssigned));
         }
 
+        $fltPeriodOverview		= $this->getState('checkbox_dateoverview', null, 'string');
+        $fltPeriodCategorie     = $this->getState('dateOverview', null, 'string');
+        $fltPeriodFrom          = $this->getState('fromdate', null, 'date');
+        $fltPeriodTo            = $this->getState('todate', null, 'string');
+        if($fltPeriodCategorie !='' && $fltPeriodFrom !='0000-00-00'&&  $fltPeriodTo !='0000-00-00') {
+            $query->where($db->qn($fltPeriodCategorie).' BETWEEN '.$db->q($fltPeriodFrom).' AND '.$db->q($fltPeriodTo));
+        }
+
         $fltFinished		= $this->getState('finished', null, 'string');
         if($fltFinished == '0') {
         $show_date = date("Y-m-d", strtotime("- 8 day"));
