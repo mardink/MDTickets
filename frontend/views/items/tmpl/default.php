@@ -133,7 +133,7 @@ $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days'
         <tr>
             <td></td>
             <td></td>
-            <td></td>
+            <td id="expand_all"><img src="media/com_mdtickets/images/plus.png"/></i><?php echo JText::_('COM_MDTICKETS_ALL') ?></td>
             <td><?php echo MdticketsHelperSelect::prio($this->getModel()->getState('prio'), 'prio', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td></td>
             <td><?php echo MdticketsHelperSelect::category($this->getModel()->getState('category'), 'category', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
@@ -146,7 +146,7 @@ $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days'
     </thead>
     <tfoot>
     <tr>
-        <td colspan="20">
+        <td colspan="13">
             <?php if($this->pagination->total > 0) echo $this->pagination->getListFooter() ?>
         </td>
         <td class="noprint"><?php echo JText::_('COM_MDTICKETS_PAGINATION') ?></td>
@@ -240,7 +240,7 @@ $m = 1 - $m;
             $newDateModifiedOn = date("d-m-y", strtotime($DateModifiedOn));
             echo $newDateModifiedOn;?></span></td>
 </tr>
-    <tr style="display: none;">
+    <tr class="detail_row" style="display: none;">
         <td></td>
         <td colspan="12"><?php echo $item->detail;?></td>
     </tr>

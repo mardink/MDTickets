@@ -7,6 +7,7 @@ jQuery(document).ready(function(){
     var filter_fromdate =  jQuery('#fromdate').val();
     var filter_todate =  jQuery('#todate').val();
 
+
     jQuery('.expand').click(function() {
         if( jQuery(this).hasClass('hidden_detail') )
             jQuery('img', this).attr("src", "media/com_mdtickets/images/plus.png");
@@ -14,6 +15,23 @@ jQuery(document).ready(function(){
             jQuery('img', this).attr("src", "media/com_mdtickets/images/minus.png");
         jQuery(this).toggleClass('hidden_detail');
         jQuery(this).parent().next('tr').toggle();
+    });
+    jQuery('#expand_all').click(function() {
+        if( jQuery(this).hasClass('hidden_detail') ) {
+            jQuery('img', this).attr("src", "media/com_mdtickets/images/plus.png");
+            jQuery('.detail_row').hide();
+            jQuery('.expand').removeClass('hidden_detail');
+            jQuery('img', '.expand').attr("src", "media/com_mdtickets/images/plus.png");
+        }
+
+        else {
+            jQuery('img', this).attr("src", "media/com_mdtickets/images/minus.png");
+            jQuery('.detail_row').show();
+            jQuery('.expand').addClass('hidden_detail');
+            jQuery('img', '.expand').attr("src", "media/com_mdtickets/images/minus.png");
+        }
+        jQuery(this).toggleClass('hidden_detail');
+
     });
      jQuery('#checkbox_dateoverview').click(function () {
         jQuery("#date_overview").toggle(this.checked);
