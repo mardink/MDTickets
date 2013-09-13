@@ -75,7 +75,7 @@ class MdticketsModelItems extends FOFModel
         }
 
         $fltFinished		= $this->getState('finished', null, 'string');
-        if($fltFinished == '0') {
+        if($fltFinished == '0' && $fltPeriodCategorie !='completion_date') {
         $show_date = date("Y-m-d", strtotime("- 8 day"));
             $query->where(
                 '('.
