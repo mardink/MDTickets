@@ -13,8 +13,7 @@
 	<!-- Public front end files -->
 	<files folder="frontend">
 		<filename>mdtickets.php</filename>
-        <filename>toolbar.php</filename>
-		<folder>controllers</folder>
+        <folder>controllers</folder>
         <folder>helpers</folder>
 		<folder>models</folder>
         <folder>views</folder>
