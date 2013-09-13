@@ -36,12 +36,13 @@ $name_user = $user->name;
 //Get options
 $NumberCalls = JComponentHelper::getParams('com_mdtickets')->get('number_calls');
 $months = JComponentHelper::getParams('com_mdtickets')->get('number_months');
+$warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days');
 
 // set the return page after succesfull login
 $return = "index.php?option=com_mdtickets&view=dashboard";
 $return = urlencode(base64_encode($return));
 $current_date = date("Y-m-d");
-$warning_date = date("Y-m-d", strtotime("+ 8 day"));
+$warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
 
 ?>
 <!-- begin login / logout form -->
@@ -120,8 +121,8 @@ $warning_date = date("Y-m-d", strtotime("+ 8 day"));
                     ?>
                     <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $deadline->mdtickets_item_id;?>"><?php echo $ticketID_deadline; ?></a>
                     <?php echo " - " . $deadline->short;?><span class="pull-right <?php
-                    if($showdeadlineDate < $current_date) { echo "deadline_error";
-                    } elseif ($showdeadlineDate >= $warning_date) { echo "deadline_warning";}?>"><?php echo $showdeadlineDate;?></span><br/>
+                    if($deadline->deadline < $current_date) { echo "deadline_error";
+                    } elseif ($deadline->deadline <= $warning_date) { echo "deadline_warning";}?>"><?php echo $showdeadlineDate;?></span><br/>
                 <?php }
                 ?>
             </div>

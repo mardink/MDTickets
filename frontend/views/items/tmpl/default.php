@@ -18,12 +18,16 @@ $document = JFactory::getDocument();
 $document->addScript('media/com_mdtickets/js/mdtickets-list.js');
 // Load helper
 $this->loadHelper('select');
+jimport('joomla.application.component.helper');
 $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
 // variables
 $user = JFactory::getUser();
 $user_id = $user->id;
 //Get the previouslogin date and time
 $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
+//Get options
+$warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days');
+
 ?>
 <div class="row-fluid">
     <div class="span12">
@@ -224,7 +228,7 @@ $m = 1 - $m;
     </td>
     <td><span class="deadline <?php
         $current_date = date("Y-m-d");
-        $warning_date = date("Y-m-d", strtotime("+ 8 day"));
+        $warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
         $DateDeadline = $item->deadline;
         $newDateDeadline = date("d-m-y", strtotime($DateDeadline));
         if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00') { echo "deadline_error";

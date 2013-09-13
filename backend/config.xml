@@ -13,6 +13,10 @@
                    default="pdf,jpg,txt,xls,xlsx,doc,docx,bmp,png,zip" class="inputbox"	/>
         <field name="number_months" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_NRMONTH_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_NRMONTH_DESC"
                default="6" filter="integer" class="inputbox validate-numeric"	/>
+        <field name="completeddays" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_COMPLETEDDAYS_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_COMPLETEDDAYS_DESC"
+               default="8" filter="integer" class="inputbox validate-numeric"	/>
+        <field name="warning_days" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_WARNINGDAYS_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_WARNINGDAYS_DESC"
+               default="8" filter="integer" class="inputbox validate-numeric"	/>
     </fieldset>
     <fieldset
 		name="permissions"

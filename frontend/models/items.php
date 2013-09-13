@@ -76,7 +76,9 @@ class MdticketsModelItems extends FOFModel
 
         $fltFinished		= $this->getState('finished', null, 'string');
         if($fltFinished == '0' && $fltPeriodCategorie !='completion_date') {
-        $show_date = date("Y-m-d", strtotime("- 8 day"));
+            jimport('joomla.application.component.helper');
+            $Finisheddays = JComponentHelper::getParams('com_mdtickets')->get('completeddays');
+        $show_date = date("Y-m-d", strtotime("- $Finisheddays day"));
             $query->where(
                 '('.
                 '('.$db->qn('completion_date').' >= '.$db->q($show_date).') OR'.
