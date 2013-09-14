@@ -25,6 +25,22 @@ $num = $this->item->mdtickets_item_id;
 //Get options
 jimport('joomla.application.component.helper');
 $location = JComponentHelper::getParams('com_mdtickets')->get('location');
+$warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days');
+
+// Give a notice when it is periodical item
+if ($this->item->prio == "Periodiek") {
+JFactory::getApplication()->enqueueMessage(Jtext::_('COM_MDTICKETS_PRIO_MESSAGE'), 'info');
+}
+
+// Current date and warningdate to show a warning or alert when deadline is overdue
+$current_date = date("Y-m-d");
+$warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
+$DateDeadline = $this->item->deadline;
+if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00') {
+    JFactory::getApplication()->enqueueMessage(Jtext::_('COM_MDTICKETS_PRIO_OVERDUE'), 'error');
+} elseif($DateDeadline <= $warning_date) {
+    JFactory::getApplication()->enqueueMessage(Jtext::_('COM_MDTICKETS_PRIO_WARNING'), 'warning');
+}
 
 ?>
 <form action="index.php" method="post" id="adminForm" class="form-validate" onsubmit="return isValid()"
