@@ -66,6 +66,11 @@ class MdticketsModelItems extends FOFModel
             $query->where($db->qn('assigned').' LIKE '.$db->q($fltAssigned));
         }
 
+        $fltRequester		= $this->getState('requester', null, 'string');
+        if($fltRequester) {
+            $query->where($db->qn('requester').' LIKE '.$db->q($fltRequester));
+        }
+
         $fltPeriodOverview		= $this->getState('checkbox_dateoverview', null, 'string');
         $fltPeriodCategorie     = $this->getState('dateOverview', null, 'string');
         $fltPeriodFrom          = $this->getState('fromdate', null, 'date');

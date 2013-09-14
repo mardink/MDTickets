@@ -4,6 +4,7 @@ jQuery(document).ready(function(){
     var filter_category =  jQuery('#category option:selected').val();
     var filter_assigned =  jQuery('#assigned option:selected').val();
     var filter_dateOverview =  jQuery('#dateOverview option:selected').val();
+    var filter_requester =  jQuery('#requester option:selected').val();
     var filter_fromdate =  jQuery('#fromdate').val();
     var filter_todate =  jQuery('#todate').val();
 
@@ -47,6 +48,9 @@ jQuery(document).ready(function(){
     }
     if (filter_assigned != '') {
         jQuery("#assigned").css("background-color", "yellow");
+    }
+    if (filter_requester != '') {
+        jQuery("#requester").css("background-color", "yellow");
     }
     if (filter_dateOverview != '') {
         jQuery("#dateOverview").css("background-color", "yellow");

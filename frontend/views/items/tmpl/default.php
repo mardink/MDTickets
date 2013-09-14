@@ -135,7 +135,7 @@ $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days'
             <td></td>
             <td id="expand_all"><img src="media/com_mdtickets/images/plus.png"/></i><?php echo JText::_('COM_MDTICKETS_ALL') ?></td>
             <td><?php echo MdticketsHelperSelect::prio($this->getModel()->getState('prio'), 'prio', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
-            <td></td>
+            <td><?php echo MdticketsHelperSelect::requester($this->getModel()->getState('requester'), 'requester', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td><?php echo MdticketsHelperSelect::category($this->getModel()->getState('category'), 'category', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td><?php echo MdticketsHelperSelect::status($this->getModel()->getState('status'), 'status', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td><?php echo MdticketsHelperSelect::assigned($this->getModel()->getState('assigned'), 'assigned', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
