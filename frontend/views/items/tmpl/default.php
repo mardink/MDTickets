@@ -52,9 +52,7 @@ $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days'
     <button class="btn" onclick="document.adminForm.mdtickets_item_id.value='';this.form.submit();">
         <i class="icon-cancel"></i>
     </button>
-        </span>
     <!-- Search Short -->
-        <span class="input-append">
         <input type="text" name="short" id="short"
            value="<?php echo $this->escape($this->getModel()->getState('short',''));?>"
            class="text_area" onchange="document.adminForm.submit();"
@@ -62,9 +60,7 @@ $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days'
     <button class="btn" onclick="document.adminForm.short.value='';this.form.submit();">
         <i class="icon-cancel"></i>
     </button>
-            </span>
     <!-- Search ITONCall -->
-        <span class="input-append">
         <input type="text" name="itoncall" id="itoncall"
                value="<?php echo $this->escape($this->getModel()->getState('itoncall',''));?>"
                class="text_area input-small" onchange="document.adminForm.submit();"
@@ -72,10 +68,11 @@ $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days'
         <button class="btn" onclick="document.adminForm.itoncall.value='';this.form.submit();">
             <i class="icon-cancel"></i>
         </button>
-            </span>
+
         <button class="btn" onclick="this.form.submit();">
             <i class="icon-search"></i><?php echo JText::_('COM_MDTICKETS_SEARCH_FILTER') ?>
         </button>
+            </span>
     <?php echo JText::_('COM_MDTICKETS_FINSIHED') ?><?php echo MdticketsHelperSelect::finished($this->getModel()->getState('finished'), 'finished', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?>
         <?php echo JText::_('COM_MDTICKETS_DATEOVERVIEW') ?><input type="checkbox" name="checkbox_dateoverview" id="checkbox_dateoverview" class="input-large" value="1">
         <input type="button" id="print_btn" class="btn pull-right" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
@@ -146,11 +143,11 @@ $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days'
     </thead>
     <tfoot>
     <tr>
-        <td colspan="13">
+        <td colspan="8">
             <?php if($this->pagination->total > 0) echo $this->pagination->getListFooter() ?>
         </td>
-        <td class="noprint"><?php echo JText::_('COM_MDTICKETS_PAGINATION') ?></td>
-        <td><?php echo MdticketsHelperSelect::pagination($this->getModel()->getState('limit'), 'limit', array('onchange'=>'this.form.submit();','class' => 'input-mini noprint')) ?></td>
+        <td style="padding-top: 29px;" colspan="3"><span><?php echo JText::_('COM_MDTICKETS_PAGINATION') ?></span>
+        <?php echo MdticketsHelperSelect::pagination($this->getModel()->getState('limit'), 'limit', array('onchange'=>'this.form.submit();','class' => 'input-mini noprint')) ?></td>
     </tr>
     </tfoot>
 <tbody>
