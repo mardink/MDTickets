@@ -9,7 +9,7 @@
 <form
 	type="browse"
 	show_header="1"
-	show_filters="0"
+	show_filters="1"
 	show_pagination="1"
 	norows_placeholder="COM_MDTICKETS_COMMON_NORECORDS"
 >
