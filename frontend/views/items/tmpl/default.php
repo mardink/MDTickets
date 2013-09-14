@@ -232,7 +232,7 @@ $m = 1 - $m;
         $DateDeadline = $item->deadline;
         $newDateDeadline = date("d-m-y", strtotime($DateDeadline));
         if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00') { echo "deadline_error";
-        } elseif($DateDeadline <= $warning_date) { echo "deadline_warning";
+        } elseif($DateDeadline <= $warning_date && $DateDeadline!= '0000-00-00') { echo "deadline_warning";
         }?>"><?php
             if ($DateDeadline!= '0000-00-00'){
             echo $newDateDeadline;} else { echo "-"; } ?></span></td>

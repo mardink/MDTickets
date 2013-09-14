@@ -36,9 +36,9 @@ JFactory::getApplication()->enqueueMessage(Jtext::_('COM_MDTICKETS_PRIO_MESSAGE'
 $current_date = date("Y-m-d");
 $warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
 $DateDeadline = $this->item->deadline;
-if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00') {
+if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
     JFactory::getApplication()->enqueueMessage(Jtext::_('COM_MDTICKETS_PRIO_OVERDUE'), 'error');
-} elseif($DateDeadline <= $warning_date) {
+} elseif($DateDeadline <= $warning_date && $DateDeadline!= '0000-00-00' && $num) {
     JFactory::getApplication()->enqueueMessage(Jtext::_('COM_MDTICKETS_PRIO_WARNING'), 'warning');
 }
 

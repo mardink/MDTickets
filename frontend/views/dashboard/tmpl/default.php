@@ -50,7 +50,7 @@ $warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
         <?php if ($user_id != "0"){ ?>
             <div class="offset10">
         <?php echo JText::_( 'COM_MDTICKETS_WELCOME' );
-        echo " " . $username;?>
+                echo " " . $username;?>
         <a href="index.php?option=com_users&task=user.logout&<?php echo JSession::getFormToken(); ?>=1">
             <input  type="button" name="Submit" class="btn btn-primary" value="Logout">
         </a>
