@@ -97,10 +97,10 @@ $menu_id = JComponentHelper::getParams('com_mdtickets')->get('menu_item_id');
     <th width="20px">
         <input type="checkbox" name="toggle" value="" onclick="Joomla.checkAll(this);" />
     </th>
-    <th width="70px">
+    <th width="50px">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_ID', 'mdticket_item_id', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th width="380px">
+    <th>
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_SHORT', 'short', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
@@ -144,11 +144,11 @@ $menu_id = JComponentHelper::getParams('com_mdtickets')->get('menu_item_id');
     </thead>
     <tfoot>
     <tr>
-        <td colspan="8">
+        <td colspan="7">
             <?php if($this->pagination->total > 0) echo $this->pagination->getListFooter() ?>
         </td>
-        <td style="padding-top: 29px;" colspan="3"><span><?php echo JText::_('COM_MDTICKETS_PAGINATION') ?></span>
-        <?php echo MdticketsHelperSelect::pagination($this->getModel()->getState('limit'), 'limit', array('onchange'=>'this.form.submit();','class' => 'input-mini noprint')) ?></td>
+        <td style="padding-top: 29px;" colspan="4"><span><?php echo JText::_('COM_MDTICKETS_PAGINATION') ?></span>
+        <?php echo MdticketsHelperSelect::pagination($this->getModel()->getState('limit'), 'limit', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
     </tr>
     </tfoot>
 <tbody>

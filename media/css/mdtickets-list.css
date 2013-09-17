@@ -11,9 +11,9 @@
     #print_btn, #csv_btn, #toolbar, .menu, .noprint, header nav, footer {
         display: none;
     }
-    table { page-break-inside:auto }
-    tr    { page-break-inside:avoid; page-break-after:auto }
-    thead { display:table-header-group }
-    tfoot { display:table-footer-group }
+    table { page-break-inside:auto; }
+    tr    { page-break-inside:avoid; page-break-after:auto; }
+    thead { display:table-header-group; }
+    tfoot { display:table-footer-group;}
 }
 
