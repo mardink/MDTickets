@@ -26,6 +26,7 @@ $num = $this->item->mdtickets_item_id;
 jimport('joomla.application.component.helper');
 $location = JComponentHelper::getParams('com_mdtickets')->get('location');
 $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days');
+$menu_id = JComponentHelper::getParams('com_mdtickets')->get('menu_item_id');
 
 // Give a notice when it is periodical item
 if ($this->item->prio == "Periodiek") {
@@ -48,7 +49,7 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
     <input type="hidden" name="option" value="com_mdtickets" />
     <input type="hidden" name="view" value="item" />
     <input type="hidden" name="task" value="" />
-    <input type="hidden" id="mdtickets_item_id" name="mdtickets_item_id" value="<?php echo $this->item->mdtickets_item_id ?>" />
+        <input type="hidden" id="mdtickets_item_id" name="mdtickets_item_id" value="<?php echo $this->item->mdtickets_item_id ?>" />
     <input type="hidden" name="<?php echo JFactory::getSession()->getFormToken();?>" value="1" />
     <div id="mdtickets_toolbar" class="row well btn-toolbar">
     <button id="edit-button" class="btn btn-small btn-primary <?php if(!$num){?> hide <?php } ?>" type="button"><?php echo Jtext::_('COM_MDTICKETS_TICKET_EDIT') ?></button>
@@ -76,7 +77,7 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
         </i>
         Annuleren
     </button> -->
-        <a href="index.php?option=com_mdtickets&view=items"  class="btn btn-small btn-danger">
+        <a href="index.php?option=com_mdtickets&view=items&Itemid=<?php echo $menu_id;?>"  class="btn btn-small btn-danger">
             <i class="icon-cancel ">
             </i>
             <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_CANCEL' );?>

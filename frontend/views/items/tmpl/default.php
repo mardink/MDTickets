@@ -27,11 +27,11 @@ $user_id = $user->id;
 $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
 //Get options
 $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days');
-
+$menu_id = JComponentHelper::getParams('com_mdtickets')->get('menu_item_id');
 ?>
 <div class="row-fluid">
     <div class="span12">
-    <form name="adminForm" id="adminForm" action="index.php" method="post">
+    <form name="adminForm" id="adminForm" action="index.php?option=com_mdtickets&view=items&Itemid=<?php echo $menu_id;?>" method="post">
         <input type="hidden" name="option" id="option" value="com_mdtickets" />
         <input type="hidden" name="view" id="view" value="items" />
         <input type="hidden" name="task" id="task" value="browse" />

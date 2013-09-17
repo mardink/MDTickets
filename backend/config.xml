@@ -17,6 +17,7 @@
                default="8" filter="integer" class="inputbox validate-numeric"	/>
         <field name="warning_days" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_WARNINGDAYS_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_WARNINGDAYS_DESC"
                default="8" filter="integer" class="inputbox validate-numeric"	/>
+        <field name="menu_item_id" type="menuitem" default="45" label="COM_MDTICKETS_OPTIONS_CONFIG_MENU_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_MENU_DESC" />
     </fieldset>
     <fieldset
 		name="permissions"
