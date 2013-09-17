@@ -108,7 +108,7 @@ class MdticketsHelperDashboard {
     public static function getCallsOpen() {
         // Get a db connection.
         $db = JFactory::getDBO();
-        $query = "SELECT * from #__mdtickets_items where status != 'Cancelled' and status != 'Closed' ";
+        $query = "SELECT * from #__mdtickets_items where status != 'Cancelled' and status != 'Closed' and prio !='Periodiek'";
         $db->setQuery($query);
         $db->query();
         $numrow = $db->getNumRows();
