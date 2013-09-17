@@ -49,42 +49,33 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
     <input type="hidden" name="option" value="com_mdtickets" />
     <input type="hidden" name="view" value="item" />
     <input type="hidden" name="task" value="" />
-        <input type="hidden" id="mdtickets_item_id" name="mdtickets_item_id" value="<?php echo $this->item->mdtickets_item_id ?>" />
+    <input type="hidden" id="mdtickets_item_id" name="mdtickets_item_id" value="<?php echo $this->item->mdtickets_item_id ?>" />
     <input type="hidden" name="<?php echo JFactory::getSession()->getFormToken();?>" value="1" />
     <div id="mdtickets_toolbar" class="row well btn-toolbar">
-    <button id="edit-button" class="btn btn-small btn-primary <?php if(!$num){?> hide <?php } ?>" type="button"><?php echo Jtext::_('COM_MDTICKETS_TICKET_EDIT') ?></button>
-    <a href="#myModal" role="button" class="btn btn-small btn-success <?php if(!$num){?> hide <?php } ?>" data-toggle="modal"><?php echo Jtext::_('COM_MDTICKETS_TICKET_UPDATE') ?></a>
-    <div id="btn_save" class="btn-group">
-        <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-small btn-success">
+        <span class="btn-group">
+    <button id="edit-button" class="btn <?php if(!$num){?> hide <?php } ?>" type="button"><i class="icon-pencil"></i>&nbsp;<?php echo Jtext::_('COM_MDTICKETS_TICKET_EDIT') ?></button>
+    <button href="#myModal" role="button" class="btn <?php if(!$num){?> hide <?php } ?>" data-toggle="modal"><i class="icon-comments"></i>&nbsp;<?php echo Jtext::_('COM_MDTICKETS_TICKET_UPDATE') ?></button>
+    <button href="index.php?option=com_mdtickets&view=items&Itemid=<?php echo $menu_id;?>"  class="btn">
+        <i class="icon-undo"></i>&nbsp;<?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_CANCEL' );?></button>
+        <button id="print_btn" class="btn" onclick="window.print();"><i class="icon-printer"></i>&nbsp;<?php echo Jtext::_('COM_MDTICKETS_PRINT'); ?></button>
+        </span>
+            <div id="btn_save" class="btn-group">
+        <button href="#" onclick="Joomla.submitbutton('apply')" class="btn  btn-success">
         <i class="icon-apply icon-white">
         </i>
         <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE' );?>
         </button>
-        <button href="#" onclick="Joomla.submitbutton('save')" class="btn btn-small">
+        <button href="#" onclick="Joomla.submitbutton('save')" class="btn">
             <i class="icon-save ">
             </i>
             <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE_CLOSE' );?>
         </button>
-        <button href="#" onclick="Joomla.submitbutton('savenew')" class="btn btn-small">
-            <i class="icon-save-new ">
-            </i>
+        <button href="#" onclick="Joomla.submitbutton('savenew')" class="btn">
+            <i class="icon-save-new "></i>
             <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE_NEW' );?>
         </button>
         </div>
-<!-- onderstaande werkt niet als het veld leeg is door de validator if statement nodig
-    <button href="#" onclick="Joomla.submitbutton('cancel')" class="btn btn-small">
-        <i class="icon-cancel ">
-        </i>
-        Annuleren
-    </button> -->
-        <a href="index.php?option=com_mdtickets&view=items&Itemid=<?php echo $menu_id;?>"  class="btn btn-small btn-danger">
-            <i class="icon-cancel ">
-            </i>
-            <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_CANCEL' );?>
-        </a>
-        <input type="button" id="print_btn" class="btn btn-small btn-info" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
-
-    </div>
+      </div>
     <div class="row-fluid">
         <div class="span12">
             <?php
