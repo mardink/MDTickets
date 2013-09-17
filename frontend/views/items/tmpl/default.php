@@ -41,7 +41,7 @@ $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days'
         <input type="hidden" name="filter_order_Dir" id="filter_order_Dir" value="ASC" />
         <input type="hidden" name="<?php echo JFactory::getSession()->getFormToken();?>" value="1" />
 
-<table class="adminlist table table-striped span12" id="itemsList">
+
     <div class="row span12">
     <!-- Search in ticket number -->
         <span class="input-append">
@@ -86,6 +86,7 @@ $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days'
             <?php echo JText::_('COM_MDTICKETS_SEARCH_RESET'); ?>
         </button>
     </div>
+        <table class="adminlist table table-striped span12" id="itemsList">
             <thead>
 <tr>
     <?php if($hasAjaxOrderingSupport !== false): ?>
@@ -188,12 +189,17 @@ $m = 1 - $m;
         $ticketNum = sprintf("%04d", $num);
             $creation_date = $item->created_on;
             $DateModifiedOn = $item->modified_on;
+            if ($user_id !=''){
             if ($lastlogin<= $creation_date) {
                 ?><i class="icon-star"></i><?php
             } elseif ($lastlogin<= $DateModifiedOn) {
               ?><i class="icon-warning"></i><?php
-            } ?>
-        <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $item->mdtickets_item_id;?>"><?php echo $ticketNum; ?></a>
+            }?>
+
+        <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $item->mdtickets_item_id;?>"><?php echo $ticketNum; ?></a><?php }
+            else {
+                echo $ticketNum;
+            }?>
          </span></td>
     <td class="expand"><img src="media/com_mdtickets/images/plus.png"/> <span class="short"><?php echo $item->short;?></span></td>
     <td><span class="prio label <?php if ($item->prio=='Hoog'){?>label-important<?php }
