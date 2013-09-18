@@ -78,6 +78,32 @@ class MdticketsHelperDashboard {
         return $result;
     }
     /*
+ * This helper gets the periodic calls  from the tickets from the database where items are not closed or cancelled or empty
+ * Ordered by deadline earliest deadline first
+ * $number = number of items to show (mandatory)
+ */
+    public static function getPeriodiek($number) {
+        // Get a db connection.
+        $db = JFactory::getDbo();
+        // Create a new query object.
+        $query = $db->getQuery(true);
+        $query
+            ->select('*')
+            ->from($db->quoteName('#__mdtickets_items'))
+            ->where(
+                '('.
+                '('.$db->qn('prio').' = '.$db->quote('Periodiek').') AND'.
+                '('.$db->qn('status').' != '.$db->quote('Closed').') AND'.
+                '('.$db->qn('status').' != '.$db->quote('Cancelled').') AND'.
+                '('.$db->qn('deadline').' != '.$db->quote('0000-00-00').')'.
+                ')'
+            )
+            ->order($db->qn('deadline').' asc');
+        $db->setQuery($query,0,$number); //set the limit
+        $result = $db->loadObjectList();
+        return $result;
+    }
+    /*
      * This helper gets the deadlines from the tickets from the database where items are not closed or cancelled or empty
      * Ordered by deadline earliest deadline first
      * $number = number of items to show (mandatory)
