@@ -141,8 +141,27 @@ $warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
                 ?>
             </div>
         </div> <!-- end of row -->
-
-        <!-- Row for jQplot graphs -->
+        <div class="row">
+            <div class="well span6">
+                <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PERIODIEK');?></h5>
+                <?php $periodiek_calls = MdticketsHelperDashboard::getPeriodiek($NumberCalls);
+                foreach ($periodiek_calls as $periodiek_call){
+                    $id_periodiek_call = $periodiek_call->mdtickets_item_id;
+                    $ticketID_periodiek_call = sprintf("%04d", $id_periodiek_call);
+                    $showPeriodiekDate_call = date("d-m-y", strtotime($periodiek_call->deadline));
+                    if ($user_id !=''){?>
+                        <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $periodiek_call->mdtickets_item_id;?>"><?php echo $ticketID_periodiek_call; ?></a>
+                    <?php }
+                    else {
+                        echo $ticketID_periodiek_call;
+                    }echo " - " . $periodiek_call->short;?><span class="pull-right <?php
+                    if($periodiek_call->deadline < $current_date) { echo "deadline_error";
+                    } elseif ($periodiek_call->deadline <= $warning_date) { echo "deadline_warning";}?>"><?php echo $showPeriodiekDate_call;?></span><br/>
+                <?php }
+                ?>
+            </div>
+        </div> <!-- end of row -->
+          <!-- Row for jQplot graphs -->
         <div class="row">
             <div class="span6">
                 <div id="chart1" style="height:300px;width:600px; "></div>
