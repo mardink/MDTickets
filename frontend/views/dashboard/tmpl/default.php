@@ -77,9 +77,12 @@ $warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
                     $id = $latestitem->mdtickets_item_id;
                     $ticketID = sprintf("%04d", $id);
                     $showLatestDate = date("d-m-y", strtotime($latestitem->created_on));
-                    ?>
-                    <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $latestitem->mdtickets_item_id;?>"><?php echo $ticketID; ?></a>
-                    <?php echo " - " . $latestitem->short;?><span class="pull-right"><?php echo $showLatestDate;?></span><br/>
+                    if ($user_id !=''){?>
+                    <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $latestitem->mdtickets_item_id;?>"><?php echo $ticketID; ?></a><?php }
+                    else {
+                        echo $ticketID;
+                    }
+                    echo " - " . $latestitem->short;?><span class="pull-right"><?php echo $showLatestDate;?></span><br/>
                 <?php }
                 ?>
             </div>
@@ -90,9 +93,13 @@ $warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
                     $id_changed = $latestitemchanged->mdtickets_item_id;
                     $ticketID_changed = sprintf("%04d", $id_changed);
                     $showLatestDateChanged = date("d-m-y", strtotime($latestitemchanged->modified_on));
-                    ?>
+                    if ($user_id !=''){?>
                     <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $latestitemchanged->mdtickets_item_id;?>"><?php echo $ticketID_changed; ?></a>
-                    <?php echo " - " . $latestitemchanged->short;?><span class="pull-right"><?php echo $showLatestDateChanged;?></span><br/>
+                    <?php }
+                    else {
+                        echo $ticketID_changed;
+                    }
+                    echo " - " . $latestitemchanged->short;?><span class="pull-right"><?php echo $showLatestDateChanged;?></span><br/>
                 <?php }
                 ?>
             </div>
@@ -105,9 +112,13 @@ $warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
                     $id_finished = $finisheditem->mdtickets_item_id;
                     $ticketID_finished = sprintf("%04d", $id_finished);
                     $showfinishedDate = date("d-m-y", strtotime($finisheditem->completion_date));
-                    ?>
+                    if ($user_id !=''){?>
                     <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $finisheditem->mdtickets_item_id;?>"><?php echo $ticketID_finished; ?></a>
-                    <?php echo " - " . $finisheditem->short;?><span class="pull-right"><?php echo $showfinishedDate;?></span><br/>
+                    <?php }
+                    else {
+                        echo $ticketID_finished;
+                    }
+                        echo " - " . $finisheditem->short;?><span class="pull-right"><?php echo $showfinishedDate;?></span><br/>
                 <?php }
                 ?>
             </div>
@@ -118,9 +129,12 @@ $warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
                     $id_deadline = $deadline->mdtickets_item_id;
                     $ticketID_deadline = sprintf("%04d", $id_deadline);
                     $showdeadlineDate = date("d-m-y", strtotime($deadline->deadline));
-                    ?>
+                    if ($user_id !=''){?>
                     <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $deadline->mdtickets_item_id;?>"><?php echo $ticketID_deadline; ?></a>
-                    <?php echo " - " . $deadline->short;?><span class="pull-right <?php
+                    <?php }
+                    else {
+                    echo $ticketID_deadline;
+                }echo " - " . $deadline->short;?><span class="pull-right <?php
                     if($deadline->deadline < $current_date) { echo "deadline_error";
                     } elseif ($deadline->deadline <= $warning_date) { echo "deadline_warning";}?>"><?php echo $showdeadlineDate;?></span><br/>
                 <?php }
