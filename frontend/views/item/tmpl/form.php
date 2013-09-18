@@ -55,8 +55,8 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
         <span class="btn-group">
     <button id="edit-button" class="btn <?php if(!$num){?> hide <?php } ?>" type="button"><i class="icon-pencil"></i>&nbsp;<?php echo Jtext::_('COM_MDTICKETS_TICKET_EDIT') ?></button>
     <button href="#myModal" role="button" class="btn <?php if(!$num){?> hide <?php } ?>" data-toggle="modal"><i class="icon-comments"></i>&nbsp;<?php echo Jtext::_('COM_MDTICKETS_TICKET_UPDATE') ?></button>
-    <button href="index.php?option=com_mdtickets&view=items&Itemid=<?php echo $menu_id;?>"  class="btn">
-        <i class="icon-undo"></i>&nbsp;<?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_CANCEL' );?></button>
+    <a href="index.php?option=com_mdtickets&view=items&Itemid=<?php echo $menu_id;?>"  class="btn">
+        <i class="icon-undo"></i>&nbsp;<?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_CANCEL' );?></a>
         <button id="print_btn" class="btn" onclick="window.print();"><i class="icon-printer"></i>&nbsp;<?php echo Jtext::_('COM_MDTICKETS_PRINT'); ?></button>
         </span>
             <div id="btn_save" class="btn-group">
@@ -246,12 +246,12 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
             <p><input type="file" name="bijlage[test][]"></p> eentje genoeg -->
         </div>
         <div class="modal-footer">
-            <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-small btn-success">
-                <i class="icon-apply icon-white">
-                </i>
-                <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE' );?>
+            <span class="btn-group">
+            <button href="#" onclick="Joomla.submitbutton('apply')" class="btn btn-success">
+                <i class="icon-apply icon-white"></i><?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_SAVE' );?>
             </button>
-            <button type="button" class="btn btn-small btn-danger" data-dismiss="modal" aria-hidden="true"><?php echo Jtext::_('COM_MDTICKETS_TOOLBAR_CANCEL') ?></button>
+            <button type="button" class="btn" data-dismiss="modal" aria-hidden="true"><?php echo Jtext::_('COM_MDTICKETS_TOOLBAR_CANCEL') ?></button>
+        </span>
         </div>
     </div> <!-- End of Modal -->
     <div id="files" class="row"> <!-- Start of showing attachments or comment when empty -->
