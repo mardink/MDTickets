@@ -153,7 +153,7 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
                 </div>
                 <div class="span1">
                     <label for="deadline" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_DEADLINE') ?></label>
-                    <input type="date" name="deadline" id="deadline" class="changeEdit" value="<?php echo $this->item->deadline;;?>"/>
+                    <input type="date" name="deadline" id="deadline" placeholder="yyyy-mm-dd" class="changeEdit" value="<?php echo $this->item->deadline;;?>"/>
                 </div>
 
             </div>
@@ -181,7 +181,7 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
                 </div>
                 <div id="completedate"class="span2">
                     <label for="completion_date" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED_DATE') ?></label>
-                    <input type="date" name="completion_date" id="completion_date" class="changeEdit" value="<?php echo $this->item->completion_date?>"/>
+                    <input type="date" name="completion_date" id="completion_date" placeholder="yyyy-mm-dd" class="changeEdit" value="<?php echo $this->item->completion_date?>"/>
                 </div>
                 <div class="span2">
                     <label for="assigned" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_ASSIGNED') ?></label>
