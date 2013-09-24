@@ -49,7 +49,7 @@ class MdticketsControllerItem extends FOFController {
        // get the file
        $input = JFactory::getApplication()->input;
        $files = $input->files->get('bijlage');
-       $savepathbase = JPATH_BASE . $location;
+       $savepathbase = JPATH_BASE ."/" . $location;
         //create folder if not exists
         if (!JFolder::exists($savepathbase)) {
             JFolder::create($savepathbase);

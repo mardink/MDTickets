@@ -108,7 +108,7 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
             <div id="form_edit">
             <div class="row">
                 <div class="span4">
-                    <label for="short" class="control-label"><?php echo JText::_('COM_MDTICKETS_ITEM_SHORT') ?></label>
+                    <label for="short" class="control-label"><?php echo JText::_('COM_MDFUEL_CARS_FIELD_KENTEKEN') ?></label>
                     <input type="text" name="short" id="short" maxlength="54" value="<?php echo $this->item->short?>" class="required changeEdit"/>
                 </div>
                 <div class="span2">
@@ -266,7 +266,7 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
         jimport('joomla.filesystem.file');
         jimport('joomla.filesystem.folder');
 
-        $searchpath = JPATH_BASE . $location . DS . $ticketNum;
+        $searchpath = JPATH_BASE . "/" . $location . DS . $ticketNum;
         if (JFolder::exists($searchpath)) {
         $jpg_files = JFolder::files($searchpath, '.*');
         if ($jpg_files) { ?>
@@ -274,7 +274,7 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
             <p><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_TIP') ?></p>
             <?php foreach ($jpg_files as $jpg_file)
             { ?>
-            <a href="<?php echo JURI::root()  . "components/com_mdtickets/bijlage/" . $ticketNum . DS . $jpg_file;?>" target="_blank"><?php echo $jpg_file; ?></a><br/>
+            <a href="<?php echo JURI::root()  . $location . "/" . $ticketNum . DS . $jpg_file;?>" target="_blank"><?php echo $jpg_file; ?></a><br/>
             <?php }
         } else { ?>
             <h4><?php echo Jtext::_('COM_MDTICKETS_ITEM_ATTACHMENT_NO'); ?> </h4> <?php
