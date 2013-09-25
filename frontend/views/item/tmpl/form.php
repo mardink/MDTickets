@@ -108,7 +108,7 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
             <div id="form_edit">
             <div class="row">
                 <div class="span4">
-                    <label for="short" class="control-label"><?php echo JText::_('COM_MDFUEL_CARS_FIELD_KENTEKEN') ?></label>
+                    <label for="short" class="control-label"><?php echo JText::_('COM_MDTICKETS_ITEM_SHORT') ?></label>
                     <input type="text" name="short" id="short" maxlength="54" value="<?php echo $this->item->short?>" class="required changeEdit"/>
                 </div>
                 <div class="span2">
