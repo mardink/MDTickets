@@ -34,9 +34,19 @@ jQuery(document).ready(function(){
         jQuery(this).toggleClass('hidden_detail');
 
     });
-     jQuery('#checkbox_dateoverview').click(function () {
-        jQuery("#date_overview").toggle(this.checked);
-    });
+
+    jQuery('#checkbox_dateoverview').click(function () {
+    if (jQuery(this).is(':checked')) {
+        jQuery("#date_overview").show();
+    } else {
+        jQuery("#date_overview").hide();
+        jQuery("#fromdate").val("");
+        jQuery("#dateOverview").val("");
+        jQuery("#todate").val("");
+        jQuery("#adminForm").submit();
+        jQuery(this).attr({checked: false});
+    }
+});
     if (filter_prio != '') {
         jQuery("#prio").css("background-color", "yellow");
     }
@@ -59,10 +69,12 @@ jQuery(document).ready(function(){
     }
     if (filter_fromdate != '') {
         jQuery("#fromdate").css("background-color", "yellow");
+        jQuery('#checkbox_dateoverview').attr('checked', true);
         jQuery("#date_overview").show();
     }
     if (filter_todate != '') {
         jQuery("#todate").css("background-color", "yellow");
+        jQuery('#checkbox_dateoverview').attr('checked', true);
         jQuery("#date_overview").show();
     }
 

@@ -74,7 +74,7 @@ $menu_id = JComponentHelper::getParams('com_mdtickets')->get('menu_item_id');
         </button>
             </span>
         &nbsp;&nbsp;<?php echo JText::_('COM_MDTICKETS_FINSIHED') ?><?php echo MdticketsHelperSelect::finished($this->getModel()->getState('finished'), 'finished', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?>
-        &nbsp;&nbsp;<?php echo JText::_('COM_MDTICKETS_DATEOVERVIEW') ?><input type="checkbox" name="checkbox_dateoverview" id="checkbox_dateoverview" class="input-large" value="1">
+        &nbsp;&nbsp;<?php echo JText::_('COM_MDTICKETS_DATEOVERVIEW') ?><input type="checkbox" name="checkbox_dateoverview" id="checkbox_dateoverview" class="input-large" value="1" >
         <input type="button" id="print_btn" class="btn pull-right" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
    </div>
     <div class="row span12" id="date_overview" style="display: none;">
