@@ -104,9 +104,9 @@ class MdticketsControllerItem extends FOFController {
         $detail = $item->get('detail');
         $user =& JFactory::getUser();
         $name = $user->name;
-        $datum = date("Y-m-d H:i:s");
+        $datum = date("d-m-Y H:i");
         // Collect all data and form a new string.
-        $text = $datum .' : ' . $name . ' ' . $remark . '<hr>' . $detail;
+        $text = '<strong>' . $datum .' : ' . $name . '</strong> -- ' . $remark . '<hr>' . $detail;
         $remark_new = '';
 
         if ($remark != "") {
