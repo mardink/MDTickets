@@ -102,9 +102,6 @@ JHTML::_( 'behavior.tooltip' );
             <?php echo JHtml::_('grid.sort', '<i class="icon-menu-2"></i>', 'ordering', $this->lists->order_Dir, $this->lists->order, null, 'asc', 'JGRID_HEADING_ORDERING'); ?>
         </th>
     <?php endif; ?>
-    <th width="20px">
-        <input type="checkbox" name="toggle" value="" onclick="Joomla.checkAll(this);" />
-    </th>
     <th width="50px">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_ID', 'mdticket_item_id', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
@@ -191,7 +188,6 @@ $m = 1 - $m;
             <?php endif; ?>
         </td>
     <?php endif; ?>
-    <td><?php echo JHTML::_('grid.id', $i, $item->mdtickets_item_id); ?></td>
     <td><span class="ticket"><?php
         $num = $item->mdtickets_item_id;
         $ticketNum = sprintf("%04d", $num);
