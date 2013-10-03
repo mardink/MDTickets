@@ -135,7 +135,6 @@ JHTML::_( 'behavior.tooltip' );
     </tr>
         <tr>
             <td></td>
-            <td></td>
             <td id="expand_all"><img src="media/com_mdtickets/images/plus.png"/></i><?php echo JText::_('COM_MDTICKETS_ALL') ?></td>
             <td><?php echo MdticketsHelperSelect::prio($this->getModel()->getState('prio'), 'prio', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td><?php echo MdticketsHelperSelect::requester($this->getModel()->getState('requester'), 'requester', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>

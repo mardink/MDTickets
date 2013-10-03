@@ -47,7 +47,6 @@ class MdticketsHelperSelect
         $options = array();
         $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDTICKETS_CATEGORY_TYPE_SELECT').' -');
         $options[] = JHTML::_('select.option','Telefonie',JText::_('COM_MDTICKETS_CATEGORY_TYPE_PHONE'));
-        $options[] = JHTML::_('select.option','Mob-telefonie',JText::_('COM_MDTICKETS_CATEGORY_TYPE_MOBPHONE'));
         $options[] = JHTML::_('select.option','Netwerk',JText::_('COM_MDTICKETS_CATEGORY_TYPE_NETWORK'));
         $options[] = JHTML::_('select.option','Applicaties',JText::_('COM_MDTICKETS_CATEGORY_TYPE_APPLICATIES'));
         $options[] = JHTML::_('select.option','Hardware',JText::_('COM_MDTICKETS_CATEGORY_TYPE_HARDWARE'));

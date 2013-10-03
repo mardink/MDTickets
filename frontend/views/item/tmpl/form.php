@@ -134,7 +134,7 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
                     <label for="category" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_CATEGORY') ?></label>
                     <select name="category" id="category" class="changeEdit"/>
                     <?php
-                    $categories = array('Telefonie', 'Mob-telefonie', 'Netwerk', 'Applicaties', 'Software', 'Hardware', 'Beheer', 'Security', 'Internet');
+                    $categories = array('Telefonie', 'Netwerk', 'Applicaties', 'Software', 'Hardware', 'Beheer', 'Security', 'Internet');
                     $current_category = $this->item->category;
 
                     foreach($categories as $category) {
