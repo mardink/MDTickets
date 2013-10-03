@@ -162,5 +162,23 @@ class MdticketsHelperSelect
 
         return $previouslogin;
     }
-
+    //Check if a call has attachments
+    public static function getAttachment($id){
+        //Import filesystem libraries. Perhaps not necessary, but does not hurt
+        jimport('joomla.filesystem.file');
+        jimport('joomla.filesystem.folder');
+        $ticketNum = sprintf("%04d", $id);
+        jimport('joomla.application.component.helper');
+        $location = JComponentHelper::getParams('com_mdtickets')->get('location');
+        $searchpath = JPATH_BASE . "/" . $location . "/" . $ticketNum;
+            if (JFolder::exists($searchpath)) {
+            $jpg_files = JFolder::files($searchpath, '.*');
+                if ($jpg_files) {
+                    return true; } else {
+                return false;
+                }
+            } else {
+                return false;
+            }
+    }
 }

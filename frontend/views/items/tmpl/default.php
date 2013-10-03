@@ -247,7 +247,8 @@ $m = 1 - $m;
             echo $newDateModifiedOn;?></span></td>
 </tr>
     <tr class="detail_row" style="display: none;">
-        <td></td>
+        <td><?php if (MdticketsHelperSelect::getAttachment($item->mdtickets_item_id))
+            {?> <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $item->mdtickets_item_id;?>"><i class="icon-folder"></i></a><?php } ?></td>
         <td colspan="12"><?php echo $item->detail;?></td>
     </tr>
         <?php
