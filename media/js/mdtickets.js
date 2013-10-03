@@ -1,4 +1,6 @@
 jQuery(document).ready(function(){
+    jQuery("#completion_date").addClass('changeEdit');
+    jQuery("#deadline").addClass('changeEdit');
     jQuery("#show-edit").hide();
     jQuery("#show-update").hide();
     var item_id = jQuery('#mdtickets_item_id').val();

@@ -153,7 +153,7 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
                 </div>
                 <div class="span1">
                     <label for="deadline" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_DEADLINE') ?></label>
-                    <input type="date" name="deadline" id="deadline" placeholder="yyyy-mm-dd" class="changeEdit" value="<?php echo $this->item->deadline;;?>"/>
+                    <?php echo JHTML::_('calendar', $this->item->deadline, 'deadline', 'deadline', '%Y-%m-%d', array('class' => 'changeEdit')); ?>
                 </div>
 
             </div>
@@ -179,10 +179,10 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
                     <label for="completed_by" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED') ?></label>
                     <input type="text" name="completed_by" id="completed_by" class="changeEdit" value="<?php echo $this->item->completed_by?>"/>
                 </div>
-                <div id="completedate"class="span2">
+                <div id="completedate"class="span3">
                     <label for="completion_date" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED_DATE') ?></label>
-                    <input type="date" name="completion_date" id="completion_date" placeholder="yyyy-mm-dd" class="changeEdit" value="<?php echo $this->item->completion_date?>"/>
-                </div>
+                    <?php echo JHTML::_('calendar', $this->item->completion_date, 'completion_date', 'completion_date', '%Y-%m-%d', array('class' => 'changeEdit')); ?>
+                  </div>
                 <div class="span2">
                     <label for="assigned" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_ASSIGNED') ?></label>
                     <select name="assigned" id="assigned" class="changeEdit"/>

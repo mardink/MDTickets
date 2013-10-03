@@ -28,6 +28,8 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
 //Get options
 $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days');
 $menu_id = JComponentHelper::getParams('com_mdtickets')->get('menu_item_id');
+JHTML::_( 'behavior.calendar' );
+JHTML::_( 'behavior.tooltip' );
 ?>
 <div class="row-fluid">
     <div class="span12">
@@ -78,9 +80,15 @@ $menu_id = JComponentHelper::getParams('com_mdtickets')->get('menu_item_id');
         <input type="button" id="print_btn" class="btn pull-right" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
    </div>
     <div class="row span12" id="date_overview" style="display: none;">
-        <?php echo MdticketsHelperSelect::dateOverview($this->getModel()->getState('dateOverview'), 'dateOverview', array('class' => 'input-medium')) ?>
-        <input type="date"  name="fromdate" id="fromdate" class="input-medium" value="<?php echo $this->getModel()->getState('fromdate'); ?>" />
-        <input type="date"  name="todate" id="todate" class="input-medium" value="<?php echo $this->getModel()->getState('todate'); ?>" />
+        <div class="span2">
+        <?php echo MdticketsHelperSelect::dateOverview($this->getModel()->getState('dateOverview'), 'dateOverview', array('class' => 'input'));?>
+    </div>
+        <div class="span3">
+        <?php echo JHTML::_('calendar', $this->getModel()->getState('fromdate'), 'fromdate', 'fromdate', '%Y-%m-%d', array('class' => 'input')); ?>
+        </div>
+        <div class="span3">
+            <?php echo JHTML::_('calendar', $this->getModel()->getState('todate'), 'todate', 'todate', '%Y-%m-%d', array('class' => 'input')); ?>
+        </div>
         <button class="btn tip hasTooltip" type="buttin" onclick="this.form.submit(); return false;" title="<?php echo JText::_('COM_MDTICKETS_SEARCH_SHOW'); ?>"><?php echo JText::_('COM_MDTICKETS_SEARCH_SHOW'); ?></button>
         <button class="btn" onclick="document.adminForm.dateOverview.value='';document.adminForm.fromdate.value='';document.adminForm.todate.value='';this.form.submit();">
             <?php echo JText::_('COM_MDTICKETS_SEARCH_RESET'); ?>
