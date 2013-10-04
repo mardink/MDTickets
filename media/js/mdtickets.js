@@ -67,6 +67,12 @@ jQuery(document).ready(function(){
     jQuery(".changeEdit").change(function() {
         jQuery("#btn_save").show();
     });
+    jQuery("#deadline_img").click(function() {
+        jQuery("#btn_save").show();
+    });
+    jQuery("#completion_date_img").click(function() {
+        jQuery("#btn_save").show();
+    });
 
 });
 
