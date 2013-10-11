@@ -113,6 +113,7 @@ class MdticketsHelperSelect
     {
         $options = array();
         $options[] = JHTML::_('select.option','0',JText::_('COM_MDTICKETS_NO'));
+        $options[] = JHTML::_('select.option','2',JText::_('COM_MDTICKETS_RECENT'));
         $options[] = JHTML::_('select.option','1',JText::_('COM_MDTICKETS_YES'));
 
         return self::genericlist($options, $id, $attribs, $selected, $id);

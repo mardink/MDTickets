@@ -78,15 +78,25 @@ class MdticketsModelItems extends FOFModel
         if($fltPeriodCategorie !='' && $fltPeriodFrom !='0000-00-00'&&  $fltPeriodTo !='0000-00-00') {
             $query->where($db->qn($fltPeriodCategorie).' BETWEEN '.$db->q($fltPeriodFrom).' AND '.$db->q($fltPeriodTo));
         }
-
+        //show finished calls or not show couple of days
         $fltFinished		= $this->getState('finished', null, 'string');
+        if($fltFinished == '2' && $fltPeriodCategorie !='completion_date') {
+        jimport('joomla.application.component.helper');
+        $Finisheddays = JComponentHelper::getParams('com_mdtickets')->get('completeddays');
+        $show_date = date("Y-m-d", strtotime("- $Finisheddays day"));
+        $query->where(
+            '('.
+            '('.$db->qn('completion_date').' >= '.$db->q($show_date).') OR'.
+            '('.$db->qn('status').' != '.$db->quote('Closed').') AND'.
+            '('.$db->qn('status').' != '.$db->quote('Cancelled').')'.
+            ')'
+        );
+        }
+        //Don't show fineshed calls
         if($fltFinished == '0' && $fltPeriodCategorie !='completion_date') {
             jimport('joomla.application.component.helper');
-            $Finisheddays = JComponentHelper::getParams('com_mdtickets')->get('completeddays');
-        $show_date = date("Y-m-d", strtotime("- $Finisheddays day"));
             $query->where(
                 '('.
-                '('.$db->qn('completion_date').' >= '.$db->q($show_date).') OR'.
                 '('.$db->qn('status').' != '.$db->quote('Closed').') AND'.
                 '('.$db->qn('status').' != '.$db->quote('Cancelled').')'.
                 ')'
