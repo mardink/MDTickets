@@ -141,30 +141,14 @@ class MdticketsModelItems extends FOFModel
 
         $order = $this->getState('filter_order', 'ordering', 'cmd');
         if(!in_array($order, array_keys($this->getTable()->getData()))) $order = 'mdtickets_item_id';
-        $dir = $this->getState('filter_order_Dir', 'ASC', 'cmd');
+        jimport('joomla.application.component.helper');
+        $Start_order = JComponentHelper::getParams('com_mdtickets')->get('start_order');
+        //$Start_order = 'DESC';
+        $dir = $this->getState('filter_order_Dir', $Start_order, 'cmd');
         $query->order($order.' '.$dir);
 
         return $query;
     }
 
-    /*public function getPagination()
-    {
-        if (empty($this->pagination))
-        {
-            // Import the pagination library
-            JLoader::import('joomla.html.pagination');
 
-            // Prepare pagination values
-            $total = $this->getTotal();
-            //$limitstart = $this->getState('limitstart');
-            //$limit = $this->getState('limit');
-            $limit = '1111';
-            $limitstart = '0';
-
-            // Create the pagination object
-            $this->pagination = new JPagination($total, $limitstart, $limit);
-        }
-
-        return $this->pagination;
-    }*/
 }

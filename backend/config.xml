@@ -18,6 +18,10 @@
         <field name="warning_days" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_WARNINGDAYS_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_WARNINGDAYS_DESC"
                default="8" filter="integer" class="inputbox validate-numeric"	/>
         <field name="menu_item_id" type="menuitem" default="45" label="COM_MDTICKETS_OPTIONS_CONFIG_MENU_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_MENU_DESC" />
+        <field name="start_order" type="list" default="ASC" label="COM_MDTICKETS_OPTIONS_CONFIG_STARTORDER_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_STARTORDER_DESC" >
+            <option value="ASC">COM_MDTICKETS_OPTIONS_CONFIG_STARTORDER_LOW</option>
+            <option value="DESC">COM_MDTICKETS_OPTIONS_CONFIG_STARTORDER_HIGH</option>
+        </field>
     </fieldset>
     <fieldset
 		name="permissions"
