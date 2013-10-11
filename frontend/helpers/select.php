@@ -101,10 +101,11 @@ class MdticketsHelperSelect
     public static function pagination($selected = null, $id = 'limit', $attribs = array())
     {
         $options = array();
+        $options[] = JHTML::_('select.option','8888',JText::_('COM_MDTICKETS_NOPAGINATION'));
         $options[] = JHTML::_('select.option','20','20');
         $options[] = JHTML::_('select.option','50','50');
         $options[] = JHTML::_('select.option','100','100');
-        $options[] = JHTML::_('select.option','8888',JText::_('COM_MDTICKETS_NOPAGINATION'));
+
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }

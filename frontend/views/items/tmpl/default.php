@@ -210,8 +210,8 @@ $m = 1 - $m;
         elseif ($item->prio=='Laag'){?>label-warning<?php }
         elseif ($item->prio=='Periodiek'){?>label-info<?php }
         elseif ($item->prio=='tzt'){?>label-inverse<?php }?>"><?php echo $item->prio;?></span></td>
-    <td><span class="requester <?php if ($item->requester=='MHI'){?> label label-warning<?php }
-        elseif ($item->requester=='HvT'){?>label label-warning<?php }?>"><?php echo $item->requester;?></span></td>
+    <td><span class="requester <?php if ($item->requester =='MHI' || $item->requester=='HvT'){} else {?> label label-warning<?php }?>">
+            <?php echo $item->requester;?></span></td>
     <td><span class="category"><?php echo $item->category;?></span></td>
     <td><span class="status label
     <?php if ($item->status=='Not started'){?><?php }
