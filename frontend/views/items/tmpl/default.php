@@ -28,6 +28,7 @@ $lastlogin = MdticketsHelperSelect::getLastlogin($user_id);
 //Get options
 $warning_days = JComponentHelper::getParams('com_mdtickets')->get('warning_days');
 $menu_id = JComponentHelper::getParams('com_mdtickets')->get('menu_item_id');
+$Start_order = JComponentHelper::getParams('com_mdtickets')->get('start_order');
 JHTML::_( 'behavior.calendar' );
 JHTML::_( 'behavior.tooltip' );
 ?>
@@ -40,7 +41,7 @@ JHTML::_( 'behavior.tooltip' );
         <input type="hidden" name="boxchecked" id="boxchecked" value="0" />
         <input type="hidden" name="hidemainmenu" id="hidemainmenu" value="0" />
         <input type="hidden" name="filter_order" id="filter_order" value="<?php echo $this->lists->order; ?>" />
-        <input type="hidden" name="filter_order_Dir" id="filter_order_Dir" value="ASC" />
+        <input type="hidden" name="filter_order_Dir" id="filter_order_Dir" value="<?php echo $Start_order; ?>" />
         <input type="hidden" name="<?php echo JFactory::getSession()->getFormToken();?>" value="1" />
 
 
@@ -165,7 +166,7 @@ $m = 1 - $m;
 
 
 ?>
-<tr class="row<?php echo $m?>">
+<tr class="row<?php echo $m?><?php if($item->status=='Closed' || $item->status=='Cancelled') {echo " row-finished";} ?>">
     <?php if($hasAjaxOrderingSupport !== false): ?>
         <td class="order nowrap center hidden-phone">
             <?php if ($this->perms->editstate) :
