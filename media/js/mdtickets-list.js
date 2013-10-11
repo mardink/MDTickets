@@ -8,6 +8,9 @@ jQuery(document).ready(function(){
     var filter_fromdate =  jQuery('#fromdate').val();
     var filter_todate =  jQuery('#todate').val();
 
+    jQuery('.row-finished td .prio').removeClass("label label-success label-warning label-info label-inverse label-important");
+    jQuery('.row-finished td .requester').removeClass("label label-success label-warning label-info label-inverse label-important");
+    jQuery('.row-finished td .assigned').removeClass("label label-success label-warning label-info label-inverse label-important");
 
     jQuery('.expand').click(function() {
         if( jQuery(this).hasClass('hidden_detail') )

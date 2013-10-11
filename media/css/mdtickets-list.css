@@ -4,6 +4,16 @@
 .deadline_error {
     color: red;
 }
+tr.row-finished td {
+    font-style: italic;
+    color: dimgrey;
+    text-decoration: line-through;
+}
+tr.row-finished a {
+    font-style: italic;
+    color: dimgrey;
+    text-decoration: line-through;
+}
 @media print {
     @page {
         size: A3 landscape;
