@@ -69,6 +69,7 @@ class MdticketsHelperSelect
         $options[] = JHTML::_('select.option','Waiting for ITON',JText::_('COM_MDTICKETS_STATUS_TYPE_ITON'));
         $options[] = JHTML::_('select.option','Waiting for supplier',JText::_('COM_MDTICKETS_STATUS_TYPE_SUPPLIER'));
         $options[] = JHTML::_('select.option','Waiting for other',JText::_('COM_MDTICKETS_STATUS_TYPE_OTHER'));
+        $options[] = JHTML::_('select.option','Re-opened',JText::_('COM_MDTICKETS_STATUS_TYPE_REOPEN'));
         $options[] = JHTML::_('select.option','Closed',JText::_('COM_MDTICKETS_STATUS_TYPE_CLOSED'));
         $options[] = JHTML::_('select.option','Cancelled',JText::_('COM_MDTICKETS_STATUS_TYPE_CANCELLED'));
 

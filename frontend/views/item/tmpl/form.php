@@ -162,7 +162,7 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
                     <label for="status" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_STATUS') ?></label>
                     <select name="status" id="status" class="changeEdit"/>
                      <?php
-                     $statussen = array('Not Started', 'Started', 'Pauzed', 'Waiting for ITON', 'Waiting for supplier', 'Waiting for other', 'Closed', 'Cancelled');
+                     $statussen = array('Not Started', 'Started', 'Pauzed', 'Waiting for ITON', 'Waiting for supplier', 'Waiting for other', 'Re-opened', 'Closed', 'Cancelled');
                      $current_status = $this->item->status;
 
                      foreach($statussen as $status) {
