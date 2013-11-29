@@ -31,10 +31,12 @@ class MdticketsControllerItem extends FOFController {
            $data['modified_on'] = $modified_on;
        }
         if($status == 'Cancelled' || $status == 'Closed') {
-            if($completion_date == '') {
-                $date = date("Y-m-d H:i:s");
+            if($completion_date == '' || $completion_date == '0000-00-00') {
+                $date = date("Y-m-d");
                 $data['completion_date'] = $date;
             }
+        } else {
+            $data['completion_date'] = '';
         }
 
 // upload files to the subfolder
