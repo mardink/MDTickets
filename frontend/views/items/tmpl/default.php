@@ -113,17 +113,18 @@ JHTML::_( 'behavior.tooltip' );
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_PRIO', 'prio', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
-        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_REQUESTER', 'requester', $this->lists->order_Dir, $this->lists->order) ?>
+        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_ASSIGNED', 'assigned', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
+        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_REQUESTER', 'requester', $this->lists->order_Dir, $this->lists->order) ?>
+    </th><!--
+    <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_CATEGORY', 'category', $this->lists->order_Dir, $this->lists->order) ?>
-    </th>
+    </th> -->
     <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_STATUS', 'status', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span1">
-        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_ASSIGNED', 'assigned', $this->lists->order_Dir, $this->lists->order) ?>
-    </th>
+
     <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_ITONCALL', 'itoncall', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
@@ -138,10 +139,11 @@ JHTML::_( 'behavior.tooltip' );
             <td></td>
             <td id="expand_all"><img src="media/com_mdtickets/images/plus.png"/></i><?php echo JText::_('COM_MDTICKETS_ALL') ?></td>
             <td><?php echo MdticketsHelperSelect::prio($this->getModel()->getState('prio'), 'prio', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
-            <td><?php echo MdticketsHelperSelect::requester($this->getModel()->getState('requester'), 'requester', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
-            <td><?php echo MdticketsHelperSelect::category($this->getModel()->getState('category'), 'category', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
-            <td><?php echo MdticketsHelperSelect::status($this->getModel()->getState('status'), 'status', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td><?php echo MdticketsHelperSelect::assigned($this->getModel()->getState('assigned'), 'assigned', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
+            <td><?php echo MdticketsHelperSelect::requester($this->getModel()->getState('requester'), 'requester', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
+            <!-- <td><?php echo MdticketsHelperSelect::category($this->getModel()->getState('category'), 'category', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td> -->
+            <td><?php echo MdticketsHelperSelect::status($this->getModel()->getState('status'), 'status', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
+
             <td></td>
             <td></td>
             <td></td>
@@ -211,9 +213,14 @@ $m = 1 - $m;
         elseif ($item->prio=='Laag'){?>label-warning<?php }
         elseif ($item->prio=='Periodiek'){?>label-info<?php }
         elseif ($item->prio=='tzt'){?>label-inverse<?php }?>"><?php echo $item->prio;?></span></td>
+    <td><span class="assigned label
+    <?php if ($item->assigned=='ITON'){?>label-info<?php }
+        elseif ($item->assigned=='MHI'){?>label-success<?php }
+        elseif ($item->assigned=='HvT'){?>label-warning<?php }
+        elseif ($item->assigned=='MHI-HvT'){?>label-important<?php }?>"><?php echo $item->assigned;?></span></td>
     <td><span class="requester <?php if ($item->requester =='MHI' || $item->requester=='HvT'){} else {?> label label-warning<?php }?>">
             <?php echo $item->requester;?></span></td>
-    <td><span class="category"><?php echo $item->category;?></span></td>
+    <!-- <td><span class="category"><?php echo $item->category;?></span></td> -->
     <td><span class="status label
     <?php if ($item->status=='Not started'){?><?php }
         elseif ($item->status=='Started'){?>label-inverse<?php }
@@ -223,11 +230,7 @@ $m = 1 - $m;
         elseif ($item->status=='Waiting for other'){?>label-info<?php }
         elseif ($item->status=='Closed'){?>label-success<?php }
     elseif ($item->status=='Cancelled'){?>label-important<?php }?>"><?php echo $item->status;?></span></td>
-    <td><span class="assigned label
-    <?php if ($item->assigned=='ITON'){?>label-info<?php }
-        elseif ($item->assigned=='MHI'){?>label-success<?php }
-        elseif ($item->assigned=='HvT'){?>label-warning<?php }
-        elseif ($item->assigned=='MHI-HvT'){?>label-important<?php }?>"><?php echo $item->assigned;?></span></td>
+
     <td><span class="itoncall">
             <?php if ($item->assigned=='ITON') {?>
             <a href="http://helpdesk.iton.nl/" target="_blank"><?php echo $item->itoncall;?></a></span>
