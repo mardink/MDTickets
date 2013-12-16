@@ -121,7 +121,7 @@ $warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
                         echo " - " . $finisheditem->short;?><span class="pull-right"><?php echo $showfinishedDate;?></span><br/>
                 <?php }
                 ?>
-            </div>
+            </div> <!--
             <div class="well span6">
                 <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_DEADLINES');?></h5>
                 <?php $deadlines = MdticketsHelperDashboard::getDeadlines($NumberCalls);
@@ -139,9 +139,9 @@ $warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
                     } elseif ($deadline->deadline <= $warning_date) { echo "deadline_warning";}?>"><?php echo $showdeadlineDate;?></span><br/>
                 <?php }
                 ?>
-            </div>
+            </div> -->
         </div> <!-- end of row -->
-        <div class="row">
+        <div class="row"> <!--
             <div class="well span6">
                 <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PERIODIEK');?></h5>
                 <?php $periodiek_calls = MdticketsHelperDashboard::getPeriodiek($NumberCalls);
@@ -159,7 +159,7 @@ $warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
                     } elseif ($periodiek_call->deadline <= $warning_date) { echo "deadline_warning";}?>"><?php echo $showPeriodiekDate_call;?></span><br/>
                 <?php }
                 ?>
-            </div>
+            </div> -->
         </div> <!-- end of row -->
           <!-- Row for jQplot graphs -->
         <div class="row">
