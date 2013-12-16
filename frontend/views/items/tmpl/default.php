@@ -245,7 +245,7 @@ $m = 1 - $m;
         } elseif($DateDeadline <= $warning_date && $DateDeadline!= '0000-00-00') { echo "deadline_warning";
         }?>"><?php
             if ($DateDeadline!= '0000-00-00'){
-            echo $newDateDeadline;} else { echo "-"; } ?></span></td>
+            echo $newDateDeadline;} else { echo ""; } ?></span></td>
     <td><span class="modified_on"><?php
             $newDateModifiedOn = date("d-m-y", strtotime($DateModifiedOn));
             echo $newDateModifiedOn;?></span></td>
