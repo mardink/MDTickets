@@ -151,6 +151,25 @@ class MdticketsHelperSelect
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
+    // get te actions from the database
+    public static function action($selected = null, $id = 'type', $attribs = array() )
+    {
+        $db = JFactory::getDBO();
+
+        $query = 'SELECT DISTINCT action'
+            . ' FROM #__mdtickets_items'
+            . ' ORDER BY action ASC';
+        $db->setQuery( $query );
+        $result = $db->loadObjectList( );
+        $options = array();
+        $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDTICKETS_DATEOVERVIEW_TYPE_SELECT').' -');
+        //now fill the array with your database result
+        foreach($result as $key=>$value) :
+            $options[] = JHTML::_('select.option',$value->action,$value->action);
+        endforeach;
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
     //get the lastlogin date from the mdtickets_lastlogins database
     //  $id Userid should be set as parameter
     public static function getLastlogin($id){
