@@ -61,6 +61,11 @@ class MdticketsModelItems extends FOFModel
             $query->where($db->qn('status').' LIKE '.$db->q($fltStatus));
         }
 
+        $fltActie		= $this->getState('actie', null, 'string');
+        if($fltActie) {
+            $query->where($db->qn('actie').' = '.$db->q($fltActie));
+        }
+
         $fltAssigned		= $this->getState('assigned', null, 'string');
         if($fltAssigned) {
             $query->where($db->qn('assigned').' LIKE '.$db->q($fltAssigned));

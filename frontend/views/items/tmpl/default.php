@@ -110,7 +110,7 @@ JHTML::_( 'behavior.tooltip' );
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_SHORT', 'short', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
-        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_ACTION', 'action', $this->lists->order_Dir, $this->lists->order) ?>
+        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_ACTION', 'actie', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_PRIO', 'prio', $this->lists->order_Dir, $this->lists->order) ?>
@@ -141,7 +141,7 @@ JHTML::_( 'behavior.tooltip' );
         <tr>
             <td></td>
             <td id="expand_all"><img src="media/com_mdtickets/images/plus.png"/></i><?php echo JText::_('COM_MDTICKETS_ALL') ?></td>
-            <td><?php echo MdticketsHelperSelect::action($this->getModel()->getState('action'), 'action', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
+            <td><?php echo MdticketsHelperSelect::actie($this->getModel()->getState('actie'), 'actie', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td><?php echo MdticketsHelperSelect::prio($this->getModel()->getState('prio'), 'prio', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td><?php echo MdticketsHelperSelect::assigned($this->getModel()->getState('assigned'), 'assigned', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td><?php echo MdticketsHelperSelect::requester($this->getModel()->getState('requester'), 'requester', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
@@ -212,7 +212,7 @@ $m = 1 - $m;
             }?>
          </span></td>
     <td class="expand"><img src="media/com_mdtickets/images/plus.png"/> <span class="short"><?php echo $item->short;?></span></td>
-    <td><span class="category"><?php echo $item->action;?></span></td>
+    <td><span class="category"><?php echo $item->actie;?></span></td>
     <td><span class="prio label <?php if ($item->prio=='Hoog'){?>label-important<?php }
         elseif ($item->prio=='Normaal'){?>label-success<?php }
         elseif ($item->prio=='Laag'){?>label-warning<?php }

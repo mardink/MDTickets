@@ -7,6 +7,7 @@ jQuery(document).ready(function(){
     var filter_requester =  jQuery('#requester option:selected').val();
     var filter_fromdate =  jQuery('#fromdate').val();
     var filter_todate =  jQuery('#todate').val();
+    var filter_actie =  jQuery('#actie').val();
 
     jQuery('.row-finished td .prio').removeClass("label label-success label-warning label-info label-inverse label-important");
     jQuery('.row-finished td .requester').removeClass("label label-success label-warning label-info label-inverse label-important");
@@ -52,6 +53,9 @@ jQuery(document).ready(function(){
 });
     if (filter_prio != '') {
         jQuery("#prio").css("background-color", "yellow");
+    }
+    if (filter_actie != '') {
+        jQuery("#actie").css("background-color", "yellow");
     }
     if (filter_status != '') {
         jQuery("#status").css("background-color", "yellow");
