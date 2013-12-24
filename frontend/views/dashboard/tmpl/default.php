@@ -70,6 +70,21 @@ $warning_date = date("Y-m-d", strtotime("+ $warning_days day"));
 <div id="mdtickets-dashboard" class="container">
     <div class="row-fluid span10">  <!-- begin left content -->
         <div class="row">
+            <div class="well span8">
+                <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_PERIODIEK_WARNING');?></h5>
+                <?php $periodics = MdticketsHelperDashboard::PeriodicOverview();
+            foreach ($periodics as $periodic){
+                $id = $periodic->mdtickets_item_id;
+                $ticketIDperiode = sprintf("%04d", $id);
+                $WarningDeadline = date("d-m-y", strtotime($periodic->deadline. ' - ' . $periodic->periodtime . 'day'));
+                $showDeadline = date("d-m-y", strtotime($periodic->deadline));?>
+            <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $periodic->mdtickets_item_id;?>"><?php echo $ticketIDperiode; ?></a><?php
+            echo " - " . $periodic->short;
+            ?><span class="pull-right"><?php echo $WarningDeadline; ?>&nbsp;&nbsp;&nbsp; <?php echo $showDeadline;?></span><br/>
+            <?php }?>
+            </div>
+        </div>
+        <div class="row">
             <div class="well span6">
                 <h5><?php echo JText::_('COM_MDTICKETS_DASHBOARD_LATESTNEW');?></h5>
                 <?php $latestitems = MdticketsHelperDashboard::getLatestNew($NumberCalls);

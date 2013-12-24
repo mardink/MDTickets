@@ -176,14 +176,22 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
                     <label for="periodtime" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_PERIODTIME') ?></label>
                     <select name="periodtime" id="periodtime" class="changeEdit input-medium"/>
                     <?php
-                    $periodtimes = array('1 dag', '3 dagen', '1 week', '2 weken', '1 maand', '4 maanden');
+                    //$periodtimes = array('1 dag', '3 dagen', '1 week', '2 weken', '4 weken', '4 maanden');
+                    $periodtimes=array();
+                    $periodtimes['1']='1 dag';
+                    $periodtimes['3']='3 dagen';
+                    $periodtimes['7']='1 week';
+                    $periodtimes['14']='2 weken';
+                    $periodtimes['28']='4 weken';
+                    $periodtimes['122']='4 maanden';
+
                     $current_periodtime = $this->item->periodtime;
 
-                    foreach($periodtimes as $periodtime) {
+                    foreach($periodtimes as $periodtime => $periodtimename) {
                         if($periodtime == $current_periodtime) {
-                            echo '<option selected="selected">'.$periodtime.'</option>';
+                            echo '<option value="'. $periodtime . '" selected="selected">'.$periodtimename.'</option>';
                         } else {
-                            echo '<option>'.$periodtime.'</option>';
+                            echo '<option value="'. $periodtime . '">'.$periodtimename.'</option>';
                         }
                     }
                     ?>

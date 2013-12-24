@@ -284,4 +284,17 @@ class MdticketsHelperDashboard {
         $result = $db->loadObjectList();
         return $result;
     }
+    /*
+     * This helper gets periodical calls from the database
+     * The result is used for the bar graph
+     */
+    public static function PeriodicOverview() {
+       // Get a db connection.
+            $db = JFactory::getDbo();
+        $query = "SELECT *, DATE_SUB(deadline, INTERVAL periodtime DAY) as warningdate FROM #__mdtickets_items where prio ='Periodiek' AND status != 'Cancelled' AND status != 'Closed' AND DATE_ADD(now(), INTERVAL periodtime DAY) > deadline ORDER BY warningdate ASC";
+        $db->setQuery($query);
+        $db->query();
+        $result = $db->loadObjectList();
+            return $result;
+        }
 }
