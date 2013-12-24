@@ -187,11 +187,11 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
                     <label for="actie" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_ACTION') ?></label>
                     <select name="actie" id="actie" class="changeEdit input-medium"/>
                     <?php
-                    $acties = array('Orienteren', 'Bestellen', 'Implementeren', 'Rapporteren', 'instructie', 'Programeren', 'Geen actie');
+                    $acties = array('Orienteren', 'Bestellen', 'Implementeren', 'Rapporteren', 'Instructie', 'Programeren', 'Geen actie');
                     $current_actie = $this->item->actie;
 
                     foreach($acties as $actie) {
-                        if($action == $current_actie) {
+                        if($actie == $current_actie) {
                             echo '<option selected="selected">'.$actie.'</option>';
                         } else {
                             echo '<option>'.$actie.'</option>';
