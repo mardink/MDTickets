@@ -102,7 +102,7 @@ class MdticketsControllerItem extends FOFController {
         $id = $model->getId();
         $item = $model->getItem();
         $jinput = JFactory::getApplication()->input;
-        $remark = $jinput->get('remark', '', 'string');
+        $remark = $jinput->get('remark', '', 'RAW');
         $detail = $item->get('detail');
         $user =& JFactory::getUser();
         $name = $user->name;
