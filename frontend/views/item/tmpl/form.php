@@ -106,33 +106,24 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
                 <?php } ?>
                 </div>
             <div id="form_edit">
-            <div class="row">
+            <div class="row"> <!-- Invullen bij aanmaken call -->
                 <div class="span4">
                     <label for="short" class="control-label"><?php echo JText::_('COM_MDTICKETS_ITEM_SHORT') ?></label>
                     <input type="text" name="short" id="short" maxlength="100" value="<?php echo $this->item->short?>" class="required changeEdit"/>
                 </div>
-                <div class="span2">
-                    <label for="prio" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_PRIO') ?></label>
-                    <select name="prio" id="prio" class="changeEdit"/>
-                        <?php
-                        $priorities = array('Normaal', 'Hoog', 'Laag', 'Periodiek', 'tzt');
-                        $current_prio = $this->item->prio;
-
-                        foreach($priorities as $prio) {
-                        if($prio == $current_prio) {
-                            echo '<option selected="selected">'.$prio.'</option>';
-                        } else {
-                                echo '<option>'.$prio.'</option>';
-                            }
-                        }
-                        ?>
-                    </select>
-
-
+                <div class="span1">
+                    <label for="requester" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_REQUESTER') ?></label>
+                    <input type="text" name="requester" id="requester" class="required changeEdit" value="<?php echo $this->item->requester?>"/>
                 </div>
+                <div class="span1">
+                    <label for="deadline" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_DEADLINE') ?></label>
+                    <?php echo JHTML::_('calendar', $this->item->deadline, 'deadline', 'deadline', '%Y-%m-%d', array('class' => 'changeEdit')); ?>
+                </div>
+            </div>
+            <div class="row"> <!-- extra info na aanmaken call -->
                 <div class="span2">
                     <label for="category" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_CATEGORY') ?></label>
-                    <select name="category" id="category" class="changeEdit"/>
+                    <select name="category" id="category" class="changeEdit input-medium"/>
                     <?php
                     $categories = array('Telefonie', 'Netwerk', 'Applicaties', 'Software', 'Hardware', 'Beheer', 'Security', 'Internet');
                     $current_category = $this->item->category;
@@ -147,42 +138,6 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
                     ?>
                     </select>
                 </div>
-                <div class="span1">
-                    <label for="requester" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_REQUESTER') ?></label>
-                    <input type="text" name="requester" id="requester" class="required changeEdit" value="<?php echo $this->item->requester?>"/>
-                </div>
-                <div class="span1">
-                    <label for="deadline" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_DEADLINE') ?></label>
-                    <?php echo JHTML::_('calendar', $this->item->deadline, 'deadline', 'deadline', '%Y-%m-%d', array('class' => 'changeEdit')); ?>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="span2">
-                    <label for="status" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_STATUS') ?></label>
-                    <select name="status" id="status" class="changeEdit  input-medium"/>
-                     <?php
-                     $statussen = array('Not Started', 'Started', 'Pauzed', 'Waiting for ITON', 'Waiting for supplier', 'Waiting for other', 'Re-opened', 'Closed', 'Cancelled');
-                     $current_status = $this->item->status;
-
-                     foreach($statussen as $status) {
-                         if($status == $current_status) {
-                             echo '<option selected="selected">'.$status.'</option>';
-                         } else {
-                             echo '<option>'.$status.'</option>';
-                         }
-                     }
-                     ?>
-                    </select>
-                </div>
-                <div id="completeby" class="span2">
-                    <label for="completed_by" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED') ?></label>
-                    <input type="text" name="completed_by" id="completed_by" class="changeEdit" value="<?php echo $this->item->completed_by?>"/>
-                </div>
-                <div id="completedate"class="span3">
-                    <label for="completion_date" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED_DATE') ?></label>
-                    <?php echo JHTML::_('calendar', $this->item->completion_date, 'completion_date', 'completion_date', '%Y-%m-%d', array('class' => 'changeEdit')); ?>
-                  </div>
                 <div class="span2">
                     <label for="actie" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_ACTION') ?></label>
                     <select name="actie" id="actie" class="changeEdit input-medium"/>
@@ -200,6 +155,68 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
                     ?>
                     </select>
                 </div>
+                <div class="span2">
+                    <label for="prio" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_PRIO') ?></label>
+                    <select name="prio" id="prio" class="changeEdit input-medium"/>
+                    <?php
+                    $priorities = array('Normaal', 'Hoog', 'Laag', 'Periodiek', 'tzt');
+                    $current_prio = $this->item->prio;
+
+                    foreach($priorities as $prio) {
+                        if($prio == $current_prio) {
+                            echo '<option selected="selected">'.$prio.'</option>';
+                        } else {
+                            echo '<option>'.$prio.'</option>';
+                        }
+                    }
+                    ?>
+                    </select>
+                </div>
+                <div id="period" class="span2">
+                    <label for="periodtime" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_PERIODTIME') ?></label>
+                    <select name="periodtime" id="periodtime" class="changeEdit input-medium"/>
+                    <?php
+                    $periodtimes = array('1 dag', '3 dagen', '1 week', '2 weken', '1 maand', '4 maanden');
+                    $current_periodtime = $this->item->periodtime;
+
+                    foreach($periodtimes as $periodtime) {
+                        if($periodtime == $current_periodtime) {
+                            echo '<option selected="selected">'.$periodtime.'</option>';
+                        } else {
+                            echo '<option>'.$periodtime.'</option>';
+                        }
+                    }
+                    ?>
+                    </select>
+                </div>
+            </div>
+            <div class="row"><!-- Na afronden en status -->
+                <div class="span2">
+                    <label for="status" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_STATUS') ?></label>
+                    <select name="status" id="status" class="changeEdit  input-medium"/>
+                    <?php
+                    $statussen = array('Not Started', 'Started', 'Pauzed', 'Waiting for ITON', 'Waiting for supplier', 'Waiting for other', 'Re-opened', 'Closed', 'Cancelled');
+                    $current_status = $this->item->status;
+
+                    foreach($statussen as $status) {
+                        if($status == $current_status) {
+                            echo '<option selected="selected">'.$status.'</option>';
+                        } else {
+                            echo '<option>'.$status.'</option>';
+                        }
+                    }
+                    ?>
+                    </select>
+                </div>
+                <div id="completeby" class="span2">
+                    <label for="completed_by" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED') ?></label>
+                    <input type="text" name="completed_by" id="completed_by" class="changeEdit input-medium" value="<?php echo $this->item->completed_by?>"/>
+                </div>
+                <div id="completedate"class="span3">
+                    <label for="completion_date" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_COMPLETED_DATE') ?></label>
+                    <?php echo JHTML::_('calendar', $this->item->completion_date, 'completion_date', 'completion_date', '%Y-%m-%d', array('class' => 'changeEdit')); ?>
+                </div>
+
                 <div class="span1">
                     <label for="assigned" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_ASSIGNED') ?></label>
                     <select name="assigned" id="assigned" class="changeEdit input-small"/>
@@ -217,11 +234,9 @@ if($DateDeadline < $current_date && $DateDeadline!= '0000-00-00' && $num) {
                     ?>
                     </select>
                 </div>
-
                 <div id="iton" class="span2"> <!-- Only shown when assigned is ITON CALL -->
                     <label for="itoncall" class="control-label"><?php echo JText::_('COM_MDTICKETS_LABEL_ITONCALL') ?></label>
                     <input type="text" name="itoncall" id="itoncall" class="changeEdit input-small" value="<?php echo $this->item->itoncall?>"/>
-
                 </div>
             </div>
 

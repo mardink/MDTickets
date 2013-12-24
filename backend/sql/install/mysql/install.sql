@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `#__mdtickets_items` (
   `completed_by` varchar(255),
   `remark` mediumtext NOT NULL,
   `actie` varchar(255) DEFAULT '',
+  `periodtime` varchar(255) DEFAULT '',
   PRIMARY KEY (`mdtickets_item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE IF NOT EXISTS `#__mdtickets_lastlogins` (

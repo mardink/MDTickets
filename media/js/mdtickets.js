@@ -51,6 +51,24 @@ jQuery(document).ready(function(){
 
         }
     });// Einde
+    // Bij periodieke call waarschuwingsperiode weergeven
+    var prio = jQuery('#prio option:selected').val();
+    if (prio == 'Periodiek') {
+        jQuery("#period").show();
+    } else {
+        jQuery("#period").hide();
+    }
+
+    jQuery("#prio").focusout(function(){
+        var prio = jQuery('#prio option:selected').val();
+
+        if (prio == 'Periodiek') {
+            jQuery("#period").show();
+        } else {
+            jQuery("#period").hide();
+
+        }
+    });// Einde periodieke call
 
 
     jQuery( "#toevoegen" ).click(function() {
