@@ -107,6 +107,16 @@ class MdticketsModelItems extends FOFModel
                 ')'
             );
         }
+        //Don't show periodic calls
+        $fltPeriod		= $this->getState('period', null, 'string');
+        if($fltPeriod == '0') {
+            jimport('joomla.application.component.helper');
+            $query->where(
+                '('.
+                '('.$db->qn('prio').' != '.$db->quote('Periodiek').')'.
+                ')'
+            );
+        }
         $fltAccess		= $this->getState('access', null, 'cmd');
         if($fltAccess) {
             $query->where($db->qn('access').' = '.$db->q($fltAccess));

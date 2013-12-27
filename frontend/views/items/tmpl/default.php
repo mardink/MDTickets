@@ -18,6 +18,7 @@ $document = JFactory::getDocument();
 $document->addScript('media/com_mdtickets/js/mdtickets-list.js');
 // Load helper
 $this->loadHelper('select');
+$this->loadHelper('dashboard');
 jimport('joomla.application.component.helper');
 $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
 // variables
@@ -31,6 +32,12 @@ $menu_id = JComponentHelper::getParams('com_mdtickets')->get('menu_item_id');
 $Start_order = JComponentHelper::getParams('com_mdtickets')->get('start_order');
 JHTML::_( 'behavior.calendar' );
 JHTML::_( 'behavior.tooltip' );
+
+// Give a notice when there are periodical items
+$periodical = MdticketsHelperDashboard::PeriodicOverview();
+if ($periodical) {
+    JFactory::getApplication()->enqueueMessage(Jtext::_('COM_MDTICKETS_PERIODICAL'), 'warning');
+}
 ?>
 <div class="row-fluid">
     <div class="span12">
@@ -77,6 +84,7 @@ JHTML::_( 'behavior.tooltip' );
         </button>
             </span>
         &nbsp;&nbsp;<?php echo JText::_('COM_MDTICKETS_FINSIHED') ?><?php echo MdticketsHelperSelect::finished($this->getModel()->getState('finished'), 'finished', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?>
+        &nbsp;&nbsp;<?php echo JText::_('COM_MDTICKETS_PERIOD') ?><?php echo MdticketsHelperSelect::period($this->getModel()->getState('period'), 'period', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?>
         &nbsp;&nbsp;<?php echo JText::_('COM_MDTICKETS_DATEOVERVIEW') ?><input type="checkbox" name="checkbox_dateoverview" id="checkbox_dateoverview" class="input-large" value="1" >
         <input type="button" id="print_btn" class="btn pull-right" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
    </div>

@@ -120,6 +120,15 @@ class MdticketsHelperSelect
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
+    // set Period state
+    public static function period($selected = null, $id = 'finished', $attribs = array())
+    {
+        $options = array();
+        $options[] = JHTML::_('select.option','0',JText::_('COM_MDTICKETS_NO'));
+        $options[] = JHTML::_('select.option','1',JText::_('COM_MDTICKETS_YES'));
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
     // Set the DateOverview fields
     public static function dateOverview($selected = null, $id = 'type', $attribs = array() )
     {
