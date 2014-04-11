@@ -5,7 +5,7 @@
 		<!-- Layout options -->
 		<options>
 			<!-- Default layout's name -->
-			<default name="Tickets" />
+			<default name="Phones" />
 		</options>
 	</view>
 

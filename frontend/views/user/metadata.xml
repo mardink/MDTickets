@@ -5,7 +5,7 @@
 		<!-- Layout options -->
 		<options>
 			<!-- Default layout's name -->
-			<default name="Ticket" />
+			<default name="User" />
 		</options>
 	</view>
 </metadata>
