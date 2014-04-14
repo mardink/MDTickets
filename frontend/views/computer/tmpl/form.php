@@ -52,16 +52,16 @@ $menu_id = JComponentHelper::getParams('com_mdtickets')->get('menu_item_id');
         <div class="span12">
             <div id="form_edit">
                 <h3><?php echo JText::_('COM_MDTICKETS_COMPUTERS_GROUP_BASIC') ?></h3>
-            <div class="row"> <!-- Invullen bij aanmaken call -->
-                <div class="span2">
+            <div class="row">
+                <div class="span1">
                     <label for="computername" class="control-label"><?php echo JText::_('COM_MDTICKETS_COMPUTERS_FIELD_COMPUTERNAME') ?></label>
                 </div>
                 <div class="span4">
                     <input type="text" name="computername" id="computername"  value="<?php echo $this->item->computername?>" class="required"/>
                 </div>
             </div>
-            <div class="row"> <!-- Invullen bij aanmaken call -->
-                <div class="span2">
+            <div class="row">
+                <div class="span1">
                     <label for="computerdesc" class="control-label"><?php echo JText::_('COM_MDTICKETS_COMPUTERS_FIELD_COMPUTERDESC') ?></label>
                 </div>
                 <div class="span4">
