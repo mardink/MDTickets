@@ -17,14 +17,10 @@ class MdticketsModelComputers extends FOFModel
             ->select('*')
             ->from($db->quoteName('#__mdtickets_computers'));
 
-        $fltInuse		= $this->getState('inuse', null, 'string');
-        if($fltInuse) {
-            $query->where($db->qn('published').' = '.$db->q($fltInuse));
-        }
 
-        $fltPublished	= $this->getState('published', null, 'cmd');
-        if($fltPublished != '') {
-            $query->where($db->qn('published').' = '.$db->q($fltPublished));
+        $fltInuse	= $this->getState('inuse', null, 'cmd');
+        if($fltInuse != '') {
+            $query->where($db->qn('published').' = '.$db->q($fltInuse));
         }
 
         $fltNoBEUnpub	= $this->getState('nobeunpub', null, 'int');
