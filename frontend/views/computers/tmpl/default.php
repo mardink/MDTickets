@@ -56,15 +56,30 @@ JHTML::_( 'behavior.tooltip' );
     <?php endif; ?>
 
     <th class="span1">
-        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_COMPTERNAME', 'computername', $this->lists->order_Dir, $this->lists->order) ?>
+        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_COMPUTERNAME', 'computername', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_USER', 'user', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span5">
+    <th class="span2">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_COMPUTERDESC', 'computerdesc', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span3">
+    <th class="span1">
+        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_COMPUTERS_FIELD_TYPE', 'type', $this->lists->order_Dir, $this->lists->order) ?>
+    </th>
+    <th class="span1">
+        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_WINDOWS', 'windows', $this->lists->order_Dir, $this->lists->order) ?>
+    </th>
+    <th class="span1">
+        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_OFFICE', 'office', $this->lists->order_Dir, $this->lists->order) ?>
+    </th>
+    <th class="span1">
+        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_SOFTWARE1', 'software1', $this->lists->order_Dir, $this->lists->order) ?>
+    </th>
+    <th class="span1">
+        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_SOFTWARE2', 'software2', $this->lists->order_Dir, $this->lists->order) ?>
+    </th>
+    <th class="span2">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_REMARK', 'remark', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
@@ -75,6 +90,11 @@ JHTML::_( 'behavior.tooltip' );
             <td></td>
             <td><?php echo MdticketsHelperComputers::user($this->getModel()->getState('user'), 'user', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td></td>
+            <td><?php echo MdticketsHelperComputers::type($this->getModel()->getState('type'), 'type', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
+            <td><?php echo MdticketsHelperComputers::windows($this->getModel()->getState('windows'), 'windows', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
+            <td><?php echo MdticketsHelperComputers::office($this->getModel()->getState('office'), 'office', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
+            <td><?php echo MdticketsHelperComputers::virus($this->getModel()->getState('software1'), 'software1', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
+            <td><?php echo MdticketsHelperComputers::PDF($this->getModel()->getState('software2'), 'software2', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td></td>
             <td><?php echo MdticketsHelperComputers::inuse($this->getModel()->getState('inuse'), 'inuse', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
         </tr>
@@ -136,8 +156,13 @@ $m = 1 - $m;
                 echo $item->computername;
             }?>
          </span></td>
+    <td><span class="user"><a href="index.php?option=com_mdtickets&view=users&task=edit&id=<?php echo $item->user_id;?>"><?php echo MdticketsHelperComputers::username_short($item->user_id); ?></a></span></td>
     <td><span class="short"><?php echo $item->computerdesc;?></span></td>
-    <td><span class="user"><?php echo $item->user_id;?></span></td>
+    <td><span class="type"><?php echo $item->type;?></span></td>
+    <td><span class="windows"><?php echo $item->windows;?></span></td>
+    <td><span class="office"><?php echo $item->office;?></span></td>
+    <td><span class="software1"><?php echo $item->software1;?></span></td>
+    <td><span class="software2"><?php echo $item->software2;?></span></td>
     <td><span class="remark"><?php echo $item->remark;?></span></td>
     <td><span class="published"><?php $published = $item->published;
             if ($published == '1') {

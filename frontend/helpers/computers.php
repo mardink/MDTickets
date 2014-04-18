@@ -67,7 +67,7 @@ class MdticketsHelperComputers
     {
         $db = JFactory::getDBO();
 
-        $query = 'SELECT DISTINCT user_id'
+        $query = 'SELECT user_id' //Shortname van users tabel moet er nog in
             . ' FROM #__mdtickets_computers'
             . ' ORDER BY user_id ASC';
         $db->setQuery( $query );
@@ -81,6 +81,107 @@ class MdticketsHelperComputers
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
+
+    // get the type of computers from the database
+    public static function type($selected = null, $id = 'type', $attribs = array() )
+    {
+        $db = JFactory::getDBO();
+
+        $query = 'SELECT DISTINCT type'
+            . ' FROM #__mdtickets_computers'
+            . ' ORDER BY type ASC';
+        $db->setQuery( $query );
+        $result = $db->loadObjectList( );
+        $options = array();
+        $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDTICKETS_USER_TYPE_SELECT').' -');
+        //now fill the array with your database result
+        foreach($result as $key=>$value) :
+            $options[] = JHTML::_('select.option',$value->type,$value->type);
+        endforeach;
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
+
+    // get the windows versions from the database
+    public static function windows($selected = null, $id = 'type', $attribs = array() )
+    {
+        $db = JFactory::getDBO();
+
+        $query = 'SELECT DISTINCT windows'
+            . ' FROM #__mdtickets_computers'
+            . ' ORDER BY windows ASC';
+        $db->setQuery( $query );
+        $result = $db->loadObjectList( );
+        $options = array();
+        $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDTICKETS_USER_TYPE_SELECT').' -');
+        //now fill the array with your database result
+        foreach($result as $key=>$value) :
+            $options[] = JHTML::_('select.option',$value->windows,$value->windows);
+        endforeach;
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
+
+    // get the office versions from the database
+    public static function office($selected = null, $id = 'type', $attribs = array() )
+    {
+        $db = JFactory::getDBO();
+
+        $query = 'SELECT DISTINCT office'
+            . ' FROM #__mdtickets_computers'
+            . ' ORDER BY office ASC';
+        $db->setQuery( $query );
+        $result = $db->loadObjectList( );
+        $options = array();
+        $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDTICKETS_USER_TYPE_SELECT').' -');
+        //now fill the array with your database result
+        foreach($result as $key=>$value) :
+            $options[] = JHTML::_('select.option',$value->office,$value->office);
+        endforeach;
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
+
+    // get the Virus software from the database
+    public static function virus($selected = null, $id = 'type', $attribs = array() )
+    {
+        $db = JFactory::getDBO();
+
+        $query = 'SELECT DISTINCT software1'
+            . ' FROM #__mdtickets_computers'
+            . ' ORDER BY software1 ASC';
+        $db->setQuery( $query );
+        $result = $db->loadObjectList( );
+        $options = array();
+        $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDTICKETS_USER_TYPE_SELECT').' -');
+        //now fill the array with your database result
+        foreach($result as $key=>$value) :
+            $options[] = JHTML::_('select.option',$value->software1,$value->software1);
+        endforeach;
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
+
+    // get the Virus software from the database
+    public static function pdf($selected = null, $id = 'type', $attribs = array() )
+    {
+        $db = JFactory::getDBO();
+
+        $query = 'SELECT DISTINCT software2'
+            . ' FROM #__mdtickets_computers'
+            . ' ORDER BY software2 ASC';
+        $db->setQuery( $query );
+        $result = $db->loadObjectList( );
+        $options = array();
+        $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDTICKETS_USER_TYPE_SELECT').' -');
+        //now fill the array with your database result
+        foreach($result as $key=>$value) :
+            $options[] = JHTML::_('select.option',$value->software2,$value->software2);
+        endforeach;
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
+
 
     //get the lastlogin date from the mdtickets_lastlogins database
     //  $id Userid should be set as parameter
@@ -97,4 +198,18 @@ class MdticketsHelperComputers
         return $previouslogin;
     }
 
+    //get the shortnamee from the mdtickets_users database
+    //  $id Userid should be set as parameter
+    public static function username_short($id){
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select('shortname');
+        $query->from('#__mdtickets_users');
+        $query->where($db->qn('mdtickets_user_id').' = '.$db->q($id));
+        // Reset the query using our newly populated query object.
+        $db->setQuery($query);
+        $username_short = $db->loadResult();
+
+        return $username_short;
+    }
 }

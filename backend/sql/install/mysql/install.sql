@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS `#__mdtickets_computers` (
   `computername` varchar(255) NOT NULL,
   `computerdesc` varchar(255) NOT NULL,
   `computersn` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `bought_at` varchar(255) NOT NULL,
   `windows` varchar(255) NOT NULL,
@@ -122,10 +123,10 @@ CREATE TABLE IF NOT EXISTS `#__mdtickets_phones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE IF NOT EXISTS `#__mdtickets_users` (
 `mdtickets_user_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-`username` bigint(20) DEFAULT NULL,
-`shortname` bigint(20) DEFAULT NULL,
-`phonenr` bigint(20) DEFAULT NULL,
-`phone_internal` bigint(20) DEFAULT NULL,
+`username` varchar(255) NOT NULL,
+`shortname` varchar(255) NOT NULL,
+`phonenr` varchar(255) NOT NULL,
+`phone_internal` varchar(255) NOT NULL,
 `skype` varchar(255) NOT NULL,
 `email` varchar(255) NOT NULL,
 `username_host` varchar(255) NOT NULL,
