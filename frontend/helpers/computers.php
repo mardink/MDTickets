@@ -62,21 +62,31 @@ class MdticketsHelperComputers
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
 
-    // get te requesters from the database
+    // get te users from the database
     public static function user($selected = null, $id = 'type', $attribs = array() )
     {
         $db = JFactory::getDBO();
 
-        $query = 'SELECT user_id' //Shortname van users tabel moet er nog in
-            . ' FROM #__mdtickets_computers'
-            . ' ORDER BY user_id ASC';
+        //$query = 'SELECT a.user_id, b.mdtickets_user_id, b.shortname' //Shortname van users tabel moet er nog in
+        //    . ' FROM #__mdtickets_computers as a'
+        //    . ' '
+        //   . ' ORDER BY user_id ASC';
+        // Create a new query object.
+        $query = $db->getQuery(true);
+        // Select all users from the computerdataba.
+
+        $query
+            ->select($db->quoteName(array('a.user_id', 'b.mdtickets_user_id', 'b.shortname')))
+            ->from($db->quoteName('#__mdtickets_computers', 'a'))
+            ->join('INNER', $db->quoteName('#__mdtickets_users', 'b') . ' ON (' . $db->quoteName('a.user_id') . ' = ' . $db->quoteName('b.mdtickets_user_id') . ')')
+            ->order($db->quoteName('b.shortname') . ' ASC');
         $db->setQuery( $query );
         $result = $db->loadObjectList( );
         $options = array();
         $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDTICKETS_USER_TYPE_SELECT').' -');
         //now fill the array with your database result
         foreach($result as $key=>$value) :
-            $options[] = JHTML::_('select.option',$value->user_id,$value->user_id);
+            $options[] = JHTML::_('select.option',$value->user_id,$value->shortname);
         endforeach;
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
@@ -97,6 +107,26 @@ class MdticketsHelperComputers
         //now fill the array with your database result
         foreach($result as $key=>$value) :
             $options[] = JHTML::_('select.option',$value->type,$value->type);
+        endforeach;
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
+
+    // get the country from the database
+    public static function country($selected = null, $id = 'type', $attribs = array() )
+    {
+        $db = JFactory::getDBO();
+
+        $query = 'SELECT DISTINCT country'
+            . ' FROM #__mdtickets_computers'
+            . ' ORDER BY country ASC';
+        $db->setQuery( $query );
+        $result = $db->loadObjectList( );
+        $options = array();
+        $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDTICKETS_USER_TYPE_SELECT').' -');
+        //now fill the array with your database result
+        foreach($result as $key=>$value) :
+            $options[] = JHTML::_('select.option',$value->country,$value->country);
         endforeach;
 
         return self::genericlist($options, $id, $attribs, $selected, $id);

@@ -42,8 +42,7 @@ class MdticketsModelComputers extends FOFModel
             $search = '%'.$search.'%';
             $query->where(
                 '('.
-                '('.$db->qn('computername').' LIKE '.$db->quote($search).') OR'.
-                '('.$db->qn('mdtickets_computer_id').' LIKE '.$db->quote($search).')'.
+                '('.$db->qn('computername').' LIKE '.$db->quote($search).')'.
                 ')'
             );
         }

@@ -131,6 +131,25 @@ $menu_id = JComponentHelper::getParams('com_mdtickets')->get('menu_item_id');
                         ?>
                         </select>
                         </div>
+                    <div class="span1">
+                        <label for="country" class="control-label"><?php echo JText::_('COM_MDTICKETS_COMPUTERS_FIELD_COUNTRY') ?></label>
+                    </div>
+                    <div class="span2">
+                        <select name="country" id="country" class="changeEdit input-medium"/>
+                        <?php
+                        $countries = array('NL', 'LV', 'UK', 'FR', 'PL');
+                        $current_country = $this->item->country;
+
+                        foreach($countries as $country) {
+                            if($country == $current_country) {
+                                echo '<option selected="selected">'.$country.'</option>';
+                            } else {
+                                echo '<option>'.$country.'</option>';
+                            }
+                        }
+                        ?>
+                        </select>
+                    </div>
                     </div><!-- Type of computer selection end-->
                 <h4><?php echo JText::_('COM_MDTICKETS_COMPUTERS_GROUP_SOFTWARE') ?></h4>
                 <div class="row"><!-- Wundows version selection start-->

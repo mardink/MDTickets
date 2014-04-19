@@ -43,6 +43,11 @@ JHTML::_( 'behavior.tooltip' );
         <input type="hidden" name="filter_order_Dir" id="filter_order_Dir" value="<?php echo $Start_order; ?>" />
         <input type="hidden" name="<?php echo JFactory::getSession()->getFormToken();?>" value="1" />
     <div id="mdtickets_toolbar" class="row span12">
+        <button href="#" onclick="Joomla.submitbutton('add')" class="btn">
+            <i class="icon-star ">
+            </i>
+            <?php echo JText::_( 'COM_MDTICKETS_TOOLBAR_NEW' );?>
+        </button>
         <input type="button" id="print_btn" class="btn pull-right" value="<?php echo Jtext::_('COM_MDTICKETS_PRINT') ?>" onclick="window.print();">
     </div>
 
@@ -68,6 +73,9 @@ JHTML::_( 'behavior.tooltip' );
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_COMPUTERS_FIELD_TYPE', 'type', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
+        <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_COMPUTERS_FIELD_COUNTRY', 'country', $this->lists->order_Dir, $this->lists->order) ?>
+    </th>
+    <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDTICKETS_LABEL_WINDOWS', 'windows', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
@@ -91,6 +99,7 @@ JHTML::_( 'behavior.tooltip' );
             <td><?php echo MdticketsHelperComputers::user($this->getModel()->getState('user'), 'user', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td></td>
             <td><?php echo MdticketsHelperComputers::type($this->getModel()->getState('type'), 'type', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
+            <td><?php echo MdticketsHelperComputers::country($this->getModel()->getState('country'), 'country', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td><?php echo MdticketsHelperComputers::windows($this->getModel()->getState('windows'), 'windows', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td><?php echo MdticketsHelperComputers::office($this->getModel()->getState('office'), 'office', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
             <td><?php echo MdticketsHelperComputers::virus($this->getModel()->getState('software1'), 'software1', array('onchange'=>'this.form.submit();','class' => 'input-mini')) ?></td>
@@ -159,6 +168,7 @@ $m = 1 - $m;
     <td><span class="user"><a href="index.php?option=com_mdtickets&view=users&task=edit&id=<?php echo $item->user_id;?>"><?php echo MdticketsHelperComputers::username_short($item->user_id); ?></a></span></td>
     <td><span class="short"><?php echo $item->computerdesc;?></span></td>
     <td><span class="type"><?php echo $item->type;?></span></td>
+    <td><span class="country"><?php echo $item->country;?></span></td>
     <td><span class="windows"><?php echo $item->windows;?></span></td>
     <td><span class="office"><?php echo $item->office;?></span></td>
     <td><span class="software1"><?php echo $item->software1;?></span></td>
